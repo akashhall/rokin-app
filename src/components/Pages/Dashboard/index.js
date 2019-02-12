@@ -1,7 +1,6 @@
 import React from 'react';
-import './style.css';
 
-class BrowsePage extends React.Component {
+class Dashboard extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -9,11 +8,11 @@ class BrowsePage extends React.Component {
         /*In Return Calling DropDown for Filter and InsuranceCard for each and every Insurance Info*/
         return (
             <React.Fragment>
-               {"hello world"}
+               {"Dashboards"}
             </React.Fragment>
         )
     }
 
 }
 
-export default BrowsePage;
+export default Dashboard;

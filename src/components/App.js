@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Switch, Route } from 'react-router-dom'
-import BrowsePage from './../components/Pages/BrowsePage';
+import LoginPage from './../components/Pages/LoginPage';
+import Dashboard from './../components/Pages/Dashboard';
 // import Forms from './Pages/Forms';
 import '../styles/App.css';
 
@@ -13,8 +14,8 @@ class App extends Component {
                     {/* <h1>WElCOME TO SYMBO INSURANCE</h1> */}
                 </header>
                 <Switch>
-                    <Route exact path='/' component={BrowsePage} />
-                    {/* <Route path='/PDP' component={PDP} /> */}
+                    <Route exact path='/' component={LoginPage} />
+                    <Route path='/dashboard' component={Dashboard} />
                     {/* <Route path='/Compare' component={ComparePage} /> */}
                     {/* <Route path='/forms' component={Forms} /> */}
                 </Switch>
