@@ -1,228 +1,260 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import { Field } from 'redux-form/immutable';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {
-  Checkbox,
-  Select,
-  TextField,
-  Switch
-} from 'redux-form-material-ui';
-import {
-  fetchAction,
-  addAction,
-  closeAction,
-  submitAction,
-  removeAction,
-  editAction,
-  closeNotifAction
-} from 'ba-actions/CrudTbFrmActions';
-import { CrudTableForm, Notification } from 'ba-components';
-import { anchorTable, dataApi } from './sampleData';
+import React from 'react';
 
-const branch = 'crudTbFrmDemo';
-
-const renderRadioGroup = ({ input, ...rest }) => (
-  <RadioGroup
-    {...input}
-    {...rest}
-    valueselected={input.value}
-    onChange={(event, value) => input.onChange(value)}
-  />
-);
-
-// validation functions
-const required = value => (value == null ? 'Required' : undefined);
-const email = value => (
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? 'Invalid email'
-    : undefined
-);
-
-const styles = ({
-  root: {
-    flexGrow: 1,
-  },
-  field: {
-    width: '100%',
-    marginBottom: 20
-  },
-  fieldBasic: {
-    width: '100%',
-    marginBottom: 20,
-    marginTop: 10
-  },
-  inlineWrap: {
-    display: 'flex',
-    flexDirection: 'row'
-  }
+{/*</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	// Activate tooltip
+	$('[data-toggle="tooltip"]').tooltip();
+	
+	// Select/Deselect checkboxes
+	var checkbox = $('table tbody input[type="checkbox"]');
+	$("#selectAll").click(function(){
+		if(this.checked){
+			checkbox.each(function(){
+				this.checked = true;                        
+			});
+		} else{
+			checkbox.each(function(){
+				this.checked = false;                        
+			});
+		} 
+	});
+	checkbox.click(function(){
+		if(!this.checked){
+			$("#selectAll").prop("checked", false);
+		}
+	});
 });
-
-class CrudTbFormDemo extends Component {
-  saveRef = ref => {
-    this.ref = ref;
-    return this.ref;
-  };
-
+</script>
+</head>
+<body>*/}
+class Forms extends React.Component {
   render() {
-    const {
-      classes,
-      fetchData,
-      addNew,
-      closeForm,
-      submit,
-      removeRow,
-      editRow,
-      dataTable,
-      openForm,
-      initValues,
-      closeNotif,
-      messageNotif,
-    } = this.props;
-    const trueBool = true;
+
     return (
-      <div>
-        <Notification close={() => closeNotif(branch)} message={messageNotif} />
-        <Paper className={classes.root}>
-          <CrudTableForm
-            dataTable={dataTable}
-            openForm={openForm}
-            dataInit={dataApi}
-            anchor={anchorTable}
-            title="Title of Table"
-            fetchData={fetchData}
-            addNew={addNew}
-            closeForm={closeForm}
-            submit={submit}
-            removeRow={removeRow}
-            editRow={editRow}
-            branch={branch}
-            initValues={initValues}
-          >
-            {/* Create Your own form, then arrange or custom it as You like */}
-            <div>
-              <Field
-                name="text"
-                component={TextField}
-                placeholder="Text Field"
-                label="Text Field"
-                validate={required}
-                required
-                ref={this.saveRef}
-                withRef
-                className={classes.field}
-              />
-            </div>
-            <div>
-              <Field
-                name="email"
-                component={TextField}
-                placeholder="Email Field"
-                label="Email"
-                required
-                validate={[required, email]}
-                className={classes.field}
-              />
-            </div>
-            <div className={classes.fieldBasic}>
-              <FormLabel component="label">Choose One Option</FormLabel>
-              <Field name="radio" className={classes.inlineWrap} component={renderRadioGroup}>
-                <FormControlLabel value="option1" control={<Radio />} label="Option 1" />
-                <FormControlLabel value="option2" control={<Radio />} label="Option 2" />
-              </Field>
-            </div>
-            <div>
-              <FormControl className={classes.field}>
-                <InputLabel htmlFor="selection">Selection</InputLabel>
-                <Field
-                  name="selection"
-                  component={Select}
-                  placeholder="Selection"
-                  autoWidth={trueBool}
-                >
-                  <MenuItem value="option1">Option One</MenuItem>
-                  <MenuItem value="option2">Option Two</MenuItem>
-                  <MenuItem value="option3">Option Three</MenuItem>
-                </Field>
-              </FormControl>
-            </div>
-            <div className={classes.fieldBasic}>
-              <FormLabel component="label">Toggle Input</FormLabel>
-              <div className={classes.inlineWrap}>
-                <FormControlLabel control={<Field name="onof" component={Switch} />} label="On/OF Switch" />
-                <FormControlLabel control={<Field name="checkbox" component={Checkbox} />} label="Checkbox" />
+      <React.Fragment >
+        <div>
+          <div className="container">
+            <div className="table-wrapper">
+              <div className="table-title">
+                <div className="row">
+                  <div className="col-sm-6">
+                    <h2>Manage <b>Employees</b></h2>
+                  </div>
+                  <div className="col-sm-6">
+                    <a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal"><i className="material-icons"></i> <span>Add New Employee</span></a>
+                    <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a>
+                  </div>
+                </div>
+              </div>
+              <table className="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>
+                      <span className="custom-checkbox">
+                        <input type="checkbox" id="selectAll" />
+                        <label htmlFor="selectAll" />
+                      </span>
+                    </th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <span className="custom-checkbox">
+                        <input type="checkbox" id="checkbox1" name="options[]" defaultValue={1} />
+                        <label htmlFor="checkbox1" />
+                      </span>
+                    </td>
+                    <td>Thomas Hardy</td>
+                    <td>thomashardy@mail.com</td>
+                    <td>89 Chiaroscuro Rd, Portland, USA</td>
+                    <td>(171) 555-2222</td>
+                    <td>
+                      <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit"></i></a>
+                      <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span className="custom-checkbox">
+                        <input type="checkbox" id="checkbox2" name="options[]" defaultValue={1} />
+                        <label htmlFor="checkbox2" />
+                      </span>
+                    </td>
+                    <td>Dominique Perrier</td>
+                    <td>dominiqueperrier@mail.com</td>
+                    <td>Obere Str. 57, Berlin, Germany</td>
+                    <td>(313) 555-5735</td>
+                    <td>
+                      <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit"></i></a>
+                      <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span className="custom-checkbox">
+                        <input type="checkbox" id="checkbox3" name="options[]" defaultValue={1} />
+                        <label htmlFor="checkbox3" />
+                      </span>
+                    </td>
+                    <td>Maria Anders</td>
+                    <td>mariaanders@mail.com</td>
+                    <td>25, rue Lauriston, Paris, France</td>
+                    <td>(503) 555-9931</td>
+                    <td>
+                      <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit"></i></a>
+                      <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span className="custom-checkbox">
+                        <input type="checkbox" id="checkbox4" name="options[]" defaultValue={1} />
+                        <label htmlFor="checkbox4" />
+                      </span>
+                    </td>
+                    <td>Fran Wilson</td>
+                    <td>franwilson@mail.com</td>
+                    <td>C/ Araquil, 67, Madrid, Spain</td>
+                    <td>(204) 619-5731</td>
+                    <td>
+                      <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit"></i></a>
+                      <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span className="custom-checkbox">
+                        <input type="checkbox" id="checkbox5" name="options[]" defaultValue={1} />
+                        <label htmlFor="checkbox5" />
+                      </span>
+                    </td>
+                    <td>Martin Blank</td>
+                    <td>martinblank@mail.com</td>
+                    <td>Via Monte Bianco 34, Turin, Italy</td>
+                    <td>(480) 631-2097</td>
+                    <td>
+                      <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit"></i></a>
+                      <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div className="clearfix">
+                <div className="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <ul className="pagination">
+                  <li className="page-item disabled"><a href="#">Previous</a></li>
+                  <li className="page-item"><a href="#" className="page-link">1</a></li>
+                  <li className="page-item"><a href="#" className="page-link">2</a></li>
+                  <li className="page-item active"><a href="#" className="page-link">3</a></li>
+                  <li className="page-item"><a href="#" className="page-link">4</a></li>
+                  <li className="page-item"><a href="#" className="page-link">5</a></li>
+                  <li className="page-item"><a href="#" className="page-link">Next</a></li>
+                </ul>
               </div>
             </div>
-            <div className={classes.field}>
-              <Field
-                name="textarea"
-                className={classes.field}
-                component={TextField}
-                placeholder="Textarea"
-                label="Textarea"
-                multiline={trueBool}
-                rows={4}
-              />
+          </div>
+          {/* Edit Modal HTML */}
+          <div id="addEmployeeModal" className="modal fade">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <form>
+                  <div className="modal-header">
+                    <h4 className="modal-title">Add Employee</h4>
+                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  </div>
+                  <div className="modal-body">
+                    <div className="form-group">
+                      <label>Name</label>
+                      <input type="text" className="form-control" required />
+                    </div>
+                    <div className="form-group">
+                      <label>Email</label>
+                      <input type="email" className="form-control" required />
+                    </div>
+                    <div className="form-group">
+                      <label>Address</label>
+                      <textarea className="form-control" required defaultValue={""} />
+                    </div>
+                    <div className="form-group">
+                      <label>Phone</label>
+                      <input type="text" className="form-control" required />
+                    </div>
+                  </div>
+                  <div className="modal-footer">
+                    <input type="button" className="btn btn-default" data-dismiss="modal" defaultValue="Cancel" />
+                    <input type="submit" className="btn btn-success" defaultValue="Add" />
+                  </div>
+                </form>
+              </div>
             </div>
-            {/* No need create button or submit, because that already made in this component */}
-          </CrudTableForm>
-        </Paper>
-      </div>
-    );
+          </div>
+          {/* Edit Modal HTML */}
+          <div id="editEmployeeModal" className="modal fade">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <form>
+                  <div className="modal-header">
+                    <h4 className="modal-title">Edit Employee</h4>
+                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  </div>
+                  <div className="modal-body">
+                    <div className="form-group">
+                      <label>Name</label>
+                      <input type="text" className="form-control" required />
+                    </div>
+                    <div className="form-group">
+                      <label>Email</label>
+                      <input type="email" className="form-control" required />
+                    </div>
+                    <div className="form-group">
+                      <label>Address</label>
+                      <textarea className="form-control" required defaultValue={""} />
+                    </div>
+                    <div className="form-group">
+                      <label>Phone</label>
+                      <input type="text" className="form-control" required />
+                    </div>
+                  </div>
+                  <div className="modal-footer">
+                    <input type="button" className="btn btn-default" data-dismiss="modal" defaultValue="Cancel" />
+                    <input type="submit" className="btn btn-info" defaultValue="Save" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          {'{'}/*{/* Delete Modal HTML */}*/{'}'}
+          <div id="deleteEmployeeModal" className="modal fade">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <form>
+                  <div className="modal-header">
+                    <h4 className="modal-title">Delete Employee</h4>
+                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  </div>
+                  <div className="modal-body">
+                    <p>Are you sure you want to delete these Records?</p>
+                    <p className="text-warning"><small>This action cannot be undone.</small></p>
+                  </div>
+                  <div className="modal-footer">
+                    <input type="button" className="btn btn-default" data-dismiss="modal" defaultValue="Cancel" />
+                    <input type="submit" className="btn btn-danger" defaultValue="Delete" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
+    )
   }
 }
 
-// renderRadioGroup.propTypes = {
-//   input: PropTypes.object.isRequired,
-// };
-
-// CrudTbFormDemo.propTypes = {
-//   dataTable: PropTypes.object.isRequired,
-//   openForm: PropTypes.bool.isRequired,
-//   classes: PropTypes.object.isRequired,
-//   fetchData: PropTypes.func.isRequired,
-//   addNew: PropTypes.func.isRequired,
-//   closeForm: PropTypes.func.isRequired,
-//   submit: PropTypes.func.isRequired,
-//   removeRow: PropTypes.func.isRequired,
-//   editRow: PropTypes.func.isRequired,
-//   initValues: PropTypes.object.isRequired,
-//   closeNotif: PropTypes.func.isRequired,
-//   messageNotif: PropTypes.string.isRequired,
-// };
-
-
-// const mapStateToProps = state => ({
-//   force: state, // force state from reducer
-//   initValues: state.getIn([branch, 'formValues']),
-//   dataTable: state.getIn([branch, 'dataTable']),
-//   openForm: state.getIn([branch, 'showFrm']),
-//   messageNotif: state.getIn([branch, 'notifMsg']),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   fetchData: bindActionCreators(fetchAction, dispatch),
-//   addNew: bindActionCreators(addAction, dispatch),
-//   closeForm: bindActionCreators(closeAction, dispatch),
-//   submit: bindActionCreators(submitAction, dispatch),
-//   removeRow: bindActionCreators(removeAction, dispatch),
-//   editRow: bindActionCreators(editAction, dispatch),
-//   closeNotif: bindActionCreators(closeNotifAction, dispatch),
-// });
-
-// const CrudTbFormDemoMapped = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(CrudTbFormDemo);
-
-export default withStyles(styles)(CrudTbFormDemoMapped);
+export default Forms;
