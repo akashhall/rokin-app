@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
   root: {
-    width: '20%',
+    width: '100%',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -43,11 +43,11 @@ function SimpleAccordion(props) {
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-      {/* <ExpansionPanel disabled>
+      <ExpansionPanel disabled>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
         </ExpansionPanelSummary>
-      </ExpansionPanel> */}
+      </ExpansionPanel>
     </div>
   );
 }
