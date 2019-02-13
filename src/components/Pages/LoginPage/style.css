@@ -26,3 +26,8 @@
 .buttonClass {
       font-size: 18px;
 }
+
+.user-name {
+    width: 246px;
+    margin-bottom: 20px;
+}

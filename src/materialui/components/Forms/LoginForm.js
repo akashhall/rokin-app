@@ -2,19 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
-import { Field, reduxForm } from 'redux-form/immutable';
-import { Checkbox, TextField } from 'redux-form-material-ui';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import styles from './user-jss';
 import PapperBlock from './../PapperBlock/PapperBlock';
+
 
 // validation functions
 const required = value => (value == null ? 'Required' : undefined);
@@ -26,9 +25,21 @@ const email = value => (
 
 class LoginForm extends React.Component {
   state = {
-    showPassword: false
+    amount: '',
+    password: '',
+    username: '',
+    weight: '',
+    weightRange: '',
+    showPassword: false,
   }
 
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  };
+
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
   handleClickShowPassword = () => {
     this.setState({ showPassword: !this.state.showPassword });
   };
@@ -50,54 +61,48 @@ class LoginForm extends React.Component {
           <form onSubmit={handleSubmit}>
             <div>
               <FormControl className={classes.formControl}>
-                <Field
-                  name="email"
-                  component={TextField}
-                  placeholder="Your Email"
-                  label="Your Email"
-                  required
-                  validate={[required, email]}
-                  className={classes.field}
-                />
               </FormControl>
             </div>
             <div>
-              <FormControl className={classes.formControl}>
-                <Field
-                  name="password"
-                  component={TextField}
-                  type={this.state.showPassword ? 'text' : 'password'}
-                  label="Your Password"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="Toggle password visibility"
-                          onClick={this.handleClickShowPassword}
-                          onMouseDown={this.handleMouseDownPassword}
-                        >
-                          {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    )
-                  }}
-                  required
-                  validate={required}
-                  className={classes.field}
-                />
-              </FormControl>
+            <TextField
+                id="filled-adornment-password"
+                className={classNames(classes.margin, classes.textField)}
+                variant="filled"
+                type="text"
+                label="username"
+                value={this.state.username}
+                onChange={this.handleChange('username')}
+              />
+              <br />
+              <br/>
+              <TextField
+                id="filled-adornment-password"
+                className={classNames(classes.margin, classes.textField)}
+                variant="filled"
+                type={this.state.showPassword ? 'text' : 'password'}
+                label="Password"
+                value={this.state.password}
+                onChange={this.handleChange('password')}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="Toggle password visibility"
+                        onClick={this.handleClickShowPassword}s
+                      >
+                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
             </div>
             <div className={classes.btnArea}>
-              <FormControlLabel control={<Field name="checkbox" component={Checkbox} />} label="Remember" />
+              {/* <FormControlLabel control={<Field name="checkbox" component={Checkbox} />} label="Remember" /> */}
               <Button variant="raised" color="primary" type="submit">
                 Continue
                 <ArrowForward className={classNames(classes.rightIcon, classes.iconSmall)} disabled={submitting || pristine} />
               </Button>
-            </div>
-            <br />
-            <div className={classes.footer}>
-              Cannot Login?
-              <Button size="small" color="secondary" className={classes.button}>Forgot Password</Button>
             </div>
           </form>
         </PapperBlock>
@@ -113,17 +118,4 @@ LoginForm.propTypes = {
   submitting: PropTypes.bool.isRequired,
 };
 
-const LoginFormReduxed = reduxForm({
-  form: 'immutableExample',
-  enableReinitialize: true,
-})(LoginForm);
-
-const reducer = 'login';
-const FormInit = connect(
-  state => ({
-    force: state,
-    initialValues: state.getIn([reducer, 'usersLogin'])
-  }),
-)(LoginFormReduxed);
-
-export default withStyles(styles)(FormInit);
+export default withStyles(styles)(LoginForm);
