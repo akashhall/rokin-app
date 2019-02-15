@@ -1,36 +1,30 @@
 import React from 'react';
+import json from './data.json';
+import Forms from './../Forms';
+import { login } from './../../../api';
+import ModalPopover from './../../ModalPopover';
 
-{/*</style>
-<script type="text/javascript">
-$(document).ready(function(){
-	// Activate tooltip
-	$('[data-toggle="tooltip"]').tooltip();
-	
-	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;                        
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;                        
-			});
-		} 
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
-});
-</script>
-</head>
-<body>*/}
-class Forms extends React.Component {
+class OrgForms extends React.Component {
+  constructor(props) {
+    super(props);
+  };
+  componentDidMount() {
+    this.testModal.handleShow();
+    console.log('did');
+    // login().then((res) => console.log('res', res));
+    
+  }
+  openModal = () => {
+    this.testModal.handleShow();
+   }
   render() {
-
+    const headers = [
+      'Name',
+      'Description',
+      'Category',
+    ];
+    const data = json.data;
+    console.log('dataaa', data)
     return (
       <React.Fragment >
         <div>
@@ -39,7 +33,8 @@ class Forms extends React.Component {
               <div className="table-title">
                 <div className="row">
                   <div className="col-sm-6">
-                    <h2>Manage <b>Employees</b></h2>
+                    <h2>Organization</h2>
+                    <button onClick={this.openModal}>test button</button>
                   </div>
                   <div className="col-sm-6">
                     <a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal"><i className="material-icons"></i> <span>Add New Employee</span></a>
@@ -51,37 +46,36 @@ class Forms extends React.Component {
                 <thead>
                   <tr>
                     {
-                      this.props.headers && this.props.headers.length ?
-                        this.props.headers.map((header) => <th>{header}</th>) : null
+                      headers && headers.length ?
+                        headers.map((header) => <th>{header}</th>) : null
                     }
                   </tr>
                 </thead>
                 <tbody>
-                    {/* <td>
+                  {/* <td>
                       <span className="custom-checkbox">
                         <input type="checkbox" id="checkbox1" name="options[]" defaultValue={1} />
                         <label htmlFor="checkbox1" />
                       </span>
                     </td> */}
-                    {console.log('render', this.props.data.data)}
-                      {this.props.data && this.props.data.length ?
-                      this.props.data.map((d) =>
-                        // return (
-                        <>
+                  {data && data.length ?
+                    data.map((d) =>
+                      // return (
+                      <>
                         <tr>
                           <td>{d.name}</td>
                           <td>{d.description}</td>
                           <td>{d.category}</td>
                           <td>
-                      <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit"></i></a>
-                      <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete"></i></a>
-                    </td>
+                            <a href="#editEmployeeModal" className="edit" data-target="addEmployeeModal" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit"></i></a>
+                            <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete"></i></a>
+                          </td>
                         </tr>
-                        </>
-                      ) : null
-                    }     
-                  
-                
+                      </>
+                    ) : null
+                  }
+
+
                 </tbody>
               </table>
               <div className="clearfix">
@@ -99,6 +93,26 @@ class Forms extends React.Component {
             </div>
           </div>
           {/* Edit Modal HTML */}
+          <ModalPopover ref={test => this.testModal = test} modalId="abc" header="Add asdsadas Employees" isModal="true">
+            <div className="finder">
+              <div className="form-group">
+                <label>Name</label>
+                <input type="text" className="form-control" required />
+              </div>
+              <div className="form-group">
+                <label>Email</label>
+                <input type="email" className="form-control" required />
+              </div>
+              <div className="form-group">
+                <label>Address</label>
+                <textarea className="form-control" required defaultValue={""} />
+              </div>
+              <div className="form-group">
+                <label>Phone</label>
+                <input type="text" className="form-control" required />
+              </div>
+            </div>
+            </ModalPopover>
           <div id="addEmployeeModal" className="modal fade">
             <div className="modal-dialog">
               <div className="modal-content">
@@ -195,4 +209,4 @@ class Forms extends React.Component {
   }
 }
 
-export default Forms;
+export default OrgForms;

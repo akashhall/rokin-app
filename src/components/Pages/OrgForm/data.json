@@ -1,0 +1,104 @@
+{
+
+    "data": [
+        {
+            "id": "e4523351-88f1-41dc-b366-034137af025d",
+            "name": "Cafe Prato - Four Seasons",
+            "description": "Featuring traditional Italian and Indian cuisines with a Mediterranean twist, Café Prato at Four Seasons Mumbai provides a menu for any occasion.",
+            "image_path": "https://api.rockinap.com/download/logo/cafe_partao-1548015642839.jpg",
+            "category": "eatin out",
+            "outlet_count": 1,
+            "created_on": "1548015642",
+            "current_plan": "trial",
+            "plan_expires": "1548015642"
+        },
+        {
+            "id": "cd5b0abf-74ca-4c32-bfcf-cde6d1518a35",
+            "name": "HRC",
+            "description": "Hard Rock Cafe Inc. is a chain of theme restaurants founded in 1971 by Isaac Tigrett and Peter Morton in London. In 1979, the cafe began covering its walls with rock and roll memorabilia, a tradition which expanded to others in the chain.",
+            "image_path": "https://api.rockinap.com/download/logo/HRC Hyderabad_Digital_Logo_4C_RGB-1548596598711.png",
+            "category": "nightin out",
+            "outlet_count": 1,
+            "created_on": "1537171068",
+            "current_plan": "trial",
+            "plan_expires": "1537171068"
+        },
+        {
+            "id": "c64958cb-c357-4712-bbff-dcfbf77556e7",
+            "name": "FLYP Caf'ye 3",
+            "description": "FLYP cafe is India's one of its kind cafe that brings together elements of F&B,retail, entertainment, work culture, creativity and community of like minded people under one versatile and dynamic space that promotes contemporary youth culture.",
+            "image_path": "https://api.rockinap.com/download/logo/HRC Hyderabad_Digital_Logo_4C_RGB-1548596479828.png",
+            "category": "nightin out",
+            "outlet_count": 1,
+            "created_on": "1548596173",
+            "current_plan": "trial",
+            "plan_expires": "1548596173"
+        },
+        {
+            "id": "ab6df345-a9df-4839-a29a-48c61383d154",
+            "name": "24/7 Restaurant - The Lalit Mumbai",
+            "description": "This round-the-clock multicuisine space is one of infinite possibilities. Frequented for the lavish lunch and dinner buffet spreads, they have speciality stations showcasing everything from Indian chaat to handcrafted desserts.",
+            "image_path": "https://api.rockinap.com/download/logo/the-lalit-mumbai-logo-1548015450995.jpg",
+            "category": "nightin out",
+            "outlet_count": 1,
+            "created_on": "1548015451",
+            "current_plan": "trial",
+            "plan_expires": "1548015451"
+        },
+        {
+            "id": "9c433bc3-2186-494b-89dc-e648ce4eb3d1",
+            "name": "Bestseller",
+            "description": "BESTSELLER is an international, family-owned fashion company with a strong foundation. With a range of more than 20 individual fashion brands, BESTSELLER provides fashion clothing and accessories for both women, men, teenagers and children.",
+            "image_path": "https://api.rockinap.com/download/logo/bestseller-1548015037702.png",
+            "category": "shopin out",
+            "outlet_count": 1,
+            "created_on": "1539910289",
+            "current_plan": "trial",
+            "plan_expires": "1539910289"
+        },
+        {
+            "id": "76bde19c-fd43-4e02-8883-2152632d796e",
+            "name": "J W Cafe",
+            "description": "This classy contemporary all-day dining restaurant offers all-day dining, featuring delectable Indian and international fare. Start your morning in Mumbai with our hearty breakfast buffet, and be sure to join us for our wonderful Sunday brunch!",
+            "image_path": "https://api.rockinap.com/download/logo/jw_cafe-1548014855117.png",
+            "category": "eatin out",
+            "outlet_count": 1,
+            "created_on": "1548014855",
+            "current_plan": "trial",
+            "plan_expires": "1548014855"
+        },
+        {
+            "id": "708118bf-ddac-41a5-b539-e804c489f2ba",
+            "name": "Ziya - The Oberoi Mumbai",
+            "description": "Treat yourself to contemporary Indian flavours and free flowing spirits, every Sunday, with Ziya’s flavorsome Zzz…unday menu at The Oberoi, Mumbai. The exciting restaurant, helmed by twice Michelin-starred Chef Vineet Bhatia, serves ‘evolved’ Indian cuisine to a discerning clientele. Enjoy the indulgence of Sundays in a new style at Ziya. ",
+            "image_path": "https://api.rockinap.com/download/logo/ziya-1548016928131.jpeg",
+            "category": "eatin out",
+            "outlet_count": 1,
+            "created_on": "1548016928",
+            "current_plan": "trial",
+            "plan_expires": "1548016928"
+        },
+        {
+            "id": "6ea12ac3-a7f6-426c-a949-d942e4c38439",
+            "name": "FLYP Cafe",
+            "description": "FLYP cafe is India's one of its kind cafe that brings together elements of F&B,retail, entertainment, work culture, creativity and community of like minded people under one versatile and dynamic space that promotes contemporary youth culture.",
+            "image_path": "https://api.rockinap.com/download/logo/flyp-1548017121195.png",
+            "category": "nightin out",
+            "outlet_count": 1,
+            "created_on": "1548017121",
+            "current_plan": "trial",
+            "plan_expires": "1548017121"
+        },
+        {
+            "id": "3bf03e27-5878-4419-af11-165e9a1cbf0e",
+            "name": "Lord Of The Drinks",
+            "description": "A cavernous space under a twinkling canopy of edison bulbs, Lord Of The Drinks in Kamala Mills is sure to take your breath away. It has a vintage air with monochrome striped walls and rich leather sofas, but the menus are undoubtedly modern with creative twists on familiar favourites. With 1,700 square feet at their disposal, it’s a luxurious, spacious experience, the like of which is rarely seen in Mumbai. The highlight of the room is undoubtedly the 200 feet island bar, from which emerge a bevy of innovative cocktails.\n",
+            "image_path": "https://api.rockinap.com/download/logo/lords_of_the_drinks-1548015175769.png",
+            "category": "nightin out",
+            "outlet_count": 1,
+            "created_on": "1548015175",
+            "current_plan": "trial",
+            "plan_expires": "1548015175"
+        }
+    ]
+}

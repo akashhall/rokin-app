@@ -1,0 +1,50 @@
+.modal-dialog {
+  overflow-y: initial !important;
+}
+
+.modal-content {
+  overflow-y: auto;
+  height:250px;
+  width: inherit;
+}
+
+.modal-body {
+  height: 250px;
+  overflow-y: auto;
+}
+.popover {
+  display: block;
+}
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* .modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    overflow-y: auto;
+    height: 250px;
+} */

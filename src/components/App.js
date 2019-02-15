@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Switch, Route } from 'react-router-dom'
 import LoginPage from './../components/Pages/LoginPage';
 import Dashboard from './../components/Pages/Dashboard';
+import Forms from './../components/Pages/Forms';
+import OrgForm from './../components/Pages/OrgForm';
+import './../styles/custom.scss';
+
 // import Forms from './Pages/Forms';
 import '../styles/App.css';
 
@@ -16,6 +20,10 @@ class App extends Component {
                 <Switch>
                     <Route exact path='/' component={LoginPage} />
                     <Route path='/dashboard' component={Dashboard} />
+                    <Route path='/forms' component={Forms} />
+                    <Route path='/org' component={OrgForm} />
+
+
                     {/* <Route path='/Compare' component={ComparePage} /> */}
                     {/* <Route path='/forms' component={Forms} /> */}
                 </Switch>
