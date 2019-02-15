@@ -58,9 +58,10 @@ class Dashboard extends React.Component {
                             <strong>Beacons</strong>
                           </span>
                         </a>
+                        <div>Beacons</div>
                       </li>
                       <li>
-                        <a href="#!/dashboard/quiz">
+                        <a href="/quiz">
                           <i className="ti-view-list" />
                           <span className="menu-title">
                             <strong>Quiz</strong>
