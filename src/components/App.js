@@ -1,39 +1,63 @@
 import React, { Component } from "react";
 import { Switch, Route } from 'react-router-dom'
 import LoginPage from './../components/Pages/LoginPage';
-import Dashboard from './../components/Pages/Dashboard';
-import Forms from './../components/Pages/Forms';
-import OrgForm from './../components/Pages/OrgForm';
-import './../styles/custom.scss';
-
+import StoreAdminDashboard from './../components/Pages/StoreAdminDashboard';
+import SuperAdminDashboard from './../components/Pages/SuperAdminDashboard';
+import Beacon from '../components/Pages/StoreAdminForms/Forms/Beacons';
+import GameOffer from '../components/Pages/StoreAdminForms/Forms/GameOffer';
+import Notifications from '../components/Pages/StoreAdminForms/Forms/Notifications';
+import Offers from '../components/Pages/StoreAdminForms/Forms/Offers';
+import Products from '../components/Pages/StoreAdminForms/Forms/Products';
+import Quiz from '../components/Pages/StoreAdminForms/Forms/Quiz';
+import QuizOffers from '../components/Pages/StoreAdminForms/Forms/QuizOffers';
+import SendOffer from '../components/Pages/StoreAdminForms/Forms/SendOffer';
+import TreasureHunt from '../components/Pages/StoreAdminForms/Forms/TreasureHunt';
+import Users from '../components/Pages/StoreAdminForms/Forms/Users';
+import CurrentUsers from '../components/Pages/StoreAdminForms/Reports/CurrentUsers';
+import CustomerHistory from '../components/Pages/StoreAdminForms/Reports/CustomerHistory';
+import CustomerRequests from '../components/Pages/StoreAdminForms/Reports/CustomerRequests';
+import GameHistory from '../components/Pages/StoreAdminForms/Reports/GameHistory';
+import OfferHistory from '../components/Pages/StoreAdminForms/Reports/OfferHistory';
+import OfferReport from '../components/Pages/StoreAdminForms/Reports/OfferReport';
 // import Forms from './Pages/Forms';
 import '../styles/App.css';
 
 class App extends Component {
-    /*Added MainRoute Component For App Routing*/
-    render() {
-        return (
-            <div>
-                <header >
-                    {/* <h1>WElCOME TO SYMBO INSURANCE</h1> */}
-                </header>
-                <Switch>
-                    <Route exact path='/' component={LoginPage} />
-                    <Route path='/dashboard' component={Dashboard} />
-                    <Route path='/forms' component={Forms} />
-                    <Route path='/org' component={OrgForm} />
-
-
-                    {/* <Route path='/Compare' component={ComparePage} /> */}
-                    {/* <Route path='/forms' component={Forms} /> */}
-                </Switch>
-                {/* <MainRoutes /> */}
-                <footer>
-                    {/* <h1>Please Visit : www.symboinsurance.com</h1> */}
-                </footer>
-            </div>
-        );
-    }
+  /*Added MainRoute Component For App Routing*/
+  render() {
+    return (
+      <div>
+        <header >
+          {/* <h1>WElCOME TO SYMBO INSURANCE</h1> */}
+        </header>
+        <Switch>
+          <Route exact path='/' component={LoginPage} />
+          <Route path='/StoreAdminDashboard' component={StoreAdminDashboard} />
+          <Route path='/SuperAdminDashboard' component={SuperAdminDashboard} />
+          <Route path='/beacon' component={Beacon} />
+          <Route path='/gameOffer' component={GameOffer} />
+          <Route path='/notifications' component={Notifications} />
+          <Route path='/offers' component={Offers} />
+          <Route path='/product' component={Products} />
+          <Route path='/quiz' component={Quiz} />
+          <Route path='/quizOffers' component={QuizOffers} />
+          <Route path='/sendOffer' component={SendOffer} />
+          <Route path='/treasureHunt' component={TreasureHunt} />
+          <Route path='/users' component={Users} />
+          <Route path='/currentUsers' component={CurrentUsers} />
+          <Route path='/customerHistory' component={CustomerHistory} />
+          <Route path='/customerRequests' component={CustomerRequests} />
+          <Route path='/gamehistory' component={GameHistory} />
+          <Route path='/offerHistory' component={OfferHistory} />
+          <Route path='/offerReport' component={OfferReport} />
+        </Switch>
+        {/* <MainRoutes /> */}
+        <footer>
+          {/* <h1>Please Visit : www.symboinsurance.com</h1> */}
+        </footer>
+      </div>
+    );
+  }
 }
 
 export default App;
