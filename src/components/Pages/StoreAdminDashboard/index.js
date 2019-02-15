@@ -8,9 +8,36 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import OrgForm from '../OrgForm';
+import Beacon from '../StoreAdminForms/Forms/Beacons';
+import Quiz from '../StoreAdminForms/Forms/Quiz';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+
+      beacons: false,
+      quiz: false,
+      quizOffer: false
+    }
+  }
+
+  ShowForms = (type) => {
+    // eslint-disable-next-line default-case
+    switch (type) {
+      case 'beacon': {
+        this.setState({ beacons: true, quiz: false })
+        break;
+      }
+      case 'quiz': {
+        this.setState({ beacons: false, quiz: true })
+        break;
+      }
+      default : {
+      this.setState({ beacons: false, quiz: false })
+      }
+    }
+
   }
   render() {
     return (
@@ -34,8 +61,8 @@ class Dashboard extends React.Component {
                 <span className='admin'>StoreAdmin</span>
               </div>
               <a className="box-block" data-toggle="collapse" aria-expanded="false">
-<p className="admin-name" id="UserNameloggedin1">Welcome rohit</p>
-</a>
+                <p className="admin-name" id="UserNameloggedin1">Welcome rohit</p>
+              </a>
             </div>
 
             <div id="mainnav-shortcut">
@@ -52,7 +79,7 @@ class Dashboard extends React.Component {
                   <Typography>
                     <ul className="dropdown-menu" >
                       <li>
-                        <a href="/beacon">
+                        <a onClick={() => this.ShowForms('beacon')}>
                           <i className="ti-view-list" />
                           <span className="menu-title">
                             <strong>Beacons</strong>
@@ -60,7 +87,7 @@ class Dashboard extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a href="#!/dashboard/quiz">
+                        <a onClick={() => this.ShowForms('quiz')}>
                           <i className="ti-view-list" />
                           <span className="menu-title">
                             <strong>Quiz</strong>
@@ -68,7 +95,7 @@ class Dashboard extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a href="#!/dashboard/quizoffer">
+                        <a href="/quizOffer">
                           <i className="ti-view-list" />
                           <span className="menu-title">
                             <strong>Quiz Offers</strong>
@@ -76,7 +103,7 @@ class Dashboard extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a href="#!/dashboard/treasurehunt">
+                        <a href="/treasureHunt">
                           <i className="ti-view-list" />
                           <span className="menu-title">
                             <strong>Treasure Hunt</strong>
@@ -84,7 +111,7 @@ class Dashboard extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a href="#!/dashboard/products">
+                        <a href="/Products">
                           <i className="ti-view-list" />
                           <span className="menu-title">
                             <strong>Products</strong>
@@ -92,7 +119,7 @@ class Dashboard extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a href="#!/dashboard/users">
+                        <a href="/users">
                           <i className="ion-compose" />
                           <span className="menu-title">
                             <strong>Users</strong>
@@ -100,7 +127,7 @@ class Dashboard extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a href="#!/dashboard/offers">
+                        <a href="/offers">
                           <i className="ti-view-list" />
                           <span className="menu-title">
                             <strong>Offers</strong>
@@ -108,7 +135,7 @@ class Dashboard extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a href="#!/dashboard/notifications">
+                        <a href="/notifications">
                           <i className="ti-view-list" />
                           <span className="menu-title">
                             <strong>Notifications</strong>
@@ -116,7 +143,7 @@ class Dashboard extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a href="#!/dashboard/sendoffer">
+                        <a href="/sendoffer">
                           <i className="ti-view-list" />
                           <span className="menu-title">
                             <strong>Send/Redeem Offers</strong>
@@ -124,7 +151,7 @@ class Dashboard extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a href="#!/dashboard/redeemgameoffer">
+                        <a href="/gameoffer">
                           <i className="ti-view-list" />
                           <span className="menu-title">
                             <strong>Redeem Game Offers</strong>
@@ -214,7 +241,10 @@ class Dashboard extends React.Component {
           </ul></header>
           <article>
             Welcome Store Admin
-              </article>
+            {/* <OrgForm /> */}
+            {this.state.beacons && <Beacon />}
+            {this.state.quiz && <Quiz />}
+          </article>
         </div>
       </React.Fragment>
     )
