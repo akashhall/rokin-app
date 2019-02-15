@@ -1,14 +1,16 @@
 import React from 'react';
 import json from './data.json';
 import Forms from './../Forms';
-import { getAllOrg } from './../../../api';
+import { getAllOrg, addOrg } from './../../../api';
 import ModalPopover from './../../ModalPopover';
 
 class OrgForms extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.selecteId=null;
     this.state = {
-      data: json.data,
+      data: [],
       editData: {
         name: '',
         description: '',
@@ -16,23 +18,60 @@ class OrgForms extends React.Component {
       }
     }
   };
+
   componentDidMount() {
-    this.editModal.handleShow();
+    // this.editModal.handleShow();
     console.log('did', sessionStorage);
-    // getAllOrg('abc').then((res) => console.log(res))
+    getAllOrg('abc').then((res) => this.setState({data: res.data}))
 
     // login().then((res) => console.log('res', res));
+  }
+  onModalClose = () => {
+    this.selecteId = null;
+    this.setState({
+      editData: {
+        name: '',
+        description: '',
+        category: ''
+      }
+    })
+  }
+  onSumit = () => {
+    const name = this.orgName.value;
+    const description = this.desc.value;
+    const category = this.selectCat.options[this.selectCat.selectedIndex].label;
+    let a = {}
+    console.log('selected id', this.selecteId)
+    if(this.selecteId !== null) {
+    a = {
+        id: this.state.data[this.selecteId].id,
+      }
+    }
+    
+    const data = {
+    ...a,
+    name,
+    description,
+    category,
+    type: 'upadte'
+    }
+
+    addOrg(data).then((res) =>  getAllOrg('abc').then((res) => this.setState({data: res.data})));
 
   }
-  openAddModal = () => {
-    this.addModal.handleShow();
-  }
   openEditModal = (i) => {
-    console.log('open edit', i, this.state.data[i])
-    const editData = this.state.data[i];
-    this.setState({ editData })
-    console.log('edit', editData, this.state)
+    if (i !== undefined) {
+      this.selecteId = i;
+      console.log('open edit', i, this.state.data[i])
+      const editData = this.state.data[i];
+      this.setState({ editData })
+      console.log('edit', editData, this.state)
+    }
+    console.log('bahar', this.state.editData.category)
     this.editModal.handleShow();
+  }
+  onDelete = (i) => {
+    console.log('dekhte hai')
   }
   render() {
     const headers = [
@@ -51,11 +90,10 @@ class OrgForms extends React.Component {
                 <div className="row">
                   <div className="col-sm-6">
                     <h2>Organization</h2>
-                    <button onClick={this.openAddModal}>test button</button>
                   </div>
                   <div className="col-sm-6">
-                    <a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal"><i className="material-icons"></i> <span>Add New Employee</span></a>
-                    <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a>
+                    <a onClick={() => this.openEditModal()} className="btn btn-success"><i className="material-icons"></i> <span>Add New Organization</span></a>
+                    {/* <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a> */}
                   </div>
                 </div>
               </div>
@@ -69,64 +107,39 @@ class OrgForms extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* <td>
-                      <span className="custom-checkbox">
-                        <input type="checkbox" id="checkbox1" name="options[]" defaultValue={1} />
-                        <label htmlFor="checkbox1" />
-                      </span>
-                    </td> */}
                   {this.state.data && this.state.data.length ?
                     this.state.data.map((d, i) =>
-                      // return (
-                      <>
-                        <tr key={i}>
-                          <td>{d.name}</td>
-                          <td>{d.description}</td>
-                          <td>{d.category}</td>
-                          <td>
-                            <a onClick={() => this.openEditModal(i)} className="edit"><i className="material-icons" title="Edit"></i></a>
-                            <a className="delete"><i className="material-icons" title="Delete"></i></a>
-                          </td>
-                        </tr>
-                      </>
+                      <tr key={i}>
+                        <td style={{width: '200px'}}>{d.name}</td>
+                        <td>{d.description}</td>
+                        <td>{d.category}</td>
+                        <td>
+                          <a onClick={() => this.openEditModal(i)} className="edit"><i className="material-icons" title="Edit"></i></a>
+                          <a className="delete"><i className="material-icons" title="Delete"></i></a>
+                        </td>
+                      </tr>
                     ) : null
                   }
-
-
                 </tbody>
               </table>
-              <div className="clearfix">
-                <div className="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                <ul className="pagination">
-                  <li className="page-item disabled"><a href="#">Previous</a></li>
-                  <li className="page-item"><a href="#" className="page-link">1</a></li>
-                  <li className="page-item"><a href="#" className="page-link">2</a></li>
-                  <li className="page-item active"><a href="#" className="page-link">3</a></li>
-                  <li className="page-item"><a href="#" className="page-link">4</a></li>
-                  <li className="page-item"><a href="#" className="page-link">5</a></li>
-                  <li className="page-item"><a href="#" className="page-link">Next</a></li>
-                </ul>
-              </div>
             </div>
           </div>
-          {/* Edit Modal HTML */}
-          <ModalPopover ref={test => this.addModal = test} modalId="addOrgModal" header="Add Organization" isModal="true">
+          <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Organization" isModal="true">
             <>
               <div className="form-group">
                 <label>Organization Name</label>
-                <input type="text" className="form-control" required placeholder="Please enter Organization Name" />
+                <input ref={name => this.orgName = name} type="text" className="form-control"  onChange={(e) => this.setState({editData: {...this.state.editData, name: e.target.value} })} value={this.state.editData.name || ''} required placeholder="Please enter Organization Name" />
               </div>
               <div className="form-group">
                 <label>Description</label>
-                {/* <input type="email" className="form-control" required /> */}
-                <textarea className="form-control" placeholder="Please enter description here" />
+                <textarea ref={des => this.desc = des} className="form-control" placeholder="Please enter description here" onChange={(e) => this.setState({editData: {...this.state.editData, description: e.target.value} })} value={this.state.editData.description || ''} />
               </div>
-              <select style={{ width: '100%', marginBottom: '20px' }} className="btn btn-secondary">
-                <option>Select Category</option>
-                <option>Chillin out</option>
-                <option>Eathin out</option>
-                <option>Nightin out</option>
-                <option>Shoppin out</option>
+              <select ref={sel => this.selectCat = sel} style={{ width: '100%', marginBottom: '20px' }} className="btn btn-secondary">
+                <option value="0" >Select Category</option>
+                <option value="1" selected={this.state.editData.category == 'chilin out'}>Chilin out</option>
+                <option value="2" selected={this.state.editData.category == 'eatin out'}>Eatin out</option>
+                <option value="3" selected={this.state.editData.category == 'nightin out'}>Nightin out</option>
+                <option value="4" selected={this.state.editData.category == 'shopin out'}>Shopin out</option>
               </select>
               <div style={{ padding: '20px 55px' }} className="modal-footer">
                 <div className="row">
@@ -134,47 +147,13 @@ class OrgForms extends React.Component {
                     <input type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
                   </div>
                   <div className="col-md-6">
-                    <input type="submit" className="btn btn-primary" defaultValue="Add" />
+                    <input onClick={this.onSumit} type="submit" className="btn btn-primary" defaultValue="Add" />
 
                   </div>
                 </div>
               </div>
             </>
           </ModalPopover>
-          <ModalPopover ref={test => this.editModal = test} modalId="editOrgModal" header="Edit Organization" isModal="true">
-            <>
-              <div className="form-group">
-                <label>Organization Name</label>
-                <input type="text" className="form-control" defaultValue={this.state.editData.name || ''} required placeholder="Please enter Organization Name" />
-              </div>
-              <div className="form-group">
-                <label>Description</label>
-                {/* <input type="email" className="form-control" required /> */}
-                <textarea className="form-control" placeholder="Please enter description here" value={this.state.editData.description || ''} />
-              </div>
-              <select style={{ width: '100%', marginBottom: '20px' }} className="btn btn-secondary">
-                <option>Select Category</option>
-                <option>Chillin out</option>
-                <option>Eathin out</option>
-                <option>Nightin out</option>
-                <option>Shoppin out</option>
-              </select>
-              <div style={{ padding: '20px 55px' }} className="modal-footer">
-                <div className="row">
-                  <div className="col-md-6">
-                    <input type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
-                  </div>
-                  <div className="col-md-6">
-                    <input type="submit" className="btn btn-primary" defaultValue="Add" />
-
-                  </div>
-                </div>
-              </div>
-            </>
-          </ModalPopover>
-          {/* Edit Modal HTML */}
-
-          {'{'}/*{/* Delete Modal HTML */}*/{'}'}
           <div id="deleteEmployeeModal" className="modal fade">
             <div className="modal-dialog">
               <div className="modal-content">
