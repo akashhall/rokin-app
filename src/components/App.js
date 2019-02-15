@@ -19,8 +19,11 @@ import CustomerRequests from '../components/Pages/StoreAdminForms/Reports/Custom
 import GameHistory from '../components/Pages/StoreAdminForms/Reports/GameHistory';
 import OfferHistory from '../components/Pages/StoreAdminForms/Reports/OfferHistory';
 import OfferReport from '../components/Pages/StoreAdminForms/Reports/OfferReport';
+import OrgForm from '../components/Pages/OrgForm';
+
 // import Forms from './Pages/Forms';
 import '../styles/App.css';
+import '../styles/custom.scss';
 
 class App extends Component {
   /*Added MainRoute Component For App Routing*/
@@ -32,6 +35,7 @@ class App extends Component {
         </header>
         <Switch>
           <Route exact path='/' component={LoginPage} />
+          <Route path='/org' component={OrgForm} />
           <Route path='/StoreAdminDashboard' component={StoreAdminDashboard} />
           <Route path='/SuperAdminDashboard' component={SuperAdminDashboard} />
           <Route path='/beacon' component={Beacon} />

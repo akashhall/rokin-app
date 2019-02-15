@@ -85,6 +85,7 @@ class Dashboard extends React.Component {
                             <strong>Beacons</strong>
                           </span>
                         </a>
+                        <div>Beacons</div>
                       </li>
                       <li>
                         <a onClick={() => this.ShowForms('quiz')}>

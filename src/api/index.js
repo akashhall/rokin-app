@@ -20,6 +20,7 @@ function login(username, password) {
     });
 }
 function getAllOrg(token) {
+  console.log('service', sessionStorage)
   return axios.post('https://api.rockinap.com/admin/organisations',
     { "category": 'eatin out' },
     {

@@ -1,22 +1,39 @@
 import React from 'react';
 import json from './data.json';
 import Forms from './../Forms';
-import { login } from './../../../api';
+import { getAllOrg } from './../../../api';
 import ModalPopover from './../../ModalPopover';
 
 class OrgForms extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      data: json.data,
+      editData: {
+        name: '',
+        description: '',
+        category: ''
+      }
+    }
   };
   componentDidMount() {
-    this.testModal.handleShow();
-    console.log('did');
+    this.editModal.handleShow();
+    console.log('did', sessionStorage);
+    // getAllOrg('abc').then((res) => console.log(res))
+
     // login().then((res) => console.log('res', res));
-    
+
   }
-  openModal = () => {
-    this.testModal.handleShow();
-   }
+  openAddModal = () => {
+    this.addModal.handleShow();
+  }
+  openEditModal = (i) => {
+    console.log('open edit', i, this.state.data[i])
+    const editData = this.state.data[i];
+    this.setState({ editData })
+    console.log('edit', editData, this.state)
+    this.editModal.handleShow();
+  }
   render() {
     const headers = [
       'Name',
@@ -34,7 +51,7 @@ class OrgForms extends React.Component {
                 <div className="row">
                   <div className="col-sm-6">
                     <h2>Organization</h2>
-                    <button onClick={this.openModal}>test button</button>
+                    <button onClick={this.openAddModal}>test button</button>
                   </div>
                   <div className="col-sm-6">
                     <a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal"><i className="material-icons"></i> <span>Add New Employee</span></a>
@@ -58,17 +75,17 @@ class OrgForms extends React.Component {
                         <label htmlFor="checkbox1" />
                       </span>
                     </td> */}
-                  {data && data.length ?
-                    data.map((d) =>
+                  {this.state.data && this.state.data.length ?
+                    this.state.data.map((d, i) =>
                       // return (
                       <>
-                        <tr>
+                        <tr key={i}>
                           <td>{d.name}</td>
                           <td>{d.description}</td>
                           <td>{d.category}</td>
                           <td>
-                            <a href="#editEmployeeModal" className="edit" data-target="addEmployeeModal" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit"></i></a>
-                            <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete"></i></a>
+                            <a onClick={() => this.openEditModal(i)} className="edit"><i className="material-icons" title="Edit"></i></a>
+                            <a className="delete"><i className="material-icons" title="Delete"></i></a>
                           </td>
                         </tr>
                       </>
@@ -93,95 +110,70 @@ class OrgForms extends React.Component {
             </div>
           </div>
           {/* Edit Modal HTML */}
-          <ModalPopover ref={test => this.testModal = test} modalId="abc" header="Add asdsadas Employees" isModal="true">
-            <div className="finder">
+          <ModalPopover ref={test => this.addModal = test} modalId="addOrgModal" header="Add Organization" isModal="true">
+            <>
               <div className="form-group">
-                <label>Name</label>
-                <input type="text" className="form-control" required />
+                <label>Organization Name</label>
+                <input type="text" className="form-control" required placeholder="Please enter Organization Name" />
               </div>
               <div className="form-group">
-                <label>Email</label>
-                <input type="email" className="form-control" required />
+                <label>Description</label>
+                {/* <input type="email" className="form-control" required /> */}
+                <textarea className="form-control" placeholder="Please enter description here" />
               </div>
-              <div className="form-group">
-                <label>Address</label>
-                <textarea className="form-control" required defaultValue={""} />
-              </div>
-              <div className="form-group">
-                <label>Phone</label>
-                <input type="text" className="form-control" required />
-              </div>
-            </div>
-            </ModalPopover>
-          <div id="addEmployeeModal" className="modal fade">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <form>
-                  <div className="modal-header">
-                    <h4 className="modal-title">Add Employee</h4>
-                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <select style={{ width: '100%', marginBottom: '20px' }} className="btn btn-secondary">
+                <option>Select Category</option>
+                <option>Chillin out</option>
+                <option>Eathin out</option>
+                <option>Nightin out</option>
+                <option>Shoppin out</option>
+              </select>
+              <div style={{ padding: '20px 55px' }} className="modal-footer">
+                <div className="row">
+                  <div className="col-md-6">
+                    <input type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
                   </div>
-                  <div className="modal-body">
-                    <div className="form-group">
-                      <label>Name</label>
-                      <input type="text" className="form-control" required />
-                    </div>
-                    <div className="form-group">
-                      <label>Email</label>
-                      <input type="email" className="form-control" required />
-                    </div>
-                    <div className="form-group">
-                      <label>Address</label>
-                      <textarea className="form-control" required defaultValue={""} />
-                    </div>
-                    <div className="form-group">
-                      <label>Phone</label>
-                      <input type="text" className="form-control" required />
-                    </div>
+                  <div className="col-md-6">
+                    <input type="submit" className="btn btn-primary" defaultValue="Add" />
+
                   </div>
-                  <div className="modal-footer">
-                    <input type="button" className="btn btn-default" data-dismiss="modal" defaultValue="Cancel" />
-                    <input type="submit" className="btn btn-success" defaultValue="Add" />
-                  </div>
-                </form>
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          </ModalPopover>
+          <ModalPopover ref={test => this.editModal = test} modalId="editOrgModal" header="Edit Organization" isModal="true">
+            <>
+              <div className="form-group">
+                <label>Organization Name</label>
+                <input type="text" className="form-control" defaultValue={this.state.editData.name || ''} required placeholder="Please enter Organization Name" />
+              </div>
+              <div className="form-group">
+                <label>Description</label>
+                {/* <input type="email" className="form-control" required /> */}
+                <textarea className="form-control" placeholder="Please enter description here" value={this.state.editData.description || ''} />
+              </div>
+              <select style={{ width: '100%', marginBottom: '20px' }} className="btn btn-secondary">
+                <option>Select Category</option>
+                <option>Chillin out</option>
+                <option>Eathin out</option>
+                <option>Nightin out</option>
+                <option>Shoppin out</option>
+              </select>
+              <div style={{ padding: '20px 55px' }} className="modal-footer">
+                <div className="row">
+                  <div className="col-md-6">
+                    <input type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
+                  </div>
+                  <div className="col-md-6">
+                    <input type="submit" className="btn btn-primary" defaultValue="Add" />
+
+                  </div>
+                </div>
+              </div>
+            </>
+          </ModalPopover>
           {/* Edit Modal HTML */}
-          <div id="editEmployeeModal" className="modal fade">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <form>
-                  <div className="modal-header">
-                    <h4 className="modal-title">Edit Employee</h4>
-                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  </div>
-                  <div className="modal-body">
-                    <div className="form-group">
-                      <label>Name</label>
-                      <input type="text" className="form-control" required />
-                    </div>
-                    <div className="form-group">
-                      <label>Email</label>
-                      <input type="email" className="form-control" required />
-                    </div>
-                    <div className="form-group">
-                      <label>Address</label>
-                      <textarea className="form-control" required defaultValue={""} />
-                    </div>
-                    <div className="form-group">
-                      <label>Phone</label>
-                      <input type="text" className="form-control" required />
-                    </div>
-                  </div>
-                  <div className="modal-footer">
-                    <input type="button" className="btn btn-default" data-dismiss="modal" defaultValue="Cancel" />
-                    <input type="submit" className="btn btn-info" defaultValue="Save" />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+
           {'{'}/*{/* Delete Modal HTML */}*/{'}'}
           <div id="deleteEmployeeModal" className="modal fade">
             <div className="modal-dialog">
@@ -204,7 +196,7 @@ class OrgForms extends React.Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </React.Fragment >
     )
   }
 }
