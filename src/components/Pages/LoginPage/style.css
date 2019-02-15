@@ -1,33 +1,60 @@
 .insuranceCardGrid {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
+
 .insuranceCardCell {
-    margin: 38px;
-    max-width: 250px;
-    min-width: 130px;
-    text-align: center;
-    border: 2px solid
+  margin: 38px;
+  max-width: 250px;
+  min-width: 130px;
+  text-align: center;
+  border: 2px solid
 }
+
 .filter {
-    margin-left: 20px;
-    margin-top: 40px;
-    margin-bottom: 50px;
-    display: flex;
+  margin-left: 20px;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  display: flex;
 }
+
 .left {
-    margin: 2px 10px;
-    font-size: 18px;
+  margin: 2px 10px;
+  font-size: 18px;
 }
+
 .right {
-    margin: 2px 10px; 
-    font-size: 18px;
+  margin: 2px 10px;
+  font-size: 18px;
 }
+
 .buttonClass {
-      font-size: 18px;
+  font-size: 18px;
 }
 
 .user-name {
-    width: 246px;
-    margin-bottom: 20px;
+  width: 246px;
+  margin-left: -50px !important;
+  margin-bottom: 20px !important;
+}
+
+.MuiPaper-root-36 {
+  padding-left: 38% !important;
+}
+
+.rock-img {
+  max-width: 100%;
+  margin-left: -54px;
+}
+.MuiTypography-root-63 .MuiTypography-title-69 .PaperSheet-title-29 {
+  border-bottom: none !important
+}
+/* .MuiTypography-root-63{
+  border-bottom: none !important
+} */
+
+.LoginForm-formWrap-5 {
+    margin-top: 70px !important; 
+    width: 35%;
+    margin-left : 30%
 }
