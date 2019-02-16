@@ -22,6 +22,8 @@ import OfferReport from '../components/Pages/StoreAdminForms/Reports/OfferReport
 import CustomerRequest from '../components/Pages/StoreAdminForms/Reports/CustomerRequest';
 import OrgForm from '../components/Pages/OrgForm';
 import Notifications from './../components/Pages/StoreAdminForms/Forms/Notifications'
+import SendOffer from './../components/Pages/StoreAdminForms/Forms/SendOffer'
+
 // import Forms from './Pages/Forms';
 import '../styles/App.css';
 import '../styles/custom.scss';
@@ -65,7 +67,9 @@ class App extends Component {
           <Route path='/gamehistory' component={GameHistory} />
           <Route path='/notifications' component={Notifications} />
           <Route path='/currentUsers' component={CurrentUsers} />
-          <Route path='/offerReport' component={OfferReport} />
+          <Route path='/offerReport' component={OfferReport} />  
+          <Route path='/sendOffer' component={SendOffer} />
+          <Route path='/notifications' component={Notifications} />
         </Switch>
         {/* <MainRoutes /> */}
         <footer>
