@@ -4,7 +4,7 @@ import React from 'react';
 import { getCustomerHistory, addBeacon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
-class Beacons extends React.Component {
+class CustomerHistory extends React.Component {
   constructor(props) {
     super(props);
 
@@ -235,4 +235,4 @@ class Beacons extends React.Component {
   }
 }
 
-export default Beacons;
+export default CustomerHistory;

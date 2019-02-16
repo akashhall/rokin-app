@@ -4,7 +4,7 @@ import React from 'react';
 import { getOfferHistory, addBeacon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
-class Beacons extends React.Component {
+class OfferHistory extends React.Component {
   constructor(props) {
     super(props);
 
@@ -138,9 +138,10 @@ class Beacons extends React.Component {
                     <option value="Redeem">Redeem</option>
                     <option value="Redeem">Redeemed</option>
                   </select>
-                  <br />
+                  &nbsp;
                   <label style={{ marginTop: '0px' }} htmlFor="startDate" >Start Date:</label>
                   <input ng-model="OHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+                  &nbsp;
                   <label htmlFor="endDate">End Date:</label>
                   <input ng-model="OHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   <button className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="OHC.getOffersHistory()">Submit</button>
@@ -251,4 +252,4 @@ class Beacons extends React.Component {
   }
 }
 
-export default Beacons;
+export default OfferHistory;

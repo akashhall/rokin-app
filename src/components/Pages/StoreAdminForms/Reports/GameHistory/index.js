@@ -4,7 +4,7 @@ import React from 'react';
 import { getGameHistory, addBeacon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
-class Beacons extends React.Component {
+class GameHistory extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -121,17 +121,20 @@ class Beacons extends React.Component {
                     {/* <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a> */}
 									{/* </div> */}
 								</div>
-								<div className="panel-heading" style={{ padding: '10px 10px', height: 'auto',}}>
+								<div className="panel-heading" style={{ padding: '10px 10px', height: 'auto', }}>
 									<label htmlFor="game">Select Game:</label>
 									<select style={{ width: '20%', display: 'inline-block' }} className="form-control frmclr ng-pristine ng-valid ng-not-empty ng-touched" name="type" ng-model="GHC.game">
 										<option value="All" selected="selected">All</option>
 										<option value="treasureHunt">TresauteHunt</option>
 										<option value="quizGame">Quiz</option>
 									</select>
-									<label  htmlFor="startDate">Start Date:</label>
+									&nbsp;
+									<label htmlFor="startDate">Start Date:</label>
 									<input ng-model="GHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+									&nbsp;
 									<label htmlFor="endDate">End Date:</label>
-									<input ng-model="GHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+
+									&nbsp;<input ng-model="GHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
 									<button className="btn-primary col-md-1 butnadd submit_form submit_dis add_button_custom_width floatRight" ng-click="GHC.getGameHistory()">Submit</button>
 								</div>
 							</div>
@@ -140,7 +143,7 @@ class Beacons extends React.Component {
 									<tr>
 										{
 											headers && headers.length ?
-												headers.map((header) => <th>{header}</th>) : null
+												headers.map((header) => <th style={{ width: '145px' }}>{header}</th>) : null
 										}
 									</tr>
 								</thead>
@@ -165,74 +168,10 @@ class Beacons extends React.Component {
 							</table>
 						</div>
 					</div>
-					{/* <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon" isModal="true">
-						<>
-							<div className="form-group">
-								<label>Beacon Name</label>
-								<input ref={name => this.name = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, name: e.target.value } })} value={this.state.editData.name || ''} required placeholder="Please enter Beacon Name" />
-							</div>
-							<div className="form-group">
-								<label>Address</label>
-								<input ref={name => this.address = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, address: e.target.value } })} value={this.state.editData.address || ''} required placeholder="Please enter Address" />
-							</div>
-							<div className="form-group">
-								<label>Room</label>
-								<input ref={name => this.room = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, beacon_room: e.target.value } })} value={this.state.editData.beacon_room || ''} required placeholder="Please enter Beacon Room" />
-							</div>
-							<div className="form-group">
-								<label>Beacon UUID</label>
-								<input ref={name => this.uuid = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, beacon_uuid: e.target.value } })} value={this.state.editData.beacon_uuid || ''} required placeholder="Please enter UUID" />
-							</div>
-							<div className="form-group">
-								<label>Major</label>
-								<input ref={name => this.major = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, major: e.target.value } })} value={this.state.editData.major || ''} required placeholder="Please enter Major" />
-							</div>
-							<div className="form-group">
-								<label>Minor</label>
-								<input ref={name => this.minor = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, minor: e.target.value } })} value={this.state.editData.minor || ''} required placeholder="Please enter Minor" />
-							</div>
-							<select ref={sel => this.select = sel} style={{ height: '38px', width: '100%', marginBottom: '20px', marginTop: '10px', border: '1px solid lightgrey' }} >
-								<option value="0" >Is offered Beacon</option>
-								<option value="true" selected={this.state.editData.offer_beacon == true}>Yes</ option>
-								<option value="false" selected={this.state.editData.offer_beacon == false}>No</option>
-							</select>
-							<div style={{ padding: '20px 55px' }} className="modal-footer">
-								<div className="row">
-									<div className="col-md-6">
-										<input type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
-									</div>
-									<div className="col-md-6">
-										<input onClick={this.onSumit} type="submit" className="btn btn-primary" defaultValue="Add" />
-
-									</div>
-								</div>
-							</div>
-						</>
-					</ModalPopover> */}
-					{/* <div id="deleteEmployeeModal" className="modal fade">
-						<div className="modal-dialog">
-							<div className="modal-content">
-								<form>
-									<div className="modal-header">
-										<h4 className="modal-title">Delete Employee</h4>
-										<button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
-									</div>
-									<div className="modal-body">
-										<p>Are you sure you want to delete these Records?</p>
-										<p className="text-warning"><small>This action cannot be undone.</small></p>
-									</div>
-									<div className="modal-footer">
-										<input type="button" className="btn btn-default" data-dismiss="modal" defaultValue="Cancel" />
-										<input type="submit" className="btn btn-danger" defaultValue="Delete" />
-									</div>
-								</form>
-							</div>
-						</div>
-					</div> */}
 				</div>
 			</React.Fragment >
 		)
 	}
 }
 
-export default Beacons;
+export default GameHistory;

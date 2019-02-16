@@ -13,12 +13,13 @@ import Products from '../components/Pages/StoreAdminForms/Forms/Products';
 // import SendOffer from '../components/Pages/StoreAdminForms/Forms/SendOffer';
 // import TreasureHunt from '../components/Pages/StoreAdminForms/Forms/TreasureHunt';
 // import Users from '../components/Pages/StoreAdminForms/Forms/Users';
-// import CurrentUsers from '../components/Pages/StoreAdminForms/Reports/CurrentUsers';
+import CurrentUsers from '../components/Pages/StoreAdminForms/Reports/CurrentUsers';
 import CustomerHistory from '../components/Pages/StoreAdminForms/Reports/CustomerHistory';
-// import CustomerRequests from '../components/Pages/StoreAdminForms/Reports/CustomerRequests';
+import CustomerReport from '../components/Pages/StoreAdminForms/Reports/CustomerReport';
 import GameHistory from '../components/Pages/StoreAdminForms/Reports/GameHistory';
 import OfferHistory from '../components/Pages/StoreAdminForms/Reports/OfferHistory';
-// import OfferReport from '../components/Pages/StoreAdminForms/Reports/OfferReport';
+import OfferReport from '../components/Pages/StoreAdminForms/Reports/OfferReport';
+import CustomerRequest from '../components/Pages/StoreAdminForms/Reports/CustomerRequest';
 import OrgForm from '../components/Pages/OrgForm';
 import Notifications from './../components/Pages/StoreAdminForms/Forms/Notifications'
 // import Forms from './Pages/Forms';
@@ -51,15 +52,20 @@ class App extends Component {
           <Route path='/treasureHunt' component={TreasureHunt} />
           <Route path='/users' component={Users} />
           <Route path='/currentUsers' component={CurrentUsers} />
+
           <Route path='/customerHistory' component={CustomerHistory} />
           <Route path='/customerRequests' component={CustomerRequests} />
           <Route path='/gamehistory' component={GameHistory} />
           <Route path='/offerHistory' component={OfferHistory} />
           <Route path='/offerReport' component={OfferReport} /> */}
+          <Route path='/customerRequest' component={CustomerRequest} />
+          <Route path='/customerReport' component={CustomerReport} />
           <Route path='/customerHistory' component={CustomerHistory} />
           <Route path='/offerHistory' component={OfferHistory} />
           <Route path='/gamehistory' component={GameHistory} />
           <Route path='/notifications' component={Notifications} />
+          <Route path='/currentUsers' component={CurrentUsers} />
+          <Route path='/offerReport' component={OfferReport} />
         </Switch>
         {/* <MainRoutes /> */}
         <footer>
