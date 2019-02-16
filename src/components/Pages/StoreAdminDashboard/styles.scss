@@ -3,14 +3,14 @@
     position: relative;
   header {
     list-style-type: none;
-    margin: 0;
+    margin: 0px;
     padding: 0;
     overflow: hidden;
     background-color: #333;
     margin-left: 295px;
     ul {
       list-style-type: none;
-      margin: 0;
+      margin: 0px;
       padding: 0;
       overflow: hidden;
       background-color: darkgray;
@@ -18,7 +18,7 @@
     li {
       float: left;
       color: white;
-      font-size: 22px;
+      font-size: 15px;
     }
     li a {
       display: block;
@@ -39,10 +39,18 @@
   /* Create two columns/boxes that floats next to each other */
   nav {
     float: left;
-    width: 22%;
+    width: 25px;
     height: 100%;
     background: darkslateblue;
     padding: 8px;
+    img{
+      width: 50%;
+    padding: 12px;
+    margin: auto;
+    margin-left: 54px;
+    /* margin-bottom: -23px; */
+    margin-top: 41px;
+    }
   ul {
     list-style-type: none;
     padding: 0;
@@ -51,7 +59,7 @@
     text-decoration: none;
   }
   .admin-name{
-font-size:25px;
+font-size:21px;
 color:white;
   }
   span{
@@ -67,7 +75,7 @@ background-color:transparent !important
   }
   .admin{
     color: white;
-    font-size: 29px;
+    font-size: 22px;
   }
   .MuiButtonBase-root-38{
     font-size: 19px;
@@ -77,10 +85,16 @@ background-color:transparent !important
   article {
     float: left;
     padding: 20px;
-    font-size: 15px;
+    // font-size: 15px;
     width: 74%;
     background-color: transparent;
     height: 100%; /* only for demonstration, should be removed */
+
+  }
+  .welcome-admin{
+    color: darkblue;
+    padding: 195px;
+    font-size: 40px;
   }
 .profile-wrap{border: inset;
   border-width: thin;

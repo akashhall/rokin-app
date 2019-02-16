@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      article: true,
       beacons: false,
       quiz: false,
       quizOffer: false
@@ -26,15 +26,15 @@ class Dashboard extends React.Component {
     // eslint-disable-next-line default-case
     switch (type) {
       case 'beacon': {
-        this.setState({ beacons: true, quiz: false })
+        this.setState({ beacons: true, quiz: false, article: false })
         break;
       }
       case 'quiz': {
-        this.setState({ beacons: false, quiz: true })
+        this.setState({ beacons: false, quiz: true, article: false })
         break;
       }
-      default : {
-      this.setState({ beacons: false, quiz: false })
+      default: {
+        this.setState({ beacons: false, quiz: false, article: true })
       }
     }
 
@@ -224,13 +224,15 @@ class Dashboard extends React.Component {
                 </ExpansionPanel>
               </div>
             </ul>
+            <img src="/funndynamix.png"></img>
           </nav>
           <header><ul class="header">
             <li>Organization:</li>
             <li>Branch: HRC Mumbai-Worli</li>
           </ul></header>
           <article>
-            Welcome Store Admin
+            {/* Welcome Store Admin */}
+            {this.state.article ? 'Welcome Store Admin' : null}
             {/* <OrgForm /> */}
             {this.state.beacons && <Beacon />}
             {this.state.quiz && <Quiz />}
