@@ -99,10 +99,10 @@ class CurrentUsers extends React.Component {
             <div className="table-wrapper">
               <div className="table-title">
                 <div className="row">
-                  <div className="col-sm-6">
+                  <div className="">
                     <h2>Current Users</h2>
                   </div>
-                  <button style={{ marginLeft: '460px' }} className="btn btn-primary">REFRESH</button>
+                  <button style={{ marginLeft: '670px' }} className="btn btn-primary">REFRESH</button>
                 </div>
               </div>
               <table className="table table-striped table-hover">

@@ -123,7 +123,7 @@ class OfferHistory extends React.Component {
               <div className="table-title">
                 <div className="row">
                   <div className="col-sm-6">
-                    <h2>Game History</h2>
+                    <h2>Offer History</h2>
                   </div>
                   {/* <div className="col-sm-6">
                     <a onClick={() => this.openEditModal()} className="btn btn-success"><span>Add New Beacon</span></a>
