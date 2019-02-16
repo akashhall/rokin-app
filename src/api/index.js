@@ -19,7 +19,7 @@ function login(username, password) {
 
 function getAllOrg() {
   return axios.post('https://api.rockinap.com/admin/organisations',
-    { "category": 'eatin out' },
+    { },
     {
       headers: {
         'x-access-token': getToken(),

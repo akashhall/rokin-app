@@ -5,7 +5,8 @@ import './style.css';
 class LoginForm extends React.Component {
   state = {
     password: '',
-    username: ''
+    username: '',
+    errorMessage: ''
   }
   componentWillMount() {
     // eslint-disable-next-line no-unused-expressions
@@ -16,11 +17,7 @@ class LoginForm extends React.Component {
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
   };
-
-  handleClickShowPassword = () => {
-    this.setState(state => ({ showPassword: !state.showPassword }));
-  };
-
+  
   handleLogin = () => {
     if (this.state.username !== '' && this.state.password !== '') {
       let data = login(this.state.username, this.state.password);
@@ -34,7 +31,7 @@ class LoginForm extends React.Component {
           })
         }
         else {
-          console.log("error")
+          this.setState({errorMessage:data.message})
         }
       })
     }
@@ -49,6 +46,7 @@ class LoginForm extends React.Component {
             <div className="card">
               <div className="card-header">
                 <h3>Sign In</h3>
+               { this.state.errorMessage !== '' && <span style={{'color':'red'}}> {this.state.errorMessage} </span>}
               </div>
               <div className="card-body">
                 <div className="input-group form-group">

@@ -84,7 +84,7 @@ class Beacons extends React.Component {
       outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
     }
 
-    addBeacon(data).then((res) => getOfferHistory ({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+    addBeacon(data).then((res) => getOfferHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
 
   }
   openEditModal = (i) => {
@@ -130,7 +130,7 @@ class Beacons extends React.Component {
                     {/* <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a> */}
                   {/* </div> */}
                 </div>
-                <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto' }}>
+                <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto', display: 'flex' }}>
 
                   <label htmlFor="game">Select Redeem Status:</label>
                   <select style={{ width: '20%', display: 'inline-block' }} className="form-control frmclr ng-pristine ng-untouched ng-valid ng-not-empty" name="status" ng-model="OHC.redeemStatus">
@@ -139,7 +139,7 @@ class Beacons extends React.Component {
                     <option value="Redeem">Redeemed</option>
                   </select>
                   <br />
-                  <label htmlFor="startDate" style={{ marginTop: '10px' }}>Start Date:</label>
+                  <label style={{ marginTop: '0px' }} htmlFor="startDate" >Start Date:</label>
                   <input ng-model="OHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   <label htmlFor="endDate">End Date:</label>
                   <input ng-model="OHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />

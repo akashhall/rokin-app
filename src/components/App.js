@@ -20,7 +20,7 @@ import GameHistory from '../components/Pages/StoreAdminForms/Reports/GameHistory
 import OfferHistory from '../components/Pages/StoreAdminForms/Reports/OfferHistory';
 // import OfferReport from '../components/Pages/StoreAdminForms/Reports/OfferReport';
 import OrgForm from '../components/Pages/OrgForm';
-
+import Notifications from './../components/Pages/StoreAdminForms/Forms/Notifications'
 // import Forms from './Pages/Forms';
 import '../styles/App.css';
 import '../styles/custom.scss';
@@ -40,6 +40,7 @@ class App extends Component {
           <Route path='/SuperAdminDashboard' component={SuperAdminDashboard} />
           <Route path='/beacons' component={Beacons} />
           <Route path='/product' component={Products} />
+          <Route path='/product' component={Products} />
           {/* <Route path='/gameOffer' component={GameOffer} />
           <Route path='/notifications' component={Notifications} />
           <Route path='/offers' component={Offers} />
@@ -58,6 +59,7 @@ class App extends Component {
           <Route path='/customerHistory' component={CustomerHistory} />
           <Route path='/offerHistory' component={OfferHistory} />
           <Route path='/gamehistory' component={GameHistory} />
+          <Route path='/notifications' component={Notifications} />
         </Switch>
         {/* <MainRoutes /> */}
         <footer>

@@ -10,7 +10,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import OrgForm from '../OrgForm';
 import Beacon from '../StoreAdminForms/Forms/Beacons';
 import Quiz from '../StoreAdminForms/Forms/Quiz';
-import CustomerHistory from '../StoreAdminForms/Reports/CustomerHistory';
+import CustomerHistory from '../StoreAdminForms/Reports/CustomerHistory'
+import Notification from './../StoreAdminForms/Forms/Notifications';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -29,9 +30,6 @@ class Dashboard extends React.Component {
       customerHistory: false,
       gameHistory: false,
       offerHistory: false
-
-
-
     }
   }
 
@@ -194,7 +192,7 @@ class Dashboard extends React.Component {
                         </a>
                       </li>
                       <li>
-                        <a onClick={() => this.ShowForms('Notificatios')}>
+                        <a onClick={() => this.ShowForms('notifications')}>
                           <i className="ti-view-list" />
                           <span className="menu-title">
                             <strong>Notifications</strong>
@@ -308,6 +306,7 @@ class Dashboard extends React.Component {
             {this.state.beacons && <Beacon />}
             {this.state.quiz && <Quiz />}
             {this.state.customerHistory && <CustomerHistory />}
+            {this.state.notifications && <Notification/>}
           </article>
         </div>
       </React.Fragment>

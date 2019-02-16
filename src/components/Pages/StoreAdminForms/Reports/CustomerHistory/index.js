@@ -113,7 +113,7 @@ class Beacons extends React.Component {
               <div className="table-title">
                 <div className="row">
                   <div className="col-sm-6">
-                    <h2>Customer HIstory</h2>
+                    <h2>Customer History</h2>
                   </div>
                   {/* <div className="col-sm-6">
                     <a onClick={() => this.openEditModal()} className="btn btn-success"><span>Add New Beacon</span></a>
@@ -123,10 +123,13 @@ class Beacons extends React.Component {
                 <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto' }}>
                   <label htmlFor="user">Customer Name:</label>
                   <input ng-model="UHC.user" type="text" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-empty" />
+                  &nbsp;
                   <label htmlFor="startDate">Start Date:</label>
                   <input ng-model="UHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+                  &nbsp;
                   <label htmlFor="endDate">End Date:</label>
                   <input ng-model="UHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+                  &nbsp;
                   <button className="btn-primary col-md-1 butnadd submit_form submit_dis floatRight add_button_custom" ng-click="UHC.getUserHistory()">Submit</button>
 
                   {/* <h3 class="panel-title">Payment Form</h3> */}
@@ -137,7 +140,7 @@ class Beacons extends React.Component {
                   <tr>
                     {
                       headers && headers.length ?
-                        headers.map((header) => <th>{header}</th>) : null
+                        headers.map((header) => <th style={{ width: '145px' }}>{header}</th>) : null
                     }
                   </tr>
                 </thead>
@@ -146,15 +149,15 @@ class Beacons extends React.Component {
                     this.state.data.map((d, i) =>
                       <tr key={i}>
                         <td style={{ width: '200px' }}>{d.name}</td>
-                        <td>{d.address}</td>
-                        <td>{d.beacon_uuid}</td>
-                        <td>{d.beacon_room}</td>
-                        <td>{d.location}</td>
-                        <td>{d.offer_beacon.toString()}</td>
-                        <td>
+                        <td>{d.date}</td>
+                        <td>{d.action}</td>
+                        <td>{d.actionType}</td>
+                        <td>{d.message}</td>
+                        <td>{d.offerMeassage.toString()}</td>
+                        {/* <td>
                           <a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
                           <a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
-                        </td>
+                        </td> */}
                       </tr>
                     ) : null
                   }
@@ -162,7 +165,7 @@ class Beacons extends React.Component {
               </table>
             </div>
           </div>
-          <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon" isModal="true">
+          {/* <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon" isModal="true">
             <>
               <div className="form-group">
                 <label>Beacon Name</label>
@@ -188,10 +191,6 @@ class Beacons extends React.Component {
                 <label>Minor</label>
                 <input ref={name => this.minor = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, minor: e.target.value } })} value={this.state.editData.minor || ''} required placeholder="Please enter Minor" />
               </div>
-              {/* <div className="form-group">
-                <label>Description</label>
-                <textarea ref={des => this.desc = des} className="form-control" placeholder="Please enter description here" onChange={(e) => this.setState({editData: {...this.state.editData, description: e.target.value} })} value={this.state.editData.description || ''} />
-              </div> */}
               <select ref={sel => this.select = sel} style={{ height: '38px', width: '100%', marginBottom: '20px', marginTop: '10px', border: '1px solid lightgrey' }} >
                 <option value="0" >Is offered Beacon</option>
                 <option value="true" selected={this.state.editData.offer_beacon == true}>Yes</ option>
@@ -209,8 +208,8 @@ class Beacons extends React.Component {
                 </div>
               </div>
             </>
-          </ModalPopover>
-          <div id="deleteEmployeeModal" className="modal fade">
+          </ModalPopover> */}
+          {/* <div id="deleteEmployeeModal" className="modal fade">
             <div className="modal-dialog">
               <div className="modal-content">
                 <form>
@@ -229,7 +228,7 @@ class Beacons extends React.Component {
                 </form>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </React.Fragment >
     )

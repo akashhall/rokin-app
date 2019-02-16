@@ -121,14 +121,14 @@ class Beacons extends React.Component {
                     {/* <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a> */}
 									{/* </div> */}
 								</div>
-								<div className="panel-heading" style={{ padding: '10px 10px', height: 'auto' }}>
+								<div className="panel-heading" style={{ padding: '10px 10px', height: 'auto',}}>
 									<label htmlFor="game">Select Game:</label>
 									<select style={{ width: '20%', display: 'inline-block' }} className="form-control frmclr ng-pristine ng-valid ng-not-empty ng-touched" name="type" ng-model="GHC.game">
 										<option value="All" selected="selected">All</option>
 										<option value="treasureHunt">TresauteHunt</option>
 										<option value="quizGame">Quiz</option>
 									</select>
-									<label htmlFor="startDate">Start Date:</label>
+									<label  htmlFor="startDate">Start Date:</label>
 									<input ng-model="GHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
 									<label htmlFor="endDate">End Date:</label>
 									<input ng-model="GHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
@@ -165,7 +165,7 @@ class Beacons extends React.Component {
 							</table>
 						</div>
 					</div>
-					<ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon" isModal="true">
+					{/* <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon" isModal="true">
 						<>
 							<div className="form-group">
 								<label>Beacon Name</label>
@@ -191,10 +191,6 @@ class Beacons extends React.Component {
 								<label>Minor</label>
 								<input ref={name => this.minor = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, minor: e.target.value } })} value={this.state.editData.minor || ''} required placeholder="Please enter Minor" />
 							</div>
-							{/* <div className="form-group">
-                <label>Description</label>
-                <textarea ref={des => this.desc = des} className="form-control" placeholder="Please enter description here" onChange={(e) => this.setState({editData: {...this.state.editData, description: e.target.value} })} value={this.state.editData.description || ''} />
-              </div> */}
 							<select ref={sel => this.select = sel} style={{ height: '38px', width: '100%', marginBottom: '20px', marginTop: '10px', border: '1px solid lightgrey' }} >
 								<option value="0" >Is offered Beacon</option>
 								<option value="true" selected={this.state.editData.offer_beacon == true}>Yes</ option>
@@ -212,8 +208,8 @@ class Beacons extends React.Component {
 								</div>
 							</div>
 						</>
-					</ModalPopover>
-					<div id="deleteEmployeeModal" className="modal fade">
+					</ModalPopover> */}
+					{/* <div id="deleteEmployeeModal" className="modal fade">
 						<div className="modal-dialog">
 							<div className="modal-content">
 								<form>
@@ -232,7 +228,7 @@ class Beacons extends React.Component {
 								</form>
 							</div>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</React.Fragment >
 		)
