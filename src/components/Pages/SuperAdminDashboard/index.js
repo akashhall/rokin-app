@@ -35,19 +35,19 @@ class Dashboard extends React.Component {
     // eslint-disable-next-line default-case
     switch (type) {
       case 'Organisation': {
-        this.setState({ Organisation: true, Branch: false, Users: false, artice: false })
+        this.setState({ Organisation: true, Branch: false, Users: false, article: false })
         break;
       }
       case 'Branch': {
-        this.setState({ Organisation: false, Branch: true, Users: false, artice: false })
+        this.setState({ Organisation: false, Branch: true, Users: false, article: false })
         break;
       }
       case 'Users': {
-        this.setState({ Organisation: false, Branch: false, Users: true, artice: false })
+        this.setState({ Organisation: false, Branch: false, Users: true, article: false })
         break;
       }
       default: {
-        this.setState({ Organisation: false, Branch: false, Users: false, artice: true })
+        this.setState({ Organisation: false, Branch: false, Users: false, article: true })
       }
     }
 
@@ -180,8 +180,7 @@ class Dashboard extends React.Component {
               <button>Logout</button>
             </ul></header>
             <article>
-              <p className="welcome-admin">
-                {this.state.article ? ' Welcome Super Admin' : null}</p>
+                {this.state.article ? ' Welcome Super Admin' : null}
               {this.state.Organisation && <Organisation />}
               {this.state.Branchs && <Branch />}
             </article>
