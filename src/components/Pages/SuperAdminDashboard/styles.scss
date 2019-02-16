@@ -4,25 +4,28 @@
   header {
     list-style-type: none;
     margin: 0px;
-    padding: 0;
+    padding: 0px;
     overflow: hidden;
     background-color: #333;
-    margin-left: 295px;
+    margin-left: 0px;
     button{
-      padding: 7px;
+      padding: 11px;
       float:right;
+      background: black;
+      color: white;
     }
     ul {
       list-style-type: none;
       margin: 0px;
-      padding: 0;
+      padding: 0px;
       overflow: hidden;
-      background-color: darkgray;
+      background-color: #ffc321;
     }
     li {
       float: left;
       color: white;
-      font-size: 15px;
+      font-size: 20px;
+      width: 30%;
     }
     li a {
       display: block;
@@ -39,20 +42,17 @@
   ul{
       list-style: none;
   }
-  
-  /* Create two columns/boxes that floats next to each other */
   nav {
     float: left;
     width: 25%;
     height: 100%;
-    background: darkslateblue;
+    background: black;
     padding: 8px;
     img{
       width: 50%;
     padding: 12px;
     margin: auto;
     margin-left: 54px;
-    /* margin-bottom: -23px; */
     margin-top: 41px;
     }
   ul {
@@ -68,8 +68,6 @@ font-size:25px;
 color:white;
   }
   span{
-    // color: white;
-    // font-size: 35px;
     color:darkgray;
   }
   .MuiPaper-root-5{
@@ -90,8 +88,9 @@ background-color:transparent !important
   article {
     float: left;
     padding: 20px;
-    // font-size: 15px;
     width: 74%;
+    color: black;
+    font-size: 50px;
     background-color: transparent;
     height: 100%; /* only for demonstration, should be removed */
 
@@ -115,14 +114,6 @@ background-color:transparent !important
   .list-group{
     padding: 50px;
   }
-  /* Clear floats after the columns */
-  // section:after {
-  //   content: "";
-  //   display: table;
-  //   clear: both;
-  // }
-  
-  /* Style the footer */
   footer {
     background-color: #777;
     padding: 10px;

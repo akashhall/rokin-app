@@ -14,10 +14,10 @@ import Products from '../components/Pages/StoreAdminForms/Forms/Products';
 // import TreasureHunt from '../components/Pages/StoreAdminForms/Forms/TreasureHunt';
 // import Users from '../components/Pages/StoreAdminForms/Forms/Users';
 // import CurrentUsers from '../components/Pages/StoreAdminForms/Reports/CurrentUsers';
-// import CustomerHistory from '../components/Pages/StoreAdminForms/Reports/CustomerHistory';
+import CustomerHistory from '../components/Pages/StoreAdminForms/Reports/CustomerHistory';
 // import CustomerRequests from '../components/Pages/StoreAdminForms/Reports/CustomerRequests';
-// import GameHistory from '../components/Pages/StoreAdminForms/Reports/GameHistory';
-// import OfferHistory from '../components/Pages/StoreAdminForms/Reports/OfferHistory';
+import GameHistory from '../components/Pages/StoreAdminForms/Reports/GameHistory';
+import OfferHistory from '../components/Pages/StoreAdminForms/Reports/OfferHistory';
 // import OfferReport from '../components/Pages/StoreAdminForms/Reports/OfferReport';
 import OrgForm from '../components/Pages/OrgForm';
 
@@ -55,6 +55,9 @@ class App extends Component {
           <Route path='/gamehistory' component={GameHistory} />
           <Route path='/offerHistory' component={OfferHistory} />
           <Route path='/offerReport' component={OfferReport} /> */}
+          <Route path='/customerHistory' component={CustomerHistory} />
+          <Route path='/offerHistory' component={OfferHistory} />
+          <Route path='/gamehistory' component={GameHistory} />
         </Switch>
         {/* <MainRoutes /> */}
         <footer>

@@ -57,6 +57,13 @@ class Dashboard extends React.Component {
       <React.Fragment>
         {sessionStorage.role !== undefined ?
           <div className="nano-content">
+
+            <header><ul class="header">
+            <li className='admin'>StoreAdmin</li>
+              {/* <li>Organization:</li>
+            <li>Branch: HRC Mumbai-Worli</li> */}
+              <button>Logout</button>
+            </ul></header>
             <nav>
               <div id="mainnav-profile" className="mainnav-profile">
                 <div className="profile-wrap">
@@ -174,13 +181,9 @@ class Dashboard extends React.Component {
               </ul>
               <img src="/funndynamix.png"></img>
             </nav>
-            <header><ul class="header">
-              {/* <li>Organization:</li>
-            <li>Branch: HRC Mumbai-Worli</li> */}
-              <button>Logout</button>
-            </ul></header>
+
             <article>
-                {this.state.article ? ' Welcome Super Admin' : null}
+              {this.state.article ? ' Welcome Super Admin' : null}
               {this.state.Organisation && <Organisation />}
               {this.state.Branchs && <Branch />}
             </article>
