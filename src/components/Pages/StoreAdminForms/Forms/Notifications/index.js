@@ -3,6 +3,9 @@ class Notifications extends React.Component {
   constructor(props) {
     super(props);
   }
+  submit = (e) => {
+    e.preventDefault();
+  }
   render() {
     return (
       <div>
@@ -19,9 +22,15 @@ class Notifications extends React.Component {
               <div className="col-md-10" style={{}}>
                 <div className="col-md-offset-1 col-md-10 " style={{ padding: '0px' }}>
                   <div className="row" style={{ paddingTop: '50px' }}>
-                    <form style={{'width': '100%', 'marginLeft':'100px' }}>
+                    <form style={{ 'width': '100%', 'marginLeft': '100px' }}>
                       <div className="form-group">
                         <label htmlFor="sel1">Select UserName:</label>
+                        <select class="form-control" id="sel1" required>
+                          <option>amit</option>
+                          <option>sumer</option>
+                          <option>imran</option>
+                          <option>akash</option>
+                        </select>
                       </div>
                       <div className="form-group">
                         <label htmlFor="usr">Title:</label>
@@ -32,7 +41,7 @@ class Notifications extends React.Component {
                         <textarea style={{ backgroundColor: 'white' }} className="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" rows={5} name="message" ng-model="NC.message" required defaultValue={""} />
                       </div>
                       <div className="text-right">
-                        <button type="submit" className="btn btn-default" ng-disabled="hrcForm.$invalid" ng-click="NC.sendPushNotification()" disabled="disabled">Submit</button>
+                        <button className="btn btn-primary" onClick={this.submit}disabled="">Submit</button>
                       </div>
                     </form>
                   </div>
