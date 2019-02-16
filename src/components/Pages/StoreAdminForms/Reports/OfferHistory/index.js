@@ -1,7 +1,7 @@
 import React from 'react';
 // import json from './data.json';
 // import Forms from './../Forms';
-import { getBeacons, addBeacon } from './../../../../../api';
+import { getOfferHistory, addBeacon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
 class Beacons extends React.Component {
@@ -33,7 +33,7 @@ class Beacons extends React.Component {
   componentDidMount() {
     // this.editModal.handleShow();
     console.log('did', sessionStorage);
-    getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+    getOfferHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
 
     // login().then((res) => console.log('res', res));
   }
@@ -84,7 +84,7 @@ class Beacons extends React.Component {
       outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
     }
 
-    addBeacon(data).then((res) => getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+    addBeacon(data).then((res) => getOfferHistory ({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
 
   }
   openEditModal = (i) => {

@@ -153,6 +153,52 @@ function getCustomerHistory(data) {
       return error.response.data;
     });
 }
+function getGameHistory(data) {
+  console.log('service', sessionStorage)
+  return axios.post('https://api.rockinap.com/admin/game-history',
+    data,
+    {
+      headers: {
+        'x-access-token': config,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': true,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+        'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+      }
+    })
+    .then(function (response) {
+      console.log('api', response)
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log('api err', error)
+      return error.response.data;
+    });
+}
+function getOfferHistory(data) {
+  console.log('service', sessionStorage)
+  return axios.post('https://api.rockinap.com/admin/offer-history',
+    data,
+    {
+      headers: {
+        'x-access-token': config,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': true,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+        'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+      }
+    })
+    .then(function (response) {
+      console.log('api', response)
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log('api err', error)
+      return error.response.data;
+    });
+}
 export {
   login,
   getAllOrg,
@@ -160,5 +206,7 @@ export {
   getBeacons,
   addBeacon,
   getProducts,
-  getCustomerHistory
+  getCustomerHistory,
+  getGameHistory,
+  getOfferHistory
 }

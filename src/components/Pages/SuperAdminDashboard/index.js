@@ -59,18 +59,18 @@ class Dashboard extends React.Component {
           <div className="nano-content">
 
             <header><ul class="header">
-            <li className='admin'>StoreAdmin</li>
+            <li className='admin'>SuperAdmin</li>>
               {/* <li>Organization:</li>
             <li>Branch: HRC Mumbai-Worli</li> */}
               <button>Logout</button>
             </ul></header>
             <nav>
               <div id="mainnav-profile" className="mainnav-profile">
-                <div className="profile-wrap">
+                {/* <div className="profile-wrap">
                   <div className="pad-btm">
                   </div>
                   <span className='admin'>StoreAdmin</span>
-                </div>
+                </div> */}
                 {/* <a className="box-block" data-toggle="collapse" aria-expanded="false">
                 <p className="admin-name" id="UserNameloggedin1">Welcome rohit</p>
               </a> */}
