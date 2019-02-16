@@ -1,225 +1,207 @@
 import React from 'react';
-import './styles.scss'
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-// import Header from '../../../materialui/components/Header/Header'
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-class Dashboard extends React.Component {
+// import json from './data.json';
+// import Forms from './../Forms';
+import { getProducts, addBeacon } from './../../../../../api';
+import ModalPopover from './../../../../ModalPopover';
+import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
+class Products extends React.Component {
   constructor(props) {
     super(props);
+
+    this.selecteId = null;
+    this.state = {
+      data: [],
+      editData: {
+        name: '',
+        description: '',
+        price: '',
+        avg_rating: '',
+        created_on: '',
+        updated_on: '',
+      }
+    }
+  };
+
+  componentDidMount() {
+    // this.editModal.handleShow();
+    console.log('did', sessionStorage);
+    getProducts({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+
+    // login().then((res) => console.log('res', res));
+  }
+  onModalClose = () => {
+    this.selecteId = null;
+    this.setState({
+      editData: {
+        name: '',
+        description: '',
+        price: '',
+        avg_rating: '',
+        created_on: '',
+        updated_on: '',
+      }
+    })
+  }
+
+  onSumit = () => {
+    const beacon_name = this.name.value;
+    const beacon_uuid = this.uuid.value;
+    const mac_address = this.address.value;
+    const beacon_room = this.room.value;
+    const offer_beacon = this.select.options[this.select.selectedIndex].value;
+    const major = this.major.value;
+    const minor = this.minor.value;
+    let a = { type: 'add' }
+    console.log('selected id', this.selecteId)
+    if (this.selecteId !== null) {
+      a = {
+        id: this.state.data[this.selecteId].id,
+        type: 'update'
+      }
+    }
+
+    const data = {
+      ...a,
+      beacon_name,
+      beacon_uuid,
+      mac_address,
+      offer_beacon: offer_beacon === 'true' ? true : false,
+      major,
+      minor,
+      beacon_room,
+      outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
+    }
+
+    // addBeacon(data).then((res) => getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+
+  }
+  openEditModal = (i) => {
+    if (i !== undefined) {
+      this.selecteId = i;
+      console.log('open edit', i, this.state.data[i])
+      const editData = this.state.data[i];
+      this.setState({ editData })
+      console.log('edit', editData, this.state)
+    }
+    console.log('bahar', this.state.editData.category)
+    this.editModal.handleShow();
+  }
+  onDelete = (i) => {
+    console.log('dekhte hai')
   }
   render() {
+    const headers = [
+      'Name',
+      'Description',
+      'Price',
+      'Rating',
+      'Created on',
+      'Updated on'
+    ];
     return (
-      <React.Fragment>
-        {/* {"Dashboards"} */}
-
-        <div className="nano-content">
-          {/* <header>
-              <ul className="header">
-                <li><a class="active" href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#about">About</a></li>
-              </ul>
-            </header> */}
-          <nav>
-            <div id="mainnav-profile" className="mainnav-profile">
-              <div className="profile-wrap">
-                <div className="pad-btm">
+      <React.Fragment >
+        <div>
+          <div className="container">
+            <div className="table-wrapper">
+              <div className="table-title">
+                <div className="row">
+                  <div className="col-sm-6">
+                    <h2>Products</h2>
+                  </div>
+                  <div className="col-sm-6">
+                    <a onClick={() => this.openEditModal()} className="btn btn-success"><span>Add New Products</span></a>
+                    {/* <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a> */}
+                  </div>
                 </div>
-                <span className='admin'>StoreAdmin</span>
               </div>
-              <a className="box-block" data-toggle="collapse" aria-expanded="false">
-<p className="admin-name" id="UserNameloggedin1">Welcome rohit</p>
-</a>
+              <table className="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    {
+                      headers && headers.length ?
+                        headers.map((header) => <th>{header}</th>) : null
+                    }
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.data && this.state.data.length ?
+                    this.state.data.map((d, i) =>
+                      <tr key={i}>
+                        <td style={{ width: '200px' }}>{d.name}</td>
+                        <td style={{ width: '300px' }}>{d.description}</td>
+                        <td style={{ width: '100px' }}>{d.price}</td>
+                        <td style={{ width: '100px' }}>{d.avg_rating}</td>
+                        <td style={{ width: '100px' }}>{d.created_on}</td>
+                        <td style={{ width: '100px' }}>{d.updated_on}</td>
+                        <td>
+                          <a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
+                          <a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
+                        </td>
+                      </tr>
+                    ) : null
+                  }
+                </tbody>
+              </table>
             </div>
-
-            <div id="mainnav-shortcut">
-              <ul className="list-unstyled" />
+          </div>
+          <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon" isModal="true">
+            <>
+              <div className="form-group">
+                <label>Name</label>
+                <input ref={name => this.name = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, name: e.target.value } })} value={this.state.editData.name || ''} required placeholder="Please enter Beacon Name" />
+              </div>
+              <div className="form-group">
+                <label>Description</label>
+                <input ref={name => this.description = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, description: e.target.value } })} value={this.state.editData.description || ''} required placeholder="Please enter Description" />
+              </div>
+              <div className="form-group">
+                <label>Price</label>
+                <input ref={name => this.price = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, price: e.target.value } })} value={this.state.editData.price || ''} required placeholder="Please enter Price" />
+              </div>
+              <div className="form-group">
+                <label>Average Rating</label>
+                <input ref={name => this.avg_rating = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, avg_rating: e.target.value } })} value={this.state.editData.avg_rating || ''} required placeholder="Please enter Ratings" />
+              </div>
+              <div className="form-group">
+                <label>Add Photo</label>
+                <input ref={name => this.photo = name} type='file' />
+              </div>
+              <div style={{ padding: '20px 55px' }} className="modal-footer">
+                <div className="row">
+                  <div className="col-md-6">
+                    <input type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
+                  </div>
+                  <div className="col-md-6">
+                    <input onClick={this.onSumit} type="submit" className="btn btn-primary" defaultValue="Add" />
+                  </div>
+                </div>
+              </div>
+            </>
+          </ModalPopover>
+          <div id="deleteEmployeeModal" className="modal fade">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <form>
+                  <div className="modal-header">
+                    <h4 className="modal-title">Delete Employee</h4>
+                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  </div>
+                  <div className="modal-body">
+                    <p>Are you sure you want to delete these Records?</p>
+                    <p className="text-warning"><small>This action cannot be undone.</small></p>
+                  </div>
+                  <div className="modal-footer">
+                    <input type="button" className="btn btn-default" data-dismiss="modal" defaultValue="Cancel" />
+                    <input type="submit" className="btn btn-danger" defaultValue="Delete" />
+                  </div>
+                </form>
+              </div>
             </div>
-            <ul id="mainnav-menu" className="list-group">
-
-              {/* <li className="list-header">Navigation</li> */}
-              <ExpansionPanel >
-                <ExpansionPanelSummary className="icon" expandIcon={<ExpandMoreIcon />}>
-                  Forms
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                  <Typography>
-                    <ul className="dropdown-menu" >
-                      <li>
-                        <a href="#!/dashboard/beacons">
-                          <i className="ti-view-list" />
-                          <span className="menu-title">
-                            <strong>Beacons</strong>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!/dashboard/quiz">
-                          <i className="ti-view-list" />
-                          <span className="menu-title">
-                            <strong>Quiz</strong>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!/dashboard/quizoffer">
-                          <i className="ti-view-list" />
-                          <span className="menu-title">
-                            <strong>Quiz Offers</strong>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!/dashboard/treasurehunt">
-                          <i className="ti-view-list" />
-                          <span className="menu-title">
-                            <strong>Treasure Hunt</strong>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!/dashboard/products">
-                          <i className="ti-view-list" />
-                          <span className="menu-title">
-                            <strong>Products</strong>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!/dashboard/users">
-                          <i className="ion-compose" />
-                          <span className="menu-title">
-                            <strong>Users</strong>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!/dashboard/offers">
-                          <i className="ti-view-list" />
-                          <span className="menu-title">
-                            <strong>Offers</strong>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!/dashboard/notifications">
-                          <i className="ti-view-list" />
-                          <span className="menu-title">
-                            <strong>Notifications</strong>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!/dashboard/sendoffer">
-                          <i className="ti-view-list" />
-                          <span className="menu-title">
-                            <strong>Send/Redeem Offers</strong>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!/dashboard/redeemgameoffer">
-                          <i className="ti-view-list" />
-                          <span className="menu-title">
-                            <strong>Redeem Game Offers</strong>
-                          </span>
-                        </a>
-                      </li>
-                      <li>
-                      </li></ul>
-                  </Typography>
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
-              <div className="dropdown" id="mainnav-profile" style={{ margin: '15px 0px' }}>
-              </div>
-              <div className="dropdown" id="mainnav-profile">
-
-                <ExpansionPanel>
-                  <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>Reports</ExpansionPanelSummary>
-                  <ExpansionPanelDetails>
-                    <Typography>
-                      <ul className="dropdown-menu" style={{ width: '100%' }}>
-                        <li>
-                          <a href="#!/dashboard/userhistory">
-                            <i className="ti-view-list" />
-                            <span className="menu-title">
-                              <strong>Customer History</strong>
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!/dashboard/gamehistory">
-                            <i className="ti-view-list" />
-                            <span className="menu-title">
-                              <strong>Game History</strong>
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!/dashboard/offershistory">
-                            <i className="ti-view-list" />
-                            <span className="menu-title">
-                              <strong>Offer History</strong>
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!/dashboard/userinroom">
-                            <i className="ti-view-list" />
-                            <span className="menu-title">
-                              <strong>Current Users</strong>
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!/dashboard/userreport">
-                            <i className="ti-view-list" />
-                            <span className="menu-title">
-                              <strong>Customer Report</strong>
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!/dashboard/offerreport">
-                            <i className="ti-view-list" />
-                            <span className="menu-title">
-                              <strong>Offer Report</strong>
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#!/dashboard/instantoffer">
-                            <i className="ti-view-list" />
-                            <span className="menu-title">
-                              <strong>Customer Requests</strong>
-                            </span>
-                          </a>
-                        </li>
-                      </ul>
-                    </Typography>
-                  </ExpansionPanelDetails>
-                </ExpansionPanel>
-              </div>
-            </ul>
-          </nav>
-          <header><ul class="header">
-            <li>Organization:</li>
-            <li>Branch: HRC Mumbai-Worli</li>
-          </ul></header>
-          <article>
-            Welcome Store Admin
-              </article>
+          </div>
         </div>
-      </React.Fragment>
+      </React.Fragment >
     )
   }
-
 }
 
-export default Dashboard;
+export default Products;

@@ -3,22 +3,22 @@ import { Switch, Route } from 'react-router-dom'
 import LoginPage from './../components/Pages/LoginPage';
 import StoreAdminDashboard from './../components/Pages/StoreAdminDashboard';
 import SuperAdminDashboard from './../components/Pages/SuperAdminDashboard';
-import Beacon from '../components/Pages/StoreAdminForms/Forms/Beacons';
-import GameOffer from '../components/Pages/StoreAdminForms/Forms/GameOffer';
-import Notifications from '../components/Pages/StoreAdminForms/Forms/Notifications';
-import Offers from '../components/Pages/StoreAdminForms/Forms/Offers';
+import Beacons from '../components/Pages/StoreAdminForms/Forms/Beacons';
+// import GameOffer from '../components/Pages/StoreAdminForms/Forms/GameOffer';
+// import Notifications from '../components/Pages/StoreAdminForms/Forms/Notifications';
+// import Offers from '../components/Pages/StoreAdminForms/Forms/Offers';
 import Products from '../components/Pages/StoreAdminForms/Forms/Products';
-import Quiz from '../components/Pages/StoreAdminForms/Forms/Quiz';
-import QuizOffers from '../components/Pages/StoreAdminForms/Forms/QuizOffers';
-import SendOffer from '../components/Pages/StoreAdminForms/Forms/SendOffer';
-import TreasureHunt from '../components/Pages/StoreAdminForms/Forms/TreasureHunt';
-import Users from '../components/Pages/StoreAdminForms/Forms/Users';
-import CurrentUsers from '../components/Pages/StoreAdminForms/Reports/CurrentUsers';
-import CustomerHistory from '../components/Pages/StoreAdminForms/Reports/CustomerHistory';
-import CustomerRequests from '../components/Pages/StoreAdminForms/Reports/CustomerRequests';
-import GameHistory from '../components/Pages/StoreAdminForms/Reports/GameHistory';
-import OfferHistory from '../components/Pages/StoreAdminForms/Reports/OfferHistory';
-import OfferReport from '../components/Pages/StoreAdminForms/Reports/OfferReport';
+// import Quiz from '../components/Pages/StoreAdminForms/Forms/Quiz';
+// import QuizOffers from '../components/Pages/StoreAdminForms/Forms/QuizOffers';
+// import SendOffer from '../components/Pages/StoreAdminForms/Forms/SendOffer';
+// import TreasureHunt from '../components/Pages/StoreAdminForms/Forms/TreasureHunt';
+// import Users from '../components/Pages/StoreAdminForms/Forms/Users';
+// import CurrentUsers from '../components/Pages/StoreAdminForms/Reports/CurrentUsers';
+// import CustomerHistory from '../components/Pages/StoreAdminForms/Reports/CustomerHistory';
+// import CustomerRequests from '../components/Pages/StoreAdminForms/Reports/CustomerRequests';
+// import GameHistory from '../components/Pages/StoreAdminForms/Reports/GameHistory';
+// import OfferHistory from '../components/Pages/StoreAdminForms/Reports/OfferHistory';
+// import OfferReport from '../components/Pages/StoreAdminForms/Reports/OfferReport';
 import OrgForm from '../components/Pages/OrgForm';
 
 // import Forms from './Pages/Forms';
@@ -38,8 +38,9 @@ class App extends Component {
           <Route path='/org' component={OrgForm} />
           <Route path='/StoreAdminDashboard' component={StoreAdminDashboard} />
           <Route path='/SuperAdminDashboard' component={SuperAdminDashboard} />
-          <Route path='/beacon' component={Beacon} />
-          <Route path='/gameOffer' component={GameOffer} />
+          <Route path='/beacons' component={Beacons} />
+          <Route path='/product' component={Products} />
+          {/* <Route path='/gameOffer' component={GameOffer} />
           <Route path='/notifications' component={Notifications} />
           <Route path='/offers' component={Offers} />
           <Route path='/product' component={Products} />
@@ -53,7 +54,7 @@ class App extends Component {
           <Route path='/customerRequests' component={CustomerRequests} />
           <Route path='/gamehistory' component={GameHistory} />
           <Route path='/offerHistory' component={OfferHistory} />
-          <Route path='/offerReport' component={OfferReport} />
+          <Route path='/offerReport' component={OfferReport} /> */}
         </Switch>
         {/* <MainRoutes /> */}
         <footer>

@@ -24,7 +24,9 @@ function getAllOrg(token) {
         'x-access-token': config,
         'Content-Type': 'application/json',
         'Access-Control-Allow-Headers': true,
-        'Access-Control-Allow-Origin' : '*'
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+        'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
       }
     })
     .then(function (response) {
@@ -45,7 +47,78 @@ function addOrg(data) {
         'x-access-token': config,
         'Content-Type': 'application/json',
         'Access-Control-Allow-Headers': true,
-        'Access-Control-Allow-Origin' : '*'
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+        'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+      }
+    })
+    .then(function (response) {
+      console.log('api', response)
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log('api err', error)
+      return error.response.data;
+    });
+}
+function getBeacons(data) {
+  console.log('service', sessionStorage)
+  return axios.post('https://api.rockinap.com/admin/beacons',
+    data,
+    {
+      headers: {
+        'x-access-token': config,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': true,
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+        'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+      }
+    })
+    .then(function (response) {
+      console.log('api', response)
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log('api err', error)
+      return error.response.data;
+    });
+}
+function addBeacon(data) {
+  console.log('service', sessionStorage)
+  return axios.post('https://api.rockinap.com/admin/add-beacon',
+    data,
+    {
+      headers: {
+        'x-access-token': config,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': true,
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+        'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+      }
+    })
+    .then(function (response) {
+      console.log('api', response)
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log('api err', error)
+      return error.response.data;
+    });
+}
+function getProducts(data) {
+  console.log('service', sessionStorage)
+  return axios.post('https://api.rockinap.com/admin/products',
+    data,
+    {
+      headers: {
+        'x-access-token': config,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Headers': true,
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+        'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
       }
     })
     .then(function (response) {
@@ -60,5 +133,8 @@ function addOrg(data) {
 export {
   login,
   getAllOrg,
-  addOrg
+  addOrg,
+  getBeacons,
+  addBeacon,
+  getProducts
 }

@@ -40,11 +40,12 @@ class OrgForms extends React.Component {
     const name = this.orgName.value;
     const description = this.desc.value;
     const category = this.selectCat.options[this.selectCat.selectedIndex].label;
-    let a = {}
+    let a = { type: 'add'}
     console.log('selected id', this.selecteId)
     if(this.selecteId !== null) {
     a = {
         id: this.state.data[this.selecteId].id,
+        type: 'upadte'
       }
     }
     
@@ -53,7 +54,6 @@ class OrgForms extends React.Component {
     name,
     description,
     category,
-    type: 'upadte'
     }
 
     addOrg(data).then((res) =>  getAllOrg('abc').then((res) => this.setState({data: res.data})));

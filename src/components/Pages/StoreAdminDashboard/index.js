@@ -43,16 +43,7 @@ class Dashboard extends React.Component {
     return (
       <React.Fragment>
         {/* {"Dashboards"} */}
-
         <div className="nano-content">
-          {/* <header>
-              <ul className="header">
-                <li><a class="active" href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#about">About</a></li>
-              </ul>
-            </header> */}
           <nav>
             <div id="mainnav-profile" className="mainnav-profile">
               <div className="profile-wrap">
@@ -60,16 +51,15 @@ class Dashboard extends React.Component {
                 </div>
                 <span className='admin'>StoreAdmin</span>
               </div>
-              <a className="box-block" data-toggle="collapse" aria-expanded="false">
+              {/* <a className="box-block" data-toggle="collapse" aria-expanded="false">
                 <p className="admin-name" id="UserNameloggedin1">Welcome rohit</p>
-              </a>
+              </a> */}
             </div>
 
             <div id="mainnav-shortcut">
               <ul className="list-unstyled" />
             </div>
             <ul id="mainnav-menu" className="list-group">
-
               {/* <li className="list-header">Navigation</li> */}
               <ExpansionPanel >
                 <ExpansionPanelSummary className="icon" expandIcon={<ExpandMoreIcon />}>
@@ -77,7 +67,7 @@ class Dashboard extends React.Component {
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                   <Typography>
-                    <ul className="dropdown-menu" >
+                    <ul className="" >
                       <li>
                         <a onClick={() => this.ShowForms('beacon')}>
                           <i className="ti-view-list" />
@@ -85,7 +75,6 @@ class Dashboard extends React.Component {
                             <strong>Beacons</strong>
                           </span>
                         </a>
-                        <div>Beacons</div>
                       </li>
                       <li>
                         <a onClick={() => this.ShowForms('quiz')}>
@@ -172,7 +161,7 @@ class Dashboard extends React.Component {
                   <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>Reports</ExpansionPanelSummary>
                   <ExpansionPanelDetails>
                     <Typography>
-                      <ul className="dropdown-menu" style={{ width: '100%' }}>
+                      <ul className="" style={{ width: '100%' }}>
                         <li>
                           <a href="#!/dashboard/userhistory">
                             <i className="ti-view-list" />
