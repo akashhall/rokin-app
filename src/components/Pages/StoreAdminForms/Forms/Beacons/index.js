@@ -66,14 +66,14 @@ class Beacons extends React.Component {
       beacon_name,
       beacon_uuid,
       mac_address,
-      offer_beacon: offer_beacon === 'true' ? true : false, 
+      offer_beacon: offer_beacon === 'true' ? true : false,
       major,
       minor,
       beacon_room,
-      outlet_id:"dcba56d9-3801-40c8-9c13-8a77c39de24f",
+      outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
     }
 
-    addBeacon(data).then((res) =>  getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({data: res.data}); this.editModal.handleHide()}));
+    addBeacon(data).then((res) => getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
 
   }
   openEditModal = (i) => {
@@ -89,6 +89,9 @@ class Beacons extends React.Component {
   }
   onDelete = (i) => {
     console.log('dekhte hai')
+  }
+  closeModal = () => {
+    this.editModal.handleHide()
   }
   render() {
     const headers = [
@@ -135,8 +138,8 @@ class Beacons extends React.Component {
                         <td>{d.location}</td>
                         <td>{d.offer_beacon.toString()}</td>
                         <td>
-                          <a style={{fontSize: '30px', marginRight: '20px'}} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
-                          <a style={{fontSize: '30px'}} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
+                          <a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
+                          <a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
                         </td>
                       </tr>
                     ) : null
@@ -176,14 +179,14 @@ class Beacons extends React.Component {
                 <textarea ref={des => this.desc = des} className="form-control" placeholder="Please enter description here" onChange={(e) => this.setState({editData: {...this.state.editData, description: e.target.value} })} value={this.state.editData.description || ''} />
               </div> */}
               <select ref={sel => this.select = sel} style={{ height: '38px', width: '100%', marginBottom: '20px', marginTop: '10px', border: '1px solid lightgrey' }} >
-                <option value="0" >Is offered Beacon</option>
+                <option value="0" >Is offer Beacon</option>
                 <option value="true" selected={this.state.editData.offer_beacon == true}>Yes</ option>
                 <option value="false" selected={this.state.editData.offer_beacon == false}>No</option>
               </select>
               <div style={{ padding: '20px 55px' }} className="modal-footer">
                 <div className="row">
                   <div className="col-md-6">
-                    <input type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
+                    <input onClick={this.closeModal} type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
                   </div>
                   <div className="col-md-6">
                     <input onClick={this.onSumit} type="submit" className="btn btn-primary" defaultValue="Add" />

@@ -73,6 +73,9 @@ class OrgForms extends React.Component {
   onDelete = (i) => {
     console.log('dekhte hai')
   }
+  closeModal = () => {
+    this.editModal.handleHide()
+  }
   render() {
     const headers = [
       'Name',
@@ -144,7 +147,7 @@ class OrgForms extends React.Component {
               <div style={{ padding: '20px 55px' }} className="modal-footer">
                 <div className="row">
                   <div className="col-md-6">
-                    <input type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
+                    <input onClick={this.closeModal} type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
                   </div>
                   <div className="col-md-6">
                     <input onClick={this.onSumit} type="submit" className="btn btn-primary" defaultValue="Add" />

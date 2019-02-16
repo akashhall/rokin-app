@@ -234,3 +234,9 @@ body {
 	.modal form label {
 		font-weight: normal;
 	}	
+	.table {
+		font-size: 12px
+	}
+	.modal {
+		font-size: 12px
+	}

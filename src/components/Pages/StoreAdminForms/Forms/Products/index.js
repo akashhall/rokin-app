@@ -1,9 +1,10 @@
 import React from 'react';
 // import json from './data.json';
 // import Forms from './../Forms';
-import { getProducts, addBeacon } from './../../../../../api';
+import { getProducts, addProduct } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
+
 class Products extends React.Component {
   constructor(props) {
     super(props);
@@ -44,35 +45,33 @@ class Products extends React.Component {
   }
 
   onSumit = () => {
-    const beacon_name = this.name.value;
-    const beacon_uuid = this.uuid.value;
-    const mac_address = this.address.value;
-    const beacon_room = this.room.value;
-    const offer_beacon = this.select.options[this.select.selectedIndex].value;
-    const major = this.major.value;
-    const minor = this.minor.value;
+    const name = this.name.value;
+    const description = this.description.value;
+    const price = this.price.value;
+    const avg_rating = this.avg_rating.value;
+    // const offer_beacon = this.select.options[this.select.selectedIndex].value;
+    const usePhoto = this.photo.value;
+
     let a = { type: 'add' }
     console.log('selected id', this.selecteId)
     if (this.selecteId !== null) {
       a = {
-        id: this.state.data[this.selecteId].id,
+        product_id: this.state.data[this.selecteId].id,
         type: 'update'
       }
     }
 
     const data = {
       ...a,
-      beacon_name,
-      beacon_uuid,
-      mac_address,
-      offer_beacon: offer_beacon === 'true' ? true : false,
-      major,
-      minor,
-      beacon_room,
+      name,
+      description,
+      price,
+      avg_rating,
+      // usePhoto,
       outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
     }
 
-    // addBeacon(data).then((res) => getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+    addProduct(data).then((res) => getProducts({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
 
   }
   openEditModal = (i) => {
@@ -89,6 +88,9 @@ class Products extends React.Component {
   onDelete = (i) => {
     console.log('dekhte hai')
   }
+  closeModal = () => {
+    this.editModal.handleHide()
+  } 
   render() {
     const headers = [
       'Name',
@@ -99,7 +101,7 @@ class Products extends React.Component {
       'Updated on'
     ];
     return (
-      <React.Fragment >
+      <React.Fragment>
         <div>
           <div className="container">
             <div className="table-wrapper">
@@ -144,11 +146,11 @@ class Products extends React.Component {
               </table>
             </div>
           </div>
-          <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon" isModal="true">
+          <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Products" isModal="true">
             <>
               <div className="form-group">
                 <label>Name</label>
-                <input ref={name => this.name = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, name: e.target.value } })} value={this.state.editData.name || ''} required placeholder="Please enter Beacon Name" />
+                <input ref={name => this.name = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, name: e.target.value } })} value={this.state.editData.name || ''} required placeholder="Please enter Name" />
               </div>
               <div className="form-group">
                 <label>Description</label>
@@ -164,12 +166,12 @@ class Products extends React.Component {
               </div>
               <div className="form-group">
                 <label>Add Photo</label>
-                <input ref={name => this.photo = name} type='file' />
+                <input class="btn btn secondary" ref={name => this.photo = name} type='file' />
               </div>
               <div style={{ padding: '20px 55px' }} className="modal-footer">
                 <div className="row">
                   <div className="col-md-6">
-                    <input type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
+                    <input onClick={this.closeModal} type="button" className="btn btn-secondary" data-dismiss="modal" defaultValue="Cancel" />
                   </div>
                   <div className="col-md-6">
                     <input onClick={this.onSumit} type="submit" className="btn btn-primary" defaultValue="Add" />
