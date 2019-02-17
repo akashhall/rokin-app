@@ -202,7 +202,7 @@ class Products extends React.Component {
               </div>
               <div className="form-group">
                 <label>Message</label>
-                <input ref={name => this.offer_message = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.offer_message, price: e.target.value } })} value={this.state.editData.offer_message || ''} required placeholder="Please enter Message" />
+                <input ref={name => this.offer_message = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, offer_message: e.target.value } })} value={this.state.editData.offer_message || ''} required placeholder="Please enter Message" />
               </div>
               <div className="form-group">
                 <label>Total Count</label>
@@ -236,14 +236,6 @@ class Products extends React.Component {
                 <label>Offer Hours</label>
                 <input ref={name => this.offer_hours = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, offer_hours: e.target.value } })} value={this.state.editData.offer_hours || ''} required placeholder="Offer Hours" />
               </div>
-              <div className="form-group">
-                <label>Updated On</label>
-                <input ref={name => this.updated_on = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, updated_on: e.target.value } })} value={this.state.editData.updated_on || ''} required placeholder="Offer Updated on" />
-              </div>
-              <div className="form-group">
-                <label>Updated By</label>
-                <input ref={name => this.updated_by = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, updated_by: e.target.value } })} value={this.state.editData.updated_by || ''} required placeholder="Offer Updated By" />
-              </div>
               <div style={{ padding: '20px 55px' }} className="modal-footer">
                 <div className="row">
                   <div className="col-md-6">
@@ -256,26 +248,6 @@ class Products extends React.Component {
               </div>
             </>
           </ModalPopover>
-          <div id="deleteEmployeeModal" className="modal fade">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <form>
-                  <div className="modal-header">
-                    <h4 className="modal-title">Delete Employee</h4>
-                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  </div>
-                  <div className="modal-body">
-                    <p>Are you sure you want to delete these Records?</p>
-                    <p className="text-warning"><small>This action cannot be undone.</small></p>
-                  </div>
-                  <div className="modal-footer">
-                    <input type="button" className="btn btn-default" data-dismiss="modal" defaultValue="Cancel" />
-                    <input type="submit" className="btn btn-danger" defaultValue="Delete" />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
         </div>
       </React.Fragment >
     )

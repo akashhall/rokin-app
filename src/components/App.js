@@ -6,7 +6,7 @@ import SuperAdminDashboard from './../components/Pages/SuperAdminDashboard';
 import Beacons from '../components/Pages/StoreAdminForms/Forms/Beacons';
 // import GameOffer from '../components/Pages/StoreAdminForms/Forms/GameOffer';
 // import Notifications from '../components/Pages/StoreAdminForms/Forms/Notifications';
-// import Offers from '../components/Pages/StoreAdminForms/Forms/Offers';
+import Offers from '../components/Pages/StoreAdminForms/Forms/Offers';
 import Products from '../components/Pages/StoreAdminForms/Forms/Products';
 // import Quiz from '../components/Pages/StoreAdminForms/Forms/Quiz';
 // import QuizOffers from '../components/Pages/StoreAdminForms/Forms/QuizOffers';
@@ -42,8 +42,8 @@ class App extends Component {
           <Route path='/StoreAdminDashboard' component={StoreAdminDashboard} />
           <Route path='/SuperAdminDashboard' component={SuperAdminDashboard} />
           <Route path='/beacons' component={Beacons} />
-          <Route path='/product' component={Products} />
-          <Route path='/product' component={Products} />
+          <Route path='/products' component={Products} />
+          <Route path='/offers' component={Offers} />
           {/* <Route path='/gameOffer' component={GameOffer} />
           <Route path='/notifications' component={Notifications} />
           <Route path='/offers' component={Offers} />

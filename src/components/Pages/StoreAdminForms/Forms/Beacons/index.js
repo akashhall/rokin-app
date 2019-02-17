@@ -24,11 +24,7 @@ class Beacons extends React.Component {
   };
 
   componentDidMount() {
-    // this.editModal.handleShow();
-    console.log('did', sessionStorage);
     getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
-
-    // login().then((res) => console.log('res', res));
   }
   onModalClose = () => {
     this.selecteId = null;
@@ -43,6 +39,15 @@ class Beacons extends React.Component {
         offer_beacon: false
       }
     })
+    this.error.style.display = 'none';
+
+  }
+  validate = (beacon_name, beacon_uuid, beacon_room, mac_address, offer_beacon, major, minor) => {
+    if (beacon_name === '' || beacon_uuid === '' || beacon_room === '' || mac_address === '' || major === '' || minor === '' || offer_beacon === 'Is offer Beacon') {
+      return true
+    } else {
+      return false
+    }
   }
   onSumit = () => {
     const beacon_name = this.name.value;
@@ -52,39 +57,40 @@ class Beacons extends React.Component {
     const offer_beacon = this.select.options[this.select.selectedIndex].value;
     const major = this.major.value;
     const minor = this.minor.value;
-    let a = { type: 'add' }
-    console.log('selected id', this.selecteId)
-    if (this.selecteId !== null) {
-      a = {
-        id: this.state.data[this.selecteId].id,
-        type: 'update'
+    if (this.validate(beacon_name, beacon_uuid, beacon_room, mac_address, offer_beacon, major, minor)) {
+      this.error.style.display = 'block';
+    } else {
+      this.error.style.display = 'none';
+      let a = { type: 'add' }
+      if (this.selecteId !== null) {
+        a = {
+          id: this.state.data[this.selecteId].id,
+          type: 'update'
+        }
       }
+
+      const data = {
+        ...a,
+        beacon_name,
+        beacon_uuid,
+        mac_address,
+        offer_beacon: offer_beacon === 'true' ? true : false,
+        major,
+        minor,
+        beacon_room,
+        outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
+      }
+
+      addBeacon(data).then((res) => getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+
     }
-
-    const data = {
-      ...a,
-      beacon_name,
-      beacon_uuid,
-      mac_address,
-      offer_beacon: offer_beacon === 'true' ? true : false,
-      major,
-      minor,
-      beacon_room,
-      outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
-    }
-
-    addBeacon(data).then((res) => getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
-
   }
   openEditModal = (i) => {
     if (i !== undefined) {
       this.selecteId = i;
-      console.log('open edit', i, this.state.data[i])
       const editData = this.state.data[i];
       this.setState({ editData })
-      console.log('edit', editData, this.state)
     }
-    console.log('bahar', this.state.editData.category)
     this.editModal.handleShow();
   }
   onDelete = (i) => {
@@ -178,11 +184,13 @@ class Beacons extends React.Component {
                 <label>Description</label>
                 <textarea ref={des => this.desc = des} className="form-control" placeholder="Please enter description here" onChange={(e) => this.setState({editData: {...this.state.editData, description: e.target.value} })} value={this.state.editData.description || ''} />
               </div> */}
+
               <select ref={sel => this.select = sel} style={{ height: '38px', width: '100%', marginBottom: '20px', marginTop: '10px', border: '1px solid lightgrey' }} >
                 <option value="0" >Is offer Beacon</option>
                 <option value="true" selected={this.state.editData.offer_beacon == true}>Yes</ option>
                 <option value="false" selected={this.state.editData.offer_beacon == false}>No</option>
               </select>
+              <h6 ref={error => this.error = error} style={{ color: 'red', display: 'none' }}>Please fill all the detais</h6>
               <div style={{ padding: '20px 55px' }} className="modal-footer">
                 <div className="row">
                   <div className="col-md-6">
@@ -196,26 +204,6 @@ class Beacons extends React.Component {
               </div>
             </>
           </ModalPopover>
-          <div id="deleteEmployeeModal" className="modal fade">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <form>
-                  <div className="modal-header">
-                    <h4 className="modal-title">Delete Employee</h4>
-                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  </div>
-                  <div className="modal-body">
-                    <p>Are you sure you want to delete these Records?</p>
-                    <p className="text-warning"><small>This action cannot be undone.</small></p>
-                  </div>
-                  <div className="modal-footer">
-                    <input type="button" className="btn btn-default" data-dismiss="modal" defaultValue="Cancel" />
-                    <input type="submit" className="btn btn-danger" defaultValue="Delete" />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
         </div>
       </React.Fragment >
     )

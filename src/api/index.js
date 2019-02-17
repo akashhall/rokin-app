@@ -10,6 +10,7 @@ function login(username, password) {
     "device_id": "bsmnfsdmf"
   })
     .then(function (response) {
+      console.log('res', response)
       return response.data;
     })
     .catch(function (error) {
