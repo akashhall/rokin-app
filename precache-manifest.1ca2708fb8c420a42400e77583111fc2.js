@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/rokin-app/static/js/runtime~main.5159b0fe.js"
   },
   {
-    "revision": "14949a845d5f12343b26",
-    "url": "/rokin-app/static/js/main.14949a84.chunk.js"
+    "revision": "835d6a8555a53df32766",
+    "url": "/rokin-app/static/js/main.835d6a85.chunk.js"
   },
   {
     "revision": "460649ce65963e09dd5b",
     "url": "/rokin-app/static/js/2.460649ce.chunk.js"
   },
   {
-    "revision": "14949a845d5f12343b26",
-    "url": "/rokin-app/static/css/main.152caa41.chunk.css"
+    "revision": "835d6a8555a53df32766",
+    "url": "/rokin-app/static/css/main.43a180d1.chunk.css"
   },
   {
-    "revision": "ebcca1c99be0902f395b54105921c2f5",
+    "revision": "45df0b27d9fa3778d7a4b10813ae7cd7",
     "url": "/rokin-app/index.html"
   }
 ];
