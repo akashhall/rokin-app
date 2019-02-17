@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/rokin-app/precache-manifest.f5a7b87ef88dfc042d79650a24ddfc73.js"
+  "/rokin-app/precache-manifest.49a6950514360f528a810fff06088f5a.js"
 );
 
 workbox.clientsClaim();
