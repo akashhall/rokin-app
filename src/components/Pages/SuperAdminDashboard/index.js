@@ -11,7 +11,15 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import OrgForm from '../OrgForm';
 import Organisation from '../SuperAdminForms/Forms/Organisation';
 import Branch from '../SuperAdminForms/Forms/Branch';
-import { getAllOrg } from '../../../api'
+// import Users from '../SuperAdminForms/Forms/Users';
+import CustomerHistory from '../SuperAdminForms/Reports/CustomerHistory';
+import CustomerReport from '../SuperAdminForms/Reports/CustomerReport';
+import CustomerRequest from '../SuperAdminForms/Reports/CustomerRequest';
+import GameHistory from '../SuperAdminForms/Reports/GameHistory';
+import OfferHistory from '../SuperAdminForms/Reports/OfferHistory';
+import OfferReport from '../SuperAdminForms/Reports/OfferReport';
+import OrgForms from '../OrgForm';
+// import { getAllOrg } from '../../../api'
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -19,35 +27,67 @@ class Dashboard extends React.Component {
       article: true,
       Organisation: false,
       Branch: false,
-      Users: false
+      Users: false,
+      customerHistory: false,
+      customerReport: false,
+      customerRequest: false,
+      gameHistory: false,
+      offerHistory: false,
+      offerReport: false
+
     }
   }
-  componentDidMount() {
+  // componentDidMount() {
 
-    let data = getAllOrg(sessionStorage.token);
-    data.then((data) => {
-      console.log(data)
+  //   let data = getAllOrg(sessionStorage.token);
+  //   data.then((data) => {
+  //     console.log(data)
 
-    })
-  }
+  //   })
+  // }
 
   ShowForms = (type) => {
     // eslint-disable-next-line default-case
     switch (type) {
       case 'Organisation': {
-        this.setState({ Organisation: true, Branch: false, Users: false, article: false })
+        this.setState({ customerHistory: false, customerReport: false, customerRequest: false, gameHistory: false, offerHistory: false, offerReport: false, Organisation: true, Branch: false, Users: false, article: false })
         break;
       }
       case 'Branch': {
-        this.setState({ Organisation: false, Branch: true, Users: false, article: false })
+        this.setState({ customerHistory: false, customerReport: false, customerRequest: false, gameHistory: false, offerHistory: false, offerReport: false, Organisation: false, Branch: true, Users: false, article: false })
         break;
       }
       case 'Users': {
-        this.setState({ Organisation: false, Branch: false, Users: true, article: false })
+        this.setState({ customerHistory: false, customerReport: false, customerRequest: false, gameHistory: false, offerHistory: false, offerReport: false, Organisation: false, Branch: false, Users: true, article: false })
         break;
       }
+      case 'customerHistory': {
+        this.setState({ customerHistory: true, customerReport: false, customerRequest: false, gameHistory: false, offerHistory: false, offerReport: false, Organisation: false, Branch: false, Users: false, article: false })
+        break;
+      }
+      case 'customerReport': {
+        this.setState({ customerHistory: false, customerReport: true, customerRequest: false, gameHistory: false, offerHistory: false, offerReport: false, Organisation: false, Branch: false, Users: false, article: false })
+        break;
+      }
+      case 'customerRequest': {
+        this.setState({ customerHistory: false, customerReport: false, customerRequest: true, gameHistory: false, offerHistory: false, offerReport: false, Organisation: false, Branch: false, Users: false, article: false })
+        break;
+      }
+      case 'gameHistory': {
+        this.setState({ customerHistory: false, customerReport: false, customerRequest: false, gameHistory: true, offerHistory: false, offerReport: false, Organisation: false, Branch: false, Users: false, article: false })
+        break;
+      }
+      case 'offerHistory': {
+        this.setState({ customerHistory: false, customerReport: false, customerRequest: false, gameHistory: false, offerHistory: true, offerReport: false, Organisation: false, Branch: false, Users: false, article: false })
+        break;
+      }
+      case 'offerReport': {
+        this.setState({ customerHistory: false, customerReport: false, customerRequest: false, gameHistory: false, offerHistory: false, offerReport: true, Organisation: false, Branch: false, Users: false, article: false })
+        break;
+      }
+
       default: {
-        this.setState({ Organisation: false, Branch: false, Users: false, article: true })
+        this.setState({ customerHistory: false, customerReport: false, customerRequest: false, gameHistory: false, offerHistory: false, offerReport: false, Organisation: false, Branch: false, Users: false, article: true })
       }
     }
 
@@ -55,11 +95,11 @@ class Dashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {sessionStorage.role !== undefined ?
+        {/* {sessionStorage.role !== undefined ? */}
           <div className="nano-content">
 
             <header><ul class="header">
-            <li className='admin'>SuperAdmin</li>>
+              <li className='admin'>SuperAdmin</li>
               {/* <li>Organization:</li>
             <li>Branch: HRC Mumbai-Worli</li> */}
               <button>Logout</button>
@@ -124,9 +164,9 @@ class Dashboard extends React.Component {
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>Reports</ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                       <Typography>
-                        <ul className="" style={{ width: '100%' }}>
+                        <ul >
                           <li>
-                            <a href="#!/dashboard/userhistory">
+                            <a onClick={() => this.ShowForms('customerHistory')}>
                               <i className="ti-view-list" />
                               <span className="menu-title">
                                 <strong>Customer History</strong>
@@ -134,7 +174,7 @@ class Dashboard extends React.Component {
                             </a>
                           </li>
                           <li>
-                            <a href="#!/dashboard/gamehistory">
+                            <a onClick={() => this.ShowForms('gameHistory')}>
                               <i className="ti-view-list" />
                               <span className="menu-title">
                                 <strong>Game History</strong>
@@ -142,7 +182,7 @@ class Dashboard extends React.Component {
                             </a>
                           </li>
                           <li>
-                            <a href="#!/dashboard/offershistory">
+                            <a onClick={() => this.ShowForms('offerHistory')}>
                               <i className="ti-view-list" />
                               <span className="menu-title">
                                 <strong>Offer History</strong>
@@ -150,7 +190,7 @@ class Dashboard extends React.Component {
                             </a>
                           </li>
                           <li>
-                            <a href="#!/dashboard/userreport">
+                            <a onClick={() => this.ShowForms('customerReport')}>
                               <i className="ti-view-list" />
                               <span className="menu-title">
                                 <strong>Customer Report</strong>
@@ -158,7 +198,7 @@ class Dashboard extends React.Component {
                             </a>
                           </li>
                           <li>
-                            <a href="#!/dashboard/offerreport">
+                            <a onClick={() => this.ShowForms('offerReport')}>
                               <i className="ti-view-list" />
                               <span className="menu-title">
                                 <strong>Offer Report</strong>
@@ -166,7 +206,7 @@ class Dashboard extends React.Component {
                             </a>
                           </li>
                           <li>
-                            <a href="#!/dashboard/instantoffer">
+                            <a onClick={() => this.ShowForms('customerRequest')}>
                               <i className="ti-view-list" />
                               <span className="menu-title">
                                 <strong>Customer Requests</strong>
@@ -184,11 +224,18 @@ class Dashboard extends React.Component {
 
             <article>
               {this.state.article ? ' Welcome Super Admin' : null}
-              {this.state.Organisation && <Organisation />}
+              {this.state.Organisation && <OrgForms />}
               {this.state.Branchs && <Branch />}
+              {/* {this.state.Users && <Users />} */}
+              {this.state.customerHistory && <CustomerHistory />}
+              {this.state.customerReport && <CustomerReport />}
+              {this.state.customerRequest && <CustomerRequest />}
+              {this.state.gameHistory && <GameHistory />}
+              {this.state.offerHistory && <OfferHistory />}
+              {this.state.offerReport && <OfferReport />}
             </article>
           </div>
-          : null}
+          {/* : null} */}
       </React.Fragment>
     )
   }

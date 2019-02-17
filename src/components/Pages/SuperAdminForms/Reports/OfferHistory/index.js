@@ -132,13 +132,13 @@ class OfferHistory extends React.Component {
                 </div>
                 <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto', display: 'flex' }}>
                 <label htmlFor="startDate">Select Store:</label>
-                  <select style={{ width: '20%', display: 'inline-block' }} className="form-control frmclr ng-pristine ng-untouched ng-valid ng-not-empty" name="type" ng-model="IOC.prefixName">
+                  <select style={{ width: '10%', display: 'inline-block' }} className="form-control frmclr ng-pristine ng-untouched ng-valid ng-not-empty" name="type" ng-model="IOC.prefixName">
                     <option value="All" selected="selected">All</option>
                     {/* ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCMumbai1" className="ng-binding ng-scope" style={{}}>HRC Mumbai-Worli</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="rootsmumbai" className="ng-binding ng-scope">Roots Mumbai</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCHyd" className="ng-binding ng-scope">HRC Hyderabad</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCMumbaiAnd" className="ng-binding ng-scope">HRC Mumbai-Andheri</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="Myurdwr" className="ng-binding ng-scope">Mayur Dharwar</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCPune" className="ng-binding ng-scope">HRC Pune</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="JastroKings" className="ng-binding ng-scope">Jack Astors Toronto-Kings</option>{/* end ngRepeat: item in IOC.subItems */}
                   </select>
 
                   <label htmlFor="game">Select Redeem Status:</label>
-                  <select style={{ width: '20%', display: 'inline-block', marginBottom: '15px' }} className="form-control frmclr ng-pristine ng-untouched ng-valid ng-not-empty" name="status" ng-model="OHC.redeemStatus">
+                  <select style={{ width: '10%', display: 'inline-block', marginBottom: '15px' }} className="form-control frmclr ng-pristine ng-untouched ng-valid ng-not-empty" name="status" ng-model="OHC.redeemStatus">
                     <option value="All" selected="selected">All</option>
                     <option value="Redeem">Redeem</option>
                     <option value="Redeem">Redeemed</option>

@@ -106,18 +106,18 @@ class CustomerReport extends React.Component {
                   </div>
                 </div>
                 <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto' }}>
-                <label htmlFor="startDate">Select Store:</label>
+                  <label htmlFor="startDate">Select Store:</label>
                   <select style={{ width: '20%', display: 'inline-block' }} className="form-control frmclr ng-pristine ng-untouched ng-valid ng-not-empty" name="type" ng-model="IOC.prefixName">
                     <option value="All" selected="selected">All</option>
                     {/* ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCMumbai1" className="ng-binding ng-scope" style={{}}>HRC Mumbai-Worli</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="rootsmumbai" className="ng-binding ng-scope">Roots Mumbai</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCHyd" className="ng-binding ng-scope">HRC Hyderabad</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCMumbaiAnd" className="ng-binding ng-scope">HRC Mumbai-Andheri</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="Myurdwr" className="ng-binding ng-scope">Mayur Dharwar</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCPune" className="ng-binding ng-scope">HRC Pune</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="JastroKings" className="ng-binding ng-scope">Jack Astors Toronto-Kings</option>{/* end ngRepeat: item in IOC.subItems */}
                   </select>
                   <label htmlFor="startDate">Start Date:</label>
-                  <input ng-model="URC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+                  <input style={{ padding: '4px' }} ng-model="URC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp; &nbsp;
                   <label htmlFor="endDate">End Date:</label>
-                  <input ng-model="URC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+                  <input style={{ padding: '4px' }} ng-model="URC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
-                  <button className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="URC.getUserReport()">Submit</button>
+                  <button style={{ padding: '4px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="URC.getUserReport()">Submit</button>
                   {/* <span className="search_input margin_top10">
                   <label htmlFor="search">Search:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <input type="text" name="search" ng-model="URC.search" className="ng-pristine ng-untouched ng-valid ng-empty" />

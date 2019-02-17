@@ -130,12 +130,12 @@ class GameHistory extends React.Component {
 									</select>
 									&nbsp;
 									<label htmlFor="startDate">Start Date:</label>
-									<input ng-model="GHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+									<input style={{ padding: '4px' }} ng-model="GHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
 									&nbsp;
 									<label htmlFor="endDate">End Date:</label>
 
-									&nbsp;<input ng-model="GHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
-									<button className="btn-primary col-md-1 butnadd submit_form submit_dis add_button_custom_width floatRight" ng-click="GHC.getGameHistory()">Submit</button>
+									&nbsp;<input style={{ padding: '4px' }} ng-model="GHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+									&nbsp;<button style={{ padding: '4px' }} className="btn-primary col-md-1 butnadd submit_form submit_dis add_button_custom_width floatRight" ng-click="GHC.getGameHistory()">Submit</button>
 								</div>
 							</div>
 							<table className="table table-striped table-hover">
