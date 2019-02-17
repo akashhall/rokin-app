@@ -3,15 +3,82 @@ import React from 'react';
 // import Forms from './../Forms';
 import { getBeacons, addBeacon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
+import MultiSearchSelect from "react-search-multi-select";
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
+
+const data = [
+    {
+        createdBy: "rohit",
+createdDate: "2018-01-26 17:25:17",
+id: "143",
+offerAmount: "350",
+offerId: "2",
+offerPer: "100",
+offeredPrice: "0",
+prefixName: "HRCMumbai1",
+productId: "2",
+productPrice: "350",
+redeemDateTime: "2018-01-26 17:25:52",
+redeemStatus: "Redeemed",
+redeemedBy: "rohit",
+userName: "rahul",
+    },
+    {
+      createdBy: "rohit",
+createdDate: "2018-01-26 17:25:17",
+id: "143",
+offerAmount: "350",
+offerId: "2",
+offerPer: "100",
+offeredPrice: "0",
+prefixName: "HRCMumbai1",
+productId: "2",
+productPrice: "350",
+redeemDateTime: "2018-01-26 17:25:52",
+redeemStatus: "Redeemed",
+redeemedBy: "rohit",
+userName: "rahul",
+  },  {
+    createdBy: "rohit",
+createdDate: "2018-01-26 17:25:17",
+id: "143",
+offerAmount: "350",
+offerId: "2",
+offerPer: "100",
+offeredPrice: "0",
+prefixName: "HRCMumbai1",
+productId: "2",
+productPrice: "350",
+redeemDateTime: "2018-01-26 17:25:52",
+redeemStatus: "Redeemed",
+redeemedBy: "rohit",
+userName: "rahul",
+},
+{
+  createdBy: "rohit",
+createdDate: "2018-01-26 17:25:17",
+id: "143",
+offerAmount: "350",
+offerId: "2",
+offerPer: "100",
+offeredPrice: "0",
+prefixName: "HRCMumbai1",
+productId: "2",
+productPrice: "350",
+redeemDateTime: "2018-01-26 17:25:52",
+redeemStatus: "Redeemed",
+redeemedBy: "rohit",
+userName: "rahul",
+}
+]
 
 class SendOffers extends React.Component {
     constructor(props) {
         super(props);
-
         this.selecteId = null;
         this.state = {
             data: [],
+            values: ["Allison", "Arthur", "Beryl", "Chantal", "Cristobal", "Danielle", "Dennis", "Ernesto", "Felix", "Fay", "Grace", "Gaston", "Gert", "Gordon"],
             editData: {
                 name: '',
                 address: '',
@@ -27,6 +94,7 @@ class SendOffers extends React.Component {
     componentDidMount() {
         // this.editModal.handleShow();
         console.log('did', sessionStorage);
+        this.setState({ data: data })
         // getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
 
         // login().then((res) => console.log('res', res));
@@ -136,16 +204,19 @@ class SendOffers extends React.Component {
                                         }
                                     </tr>
                                 </thead>
-                                {/* <tbody>
+                                <tbody>
                   {this.state.data && this.state.data.length ?
                     this.state.data.map((d, i) =>
                       <tr key={i}>
-                        <td style={{ width: '200px' }}>{d.name}</td>
-                        <td>{d.address}</td>
-                        <td>{d.beacon_uuid}</td>
-                        <td>{d.beacon_room}</td>
-                        <td>{d.location}</td>
-                        <td>{d.offer_beacon.toString()}</td>
+                        <td style={{ width: '200px' }}>{d.createdBy}</td>
+                        <td>{d.prefixName}</td>
+                        <td>{d.offerId}</td>
+                        <td>{d.productId}</td>
+                        <td>{d.productPrice}</td>
+                        <td>{d.offerPer}</td>
+                        <td>{d.offeredPrice}</td>
+                        <td>{d.redeemStatus}</td>
+                        {/* <td>{d.offer_beacon.toString()}</td> */}
                         <td>
                           <a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
                           <a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
@@ -153,45 +224,26 @@ class SendOffers extends React.Component {
                       </tr>
                     ) : null
                   }
-                </tbody> */}
+                </tbody>
                             </table>
                         </div>
                     </div>
-                    <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon" isModal="true">
+                    <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon
+" isModal="true">
                         <>
                             <div className="form-group">
-                                <label>Beacon Name</label>
-                                <input ref={name => this.name = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, name: e.target.value } })} value={this.state.editData.name || ''} required placeholder="Please enter Beacon Name" />
+                               <label>User Name: </label>
+                               <MultiSearchSelect searchable={true} showTags={true} multiSelect={true} width="100%" onSelect={this.handleChange} options={this.state.values} />   
+                                {/* <input ref={name => this.name = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, name: e.target.value } })} value={this.state.editData.name || ''} required placeholder="Please enter Beacon Name" /> */}
                             </div>
                             <div className="form-group">
-                                <label>Address</label>
-                                <input ref={name => this.address = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, address: e.target.value } })} value={this.state.editData.address || ''} required placeholder="Please enter Address" />
+                                <label>Speial Offer: </label>
+                                <input ref={name => this.address = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, address: e.target.value } })} value={this.state.editData.address || ''} required placeholder="Select Offers" />
                             </div>
                             <div className="form-group">
-                                <label>Room</label>
-                                <input ref={name => this.room = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, beacon_room: e.target.value } })} value={this.state.editData.beacon_room || ''} required placeholder="Please enter Beacon Room" />
+                                <label>OfferDesc: </label>
+                                <input ref={name => this.room = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, beacon_room: e.target.value } })} value={this.state.editData.beacon_room || ''} required placeholder="Offer Description" />
                             </div>
-                            <div className="form-group">
-                                <label>Beacon UUID</label>
-                                <input ref={name => this.uuid = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, beacon_uuid: e.target.value } })} value={this.state.editData.beacon_uuid || ''} required placeholder="Please enter UUID" />
-                            </div>
-                            <div className="form-group">
-                                <label>Major</label>
-                                <input ref={name => this.major = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, major: e.target.value } })} value={this.state.editData.major || ''} required placeholder="Please enter Major" />
-                            </div>
-                            <div className="form-group">
-                                <label>Minor</label>
-                                <input ref={name => this.minor = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, minor: e.target.value } })} value={this.state.editData.minor || ''} required placeholder="Please enter Minor" />
-                            </div>
-                            {/* <div className="form-group">
-                <label>Description</label>
-                <textarea ref={des => this.desc = des} className="form-control" placeholder="Please enter description here" onChange={(e) => this.setState({editData: {...this.state.editData, description: e.target.value} })} value={this.state.editData.description || ''} />
-              </div> */}
-                            <select ref={sel => this.select = sel} style={{ height: '38px', width: '100%', marginBottom: '20px', marginTop: '10px', border: '1px solid lightgrey' }} >
-                                <option value="0" >Is offer Beacon</option>
-                                <option value="true" selected={this.state.editData.offer_beacon == true}>Yes</ option>
-                                <option value="false" selected={this.state.editData.offer_beacon == false}>No</option>
-                            </select>
                             <div style={{ padding: '20px 55px' }} className="modal-footer">
                                 <div className="row">
                                     <div className="col-md-6">
@@ -199,7 +251,6 @@ class SendOffers extends React.Component {
                                     </div>
                                     <div className="col-md-6">
                                         <input onClick={this.onSumit} type="submit" className="btn btn-primary" defaultValue="Add" />
-
                                     </div>
                                 </div>
                             </div>

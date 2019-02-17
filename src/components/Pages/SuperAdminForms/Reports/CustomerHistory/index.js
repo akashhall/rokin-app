@@ -1,10 +1,10 @@
 import React from 'react';
 // import json from './data.json';
 // import Forms from './../Forms';
-import { getOfferHistory, addBeacon } from './../../../../../api';
+import { getCustomerHistory, addBeacon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
-class OfferHistory extends React.Component {
+class CustomerHistory extends React.Component {
   constructor(props) {
     super(props);
 
@@ -23,9 +23,8 @@ class OfferHistory extends React.Component {
         date: '',
         action: '',
         actionType: '',
-        offerMeassage: '',
-        RedeemStatus: ''
-
+        message: '',
+        offerMeassage: ''
       }
     }
   };
@@ -33,7 +32,7 @@ class OfferHistory extends React.Component {
   componentDidMount() {
     // this.editModal.handleShow();
     console.log('did', sessionStorage);
-    getOfferHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+    getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
 
     // login().then((res) => console.log('res', res));
   }
@@ -41,17 +40,13 @@ class OfferHistory extends React.Component {
     this.selecteId = null;
     this.setState({
       editData: {
-        UserName: '',
-        Mobile: '',
-        Branch: '',
-        OfferId: '',
-        ProductId: '',
-        ProductPrice: '',
-        OfferPercentage: '',
-        OfferPrice: '',
-        RedeemStatus: '',
-        CreatedDate: '',
-        RedeemDate: ''
+        name: '',
+        address: '',
+        beacon_room: '',
+        location: '',
+        major: '',
+        minor: '',
+        offer_beacon: false
       }
     })
   }
@@ -84,7 +79,7 @@ class OfferHistory extends React.Component {
       outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
     }
 
-    addBeacon(data).then((res) => getOfferHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+    addBeacon(data).then((res) => getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
 
   }
   openEditModal = (i) => {
@@ -103,17 +98,12 @@ class OfferHistory extends React.Component {
   }
   render() {
     const headers = [
-      'UserName',
-      'Mobile',
-      'Branch',
-      'OfferId',
-      'ProductId',
-      'ProductPrice',
-      'OfferPercentage',
-      'OfferPrice',
-      'RedeemStatus',
-      'CreatedDate',
-      'RedeemDate'
+      'name',
+      'date',
+      'action',
+      'actionType',
+      'message',
+      'offerMeassage'
     ];
     return (
       <React.Fragment >
@@ -123,37 +113,34 @@ class OfferHistory extends React.Component {
               <div className="table-title">
                 <div className="row">
                   <div className="col-sm-6">
-                    <h2>Offer History</h2>
+                    <h2>Customer History</h2>
                   </div>
                   {/* <div className="col-sm-6">
                     <a onClick={() => this.openEditModal()} className="btn btn-success"><span>Add New Beacon</span></a>
                     {/* <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a> */}
                   {/* </div> */}
                 </div>
-                <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto', display: 'flex' }}>
-
-                  <label htmlFor="game">Select Redeem Status:</label>
-                  <select style={{ width: '20%', display: 'inline-block', marginBottom: '15px' }} className="form-control frmclr ng-pristine ng-untouched ng-valid ng-not-empty" name="status" ng-model="OHC.redeemStatus">
-                    <option value="All" selected="selected">All</option>
-                    <option value="Redeem">Redeem</option>
-                    <option value="Redeem">Redeemed</option>
-                  </select>
-                  {/* &nbsp; */}
-                  <label style={{ marginTop: '0px' }} htmlFor="startDate" >Start Date:</label>
-                  <input style={{ marginBottom: '15px' }} ng-model="OHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
-                  {/* &nbsp; */}
+                <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto' }}>
+                  <label htmlFor="user">Customer Name:</label>
+                  <input ng-model="UHC.user" type="text" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-empty" />
+                  &nbsp;
+                  <label htmlFor="startDate">Start Date:</label>
+                  <input ng-model="UHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+                  &nbsp;
                   <label htmlFor="endDate">End Date:</label>
-                  <input style={{ marginBottom: '15px' }} ng-model="OHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
-                  <button style={{ marginBottom: '15px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="OHC.getOffersHistory()">Submit</button>
-                </div>
+                  <input ng-model="UHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+                  &nbsp;
+                  <button className="btn-primary col-md-1 butnadd submit_form submit_dis floatRight add_button_custom" ng-click="UHC.getUserHistory()">Submit</button>
 
+                  {/* <h3 class="panel-title">Payment Form</h3> */}
+                </div>
               </div>
               <table className="table table-striped table-hover">
                 <thead>
                   <tr>
                     {
                       headers && headers.length ?
-                        headers.map((header) => <th>{header}</th>) : null
+                        headers.map((header) => <th style={{ width: '145px' }}>{header}</th>) : null
                     }
                   </tr>
                 </thead>
@@ -162,15 +149,15 @@ class OfferHistory extends React.Component {
                     this.state.data.map((d, i) =>
                       <tr key={i}>
                         <td style={{ width: '200px' }}>{d.name}</td>
-                        <td>{d.address}</td>
-                        <td>{d.beacon_uuid}</td>
-                        <td>{d.beacon_room}</td>
-                        <td>{d.location}</td>
-                        <td>{d.offer_beacon.toString()}</td>
-                        <td>
+                        <td>{d.date}</td>
+                        <td>{d.action}</td>
+                        <td>{d.actionType}</td>
+                        <td>{d.message}</td>
+                        <td>{d.offerMeassage.toString()}</td>
+                        {/* <td>
                           <a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
                           <a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
-                        </td>
+                        </td> */}
                       </tr>
                     ) : null
                   }
@@ -178,7 +165,7 @@ class OfferHistory extends React.Component {
               </table>
             </div>
           </div>
-          <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon" isModal="true">
+          {/* <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon" isModal="true">
             <>
               <div className="form-group">
                 <label>Beacon Name</label>
@@ -204,10 +191,6 @@ class OfferHistory extends React.Component {
                 <label>Minor</label>
                 <input ref={name => this.minor = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, minor: e.target.value } })} value={this.state.editData.minor || ''} required placeholder="Please enter Minor" />
               </div>
-              {/* <div className="form-group">
-                <label>Description</label>
-                <textarea ref={des => this.desc = des} className="form-control" placeholder="Please enter description here" onChange={(e) => this.setState({editData: {...this.state.editData, description: e.target.value} })} value={this.state.editData.description || ''} />
-              </div> */}
               <select ref={sel => this.select = sel} style={{ height: '38px', width: '100%', marginBottom: '20px', marginTop: '10px', border: '1px solid lightgrey' }} >
                 <option value="0" >Is offered Beacon</option>
                 <option value="true" selected={this.state.editData.offer_beacon == true}>Yes</ option>
@@ -225,8 +208,8 @@ class OfferHistory extends React.Component {
                 </div>
               </div>
             </>
-          </ModalPopover>
-          <div id="deleteEmployeeModal" className="modal fade">
+          </ModalPopover> */}
+          {/* <div id="deleteEmployeeModal" className="modal fade">
             <div className="modal-dialog">
               <div className="modal-content">
                 <form>
@@ -245,11 +228,11 @@ class OfferHistory extends React.Component {
                 </form>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </React.Fragment >
     )
   }
 }
 
-export default OfferHistory;
+export default CustomerHistory;
