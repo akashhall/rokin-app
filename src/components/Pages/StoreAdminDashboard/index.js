@@ -19,6 +19,7 @@ import CustomerRequest from './../StoreAdminForms/Reports/CustomerRequest';
 import GameHistory from './../StoreAdminForms/Reports/GameHistory';
 import OfferHistory from './../StoreAdminForms/Reports/OfferHistory';
 import OfferReport from './../StoreAdminForms/Reports/OfferReport';
+import SendOffer from './../StoreAdminForms/Forms/SendOffer';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -341,6 +342,8 @@ class Dashboard extends React.Component {
             {this.state.offerHistory && <OfferHistory />}
             {this.state.offerReport && <OfferReport />}
             {this.state.notifications && <Notification />}
+            {this.state.sendOffer && <SendOffer />}
+
           </article>
         </div>
       </React.Fragment>

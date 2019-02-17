@@ -1,10 +1,18 @@
 import React from 'react';
+import MultiSearchSelect from "react-search-multi-select";
+
 class Notifications extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      values: ["Allison", "Arthur", "Beryl", "Chantal", "Cristobal", "Danielle", "Dennis", "Ernesto", "Felix", "Fay", "Grace", "Gaston", "Gert", "Gordon"]
+    };
   }
   submit = (e) => {
     e.preventDefault();
+  }
+  handleChange = (arr) => {
+    console.log(arr);
   }
   render() {
     return (
@@ -23,14 +31,9 @@ class Notifications extends React.Component {
                 <div className="col-md-offset-1 col-md-10 " style={{ padding: '0px' }}>
                   <div className="row" style={{ paddingTop: '50px' }}>
                     <form style={{ 'width': '100%', 'marginLeft': '100px' }}>
-                      <div className="form-group">
-                        <label htmlFor="sel1">Select UserName:</label>
-                        <select class="form-control" id="sel1" required>
-                          <option>amit</option>
-                          <option>sumer</option>
-                          <option>imran</option>
-                          <option>akash</option>
-                        </select>
+                      <div style={{'marginBottom' : '5px'}}>
+                        <div> Select User: </div>
+                        <MultiSearchSelect searchable={true} showTags={true} multiSelect={true} width="100%" onSelect={this.handleChange} options={this.state.values} />
                       </div>
                       <div className="form-group">
                         <label htmlFor="usr">Title:</label>
@@ -41,7 +44,7 @@ class Notifications extends React.Component {
                         <textarea style={{ backgroundColor: 'white' }} className="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" rows={5} name="message" ng-model="NC.message" required defaultValue={""} />
                       </div>
                       <div className="text-right">
-                        <button className="btn btn-primary" onClick={this.submit}disabled="">Submit</button>
+                        <button className="btn btn-primary" onClick={this.submit} disabled="">Submit</button>
                       </div>
                     </form>
                   </div>
