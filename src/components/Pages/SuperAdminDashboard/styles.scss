@@ -9,10 +9,16 @@
     background-color: #333;
     margin-left: 0px;
     button{
-      padding: 11px;
+      margin: 2px;
+      padding: 0px;
+      // padding: 11px;
       float:right;
       background: black;
       color: white;
+      border-color: black;
+      width: 90px;
+      height: 45px;
+      border-radius: 8px;
     }
     ul {
       list-style-type: none;

@@ -75,15 +75,15 @@
   margin-right: 5px;
   }
   
-  .login_btn{
+  .btn-warning{
   /* color: black; */
-  background-color: #FFC312;
-  width: 100px;
+  /* background-color: #FFC312; */
+  width: 80px;
   }
   
-  .login_btn:hover{
+  .btn-warning:hover{
   /* color: black; */
-  background-color: white;
+  background-color: white !important;
   }
   
   .links{

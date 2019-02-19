@@ -8,11 +8,16 @@
     overflow: hidden;
     background-color: #333;
     margin-left: 0px;
-    butyon{
+    button{
+      margin: 2px;
+      padding: 0px;
       float:right;
-      padding: 11px;
       background: black;
       color: white;
+      border-color: black;
+      width: 90px;
+      height: 45px;
+      border-radius: 8px;
     }
     ul {
       list-style-type: none;

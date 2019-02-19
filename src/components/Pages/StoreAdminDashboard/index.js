@@ -145,7 +145,7 @@ class Dashboard extends React.Component {
               <li>Organization:</li>
               <li>Branch: HRC Mumbai-Worli</li>
             </div>
-            <button onClick={this.logoutSession}>Logout</button>
+            <button onClick={this.logoutSession} className="btn btn-">Logout</button>
           </ul>
           </header>
           <nav>

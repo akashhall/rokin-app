@@ -109,7 +109,7 @@ class Dashboard extends React.Component {
               <li className='admin'>SuperAdmin</li>
               {/* <li>Organization:</li>
             <li>Branch: HRC Mumbai-Worli</li> */}
-              <button onClick={this.logoutSession}>Logout</button>
+              <button onClick={this.logoutSession} >Logout</button>
             </ul></header>
             <nav>
               <div id="mainnav-profile" className="mainnav-profile">
