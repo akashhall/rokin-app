@@ -1,14 +1,14 @@
 {
-  "main.css": "/rokin-app/static/css/main.f5cfb316.chunk.css",
-  "main.js": "/rokin-app/static/js/main.4150f6ab.chunk.js",
-  "main.js.map": "/rokin-app/static/js/main.4150f6ab.chunk.js.map",
+  "main.css": "/rokin-app/static/css/main.22e88334.chunk.css",
+  "main.js": "/rokin-app/static/js/main.a8ad8920.chunk.js",
+  "main.js.map": "/rokin-app/static/js/main.a8ad8920.chunk.js.map",
   "runtime~main.js": "/rokin-app/static/js/runtime~main.5159b0fe.js",
   "runtime~main.js.map": "/rokin-app/static/js/runtime~main.5159b0fe.js.map",
   "static/js/2.f6efafc4.chunk.js": "/rokin-app/static/js/2.f6efafc4.chunk.js",
   "static/js/2.f6efafc4.chunk.js.map": "/rokin-app/static/js/2.f6efafc4.chunk.js.map",
   "index.html": "/rokin-app/index.html",
-  "precache-manifest.80e00f43ce0c7a9d4ed7b2054cc3ee4b.js": "/rokin-app/precache-manifest.80e00f43ce0c7a9d4ed7b2054cc3ee4b.js",
+  "precache-manifest.5eab04c37718361f4793a7ca270665bb.js": "/rokin-app/precache-manifest.5eab04c37718361f4793a7ca270665bb.js",
   "service-worker.js": "/rokin-app/service-worker.js",
-  "static/css/main.f5cfb316.chunk.css.map": "/rokin-app/static/css/main.f5cfb316.chunk.css.map",
+  "static/css/main.22e88334.chunk.css.map": "/rokin-app/static/css/main.22e88334.chunk.css.map",
   "static/media/style.css": "/rokin-app/static/media/restaurant-theme.52b56ef0.jpg"
 }
