@@ -90,7 +90,14 @@ class Dashboard extends React.Component {
         this.setState({ customerHistory: false, customerReport: false, customerRequest: false, gameHistory: false, offerHistory: false, offerReport: false, Organisation: false, Branch: false, Users: false, article: true })
       }
     }
-
+  }
+  logoutSession = () => {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user_id');
+    sessionStorage.removeItem('role');
+    this.props.history.push({
+      pathname: '/',
+    })
   }
   render() {
     return (
@@ -102,7 +109,7 @@ class Dashboard extends React.Component {
               <li className='admin'>SuperAdmin</li>
               {/* <li>Organization:</li>
             <li>Branch: HRC Mumbai-Worli</li> */}
-              <button>Logout</button>
+              <button onClick={this.logoutSession}>Logout</button>
             </ul></header>
             <nav>
               <div id="mainnav-profile" className="mainnav-profile">

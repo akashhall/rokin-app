@@ -49,43 +49,43 @@ class Dashboard extends React.Component {
     // eslint-disable-next-line default-case
     switch (type) {
       case 'beacon': {
-        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false,beacons: true, quiz: false, article: false, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: false, users: false })
+        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false, beacons: true, quiz: false, article: false, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: false, users: false })
         break;
       }
       case 'quiz': {
-        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false,beacons: false, quiz: true, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: false, users: false, article: false })
+        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false, beacons: false, quiz: true, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: false, users: false, article: false })
         break;
       }
       case 'quizOffer': {
-        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false,beacons: false, quiz: false, quizOffer: true, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: false, users: false, article: false })
+        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false, beacons: false, quiz: false, quizOffer: true, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: false, users: false, article: false })
         break;
       }
       case 'gameOffer': {
-        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false,beacons: false, quiz: false, quizOffer: false, gameOffer: true, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: false, users: false, article: false })
+        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false, beacons: false, quiz: false, quizOffer: false, gameOffer: true, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: false, users: false, article: false })
         break;
       }
       case 'notifications': {
-        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false,customerHistory: false, gameHistory: false, offerHistory: false, beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: true, offers: false, products: false, sendOffer: false, treasureHunt: false, users: false, article: false })
+        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false, beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: true, offers: false, products: false, sendOffer: false, treasureHunt: false, users: false, article: false })
         break;
       }
       case 'offers': {
-        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false,beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: false, offers: true, products: false, sendOffer: false, treasureHunt: false, users: false, article: false })
+        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false, beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: false, offers: true, products: false, sendOffer: false, treasureHunt: false, users: false, article: false })
         break;
       }
       case 'products': {
-        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false,beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: true, sendOffer: false, treasureHunt: false, users: false, article: false })
+        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false, beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: true, sendOffer: false, treasureHunt: false, users: false, article: false })
         break;
       }
       case 'sendOffer': {
-        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false,beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: true, treasureHunt: false, users: false, article: false })
+        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false, beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: true, treasureHunt: false, users: false, article: false })
         break;
       }
       case 'treasureHunt': {
-        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false,beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: true, users: false, article: false })
+        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false, beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: true, users: false, article: false })
         break;
       }
       case 'users': {
-        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false,beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: false, users: true, article: false })
+        this.setState({ currentUsers: false, offerReport: false, customerRequests: false, customerReport: false, customerHistory: false, gameHistory: false, offerHistory: false, beacons: false, quiz: false, quizOffer: false, gameOffer: false, notifications: false, offers: false, products: false, sendOffer: false, treasureHunt: false, users: true, article: false })
         break;
       }
       case 'customerHistory': {
@@ -123,6 +123,14 @@ class Dashboard extends React.Component {
       }
     }
   }
+  logoutSession = () => {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user_id');
+    sessionStorage.removeItem('role');
+    this.props.history.push({
+      pathname: '/',
+    })
+  }
   render() {
     return (
       <React.Fragment>
@@ -137,7 +145,7 @@ class Dashboard extends React.Component {
               <li>Organization:</li>
               <li>Branch: HRC Mumbai-Worli</li>
             </div>
-            <button>Logout</button>
+            <button onClick={this.logoutSession}>Logout</button>
           </ul>
           </header>
           <nav>
