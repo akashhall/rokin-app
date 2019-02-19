@@ -226,7 +226,7 @@ class Dashboard extends React.Component {
                   </ExpansionPanel>
                 </div>
               </ul>
-              <img src="/funndynamix.png"></img>
+              <img src="funndynamix.png"></img>
             </nav>
 
             <article>
