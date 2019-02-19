@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import './styles.scss'
 import PropTypes from 'prop-types';
@@ -328,7 +329,7 @@ class Dashboard extends React.Component {
                 </ExpansionPanel>
               </div>
             </ul>
-            <img src="funndynamix.png"></img>
+            <img src="funnDynamix.png" />
           </nav>
           {/* <header><ul class="header">
             <li>Organization:</li>

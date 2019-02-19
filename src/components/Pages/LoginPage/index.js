@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
       <div className="main-container">
         <div className="container">
           <div className="d-flex justify-content-center h-100">
-            <img className="rockin"src="rokinapp.png" />
+            <img className="rockin" src="rokinapp.png" />
             <div className="card">
               <div className="card-header">
                 <h3>Sign In</h3>
