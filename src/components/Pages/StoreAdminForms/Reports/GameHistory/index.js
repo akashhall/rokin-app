@@ -30,13 +30,13 @@ class GameHistory extends React.Component {
 		}
 	};
 
-	componentDidMount() {
-		// this.editModal.handleShow();
-		console.log('did', sessionStorage);
-		getGameHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+	// componentDidMount() {
+	// 	// this.editModal.handleShow();
+	// 	console.log('did', sessionStorage);
+	// 	getGameHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
 
-		// login().then((res) => console.log('res', res));
-	}
+	// 	// login().then((res) => console.log('res', res));
+	// }
 	onModalClose = () => {
 		this.selecteId = null;
 		this.setState({
@@ -99,12 +99,12 @@ class GameHistory extends React.Component {
 	}
 	render() {
 		const headers = [
-			'name',
-			'date',
-			'action',
-			'actionType',
-			'offerMeassage',
-			'RedeemStatus'
+			'NAME',
+			'DATE',
+			'ACTION',
+			'ACTION TYPE',
+			'OFFER MESSAGE',
+			'REDEEM STATUS'
 		];
 		return (
 			<React.Fragment >

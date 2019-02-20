@@ -11,6 +11,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import OrgForm from '../OrgForm';
 import Beacon from '../StoreAdminForms/Forms/Beacons';
 import Quiz from '../StoreAdminForms/Forms/Quiz';
+import Users from '../StoreAdminForms/Forms/Users';
 import CustomerHistory from '../StoreAdminForms/Reports/CustomerHistory';
 import Notification from './../StoreAdminForms/Forms/Notifications';
 import CurrentUsers from './../StoreAdminForms/Reports/CurrentUsers';
@@ -343,6 +344,7 @@ class Dashboard extends React.Component {
             {/* <OrgForm /> */}
             {this.state.beacons && <Beacon />}
             {this.state.quiz && <Quiz />}
+            {this.state.users && <Users />}
             {this.state.customerHistory && <CustomerHistory />}
             {this.state.currentUsers && <CurrentUsers />}
             {this.state.customerReport && <CustomerReport />}

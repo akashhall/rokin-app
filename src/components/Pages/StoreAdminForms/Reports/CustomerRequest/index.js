@@ -21,13 +21,13 @@ class CustomerRequest extends React.Component {
     }
   };
 
-  componentDidMount() {
+  // componentDidMount() {
 
-    console.log('did', sessionStorage);
-    getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+  //   console.log('did', sessionStorage);
+  //   getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
 
-    // login().then((res) => console.log('res', res));
-  }
+  //   // login().then((res) => console.log('res', res));
+  // }
   onModalClose = () => {
     this.selecteId = null;
     this.setState({
@@ -90,11 +90,11 @@ class CustomerRequest extends React.Component {
   }
   render() {
     const headers = [
-      'UserName',
-      'Mobile',
-      'Message',
-      'BranchCode',
-      'RequestedDate'
+      'USER NAME',
+      'MOBILE',
+      'MESSAGE',
+      'BRANCH CODE',
+      'REQUESTED DATE'
     ];
     return (
       <React.Fragment >
@@ -114,7 +114,7 @@ class CustomerRequest extends React.Component {
                   <label htmlFor="endDate">End Date:</label>
                   <input ng-model="URC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
-                  <button className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="URC.getUserReport()">Submit</button>
+                  <button style={{padding:'1px'}}className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="URC.getUserReport()">Submit</button>
                   {/* <span className="search_input margin_top10">
                   <label htmlFor="search">Search:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <input type="text" name="search" ng-model="URC.search" className="ng-pristine ng-untouched ng-valid ng-empty" />

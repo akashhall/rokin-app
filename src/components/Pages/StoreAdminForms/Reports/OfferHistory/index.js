@@ -30,13 +30,13 @@ class OfferHistory extends React.Component {
     }
   };
 
-  componentDidMount() {
-    // this.editModal.handleShow();
-    console.log('did', sessionStorage);
-    getOfferHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+  // componentDidMount() {
+  //   // this.editModal.handleShow();
+  //   console.log('did', sessionStorage);
+  //   getOfferHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
 
-    // login().then((res) => console.log('res', res));
-  }
+  //   // login().then((res) => console.log('res', res));
+  // }
   onModalClose = () => {
     this.selecteId = null;
     this.setState({
@@ -103,17 +103,17 @@ class OfferHistory extends React.Component {
   }
   render() {
     const headers = [
-      'UserName',
-      'Mobile',
-      'Branch',
-      'OfferId',
-      'ProductId',
-      'ProductPrice',
-      'OfferPercentage',
-      'OfferPrice',
-      'RedeemStatus',
-      'CreatedDate',
-      'RedeemDate'
+      'USER NAME',
+      'MOBILE',
+      'BRANCH',
+      'OFFER ID',
+      'PRODUCT ID',
+      'PRODUCT PRICE',
+      'OFFER PERCENTAGE',
+      'OFFER PRICE',
+      'REDEEM STATUS',
+      'CRETED DATE',
+      'REDEEM DATE'
     ];
     return (
       <React.Fragment >
@@ -144,7 +144,7 @@ class OfferHistory extends React.Component {
                   {/* &nbsp; */}
                   <label htmlFor="endDate">End Date:</label>
                   <input style={{ marginBottom: '15px' }} ng-model="OHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
-                  <button style={{ marginBottom: '15px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="OHC.getOffersHistory()">Submit</button>
+                  <button style={{ marginBottom: '15px', padding: '2px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="OHC.getOffersHistory()">Submit</button>
                 </div>
 
               </div>

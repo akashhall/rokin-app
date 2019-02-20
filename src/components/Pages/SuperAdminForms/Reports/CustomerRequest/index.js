@@ -21,13 +21,13 @@ class CustomerRequest extends React.Component {
     }
   };
 
-  componentDidMount() {
+  // componentDidMount() {
 
-    console.log('did', sessionStorage);
-    getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+  //   console.log('did', sessionStorage);
+  //   getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
 
-    // login().then((res) => console.log('res', res));
-  }
+  //   // login().then((res) => console.log('res', res));
+  // }
   onModalClose = () => {
     this.selecteId = null;
     this.setState({
@@ -90,11 +90,11 @@ class CustomerRequest extends React.Component {
   }
   render() {
     const headers = [
-      'UserName',
-      'Mobile',
-      'Message',
-      'BranchCode',
-      'RequestedDate'
+      'USER NAME',
+      'MOBILE',
+      'MESSAGE',
+      'BRANCH CODE',
+      'REQUESTED DATE'
     ];
     return (
       <React.Fragment >

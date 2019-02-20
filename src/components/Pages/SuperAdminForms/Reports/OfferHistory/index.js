@@ -30,13 +30,13 @@ class OfferHistory extends React.Component {
     }
   };
 
-  componentDidMount() {
-    // this.editModal.handleShow();
-    console.log('did', sessionStorage);
-    getOfferHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+  // componentDidMount() {
+  //   // this.editModal.handleShow();
+  //   console.log('did', sessionStorage);
+  //   getOfferHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
 
-    // login().then((res) => console.log('res', res));
-  }
+  //   // login().then((res) => console.log('res', res));
+  // }
   onModalClose = () => {
     this.selecteId = null;
     this.setState({
@@ -103,17 +103,17 @@ class OfferHistory extends React.Component {
   }
   render() {
     const headers = [
-      'UserName',
-      'Mobile',
-      'Branch',
-      'OfferId',
-      'ProductId',
-      'ProductPrice',
-      'OfferPercentage',
-      'OfferPrice',
-      'RedeemStatus',
-      'CreatedDate',
-      'RedeemDate'
+      'USER NAME',
+      'MOBILE',
+      'BRANCH',
+      'OFFER ID',
+      'PRODUCT ID',
+      'PRODUCT PRICE',
+      'OFFER PERCENTAGE',
+      'OFFER PRICE',
+      'REDEEM STATUS',
+      'CREATED DATE',
+      'REDEE DATE'
     ];
     return (
       <React.Fragment >
@@ -131,7 +131,7 @@ class OfferHistory extends React.Component {
                   {/* </div> */}
                 </div>
                 <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto', display: 'flex' }}>
-                <label htmlFor="startDate">Select Store:</label>
+                  <label htmlFor="startDate">Select Store:</label>
                   <select style={{ width: '10%', display: 'inline-block' }} className="form-control frmclr ng-pristine ng-untouched ng-valid ng-not-empty" name="type" ng-model="IOC.prefixName">
                     <option value="All" selected="selected">All</option>
                     {/* ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCMumbai1" className="ng-binding ng-scope" style={{}}>HRC Mumbai-Worli</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="rootsmumbai" className="ng-binding ng-scope">Roots Mumbai</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCHyd" className="ng-binding ng-scope">HRC Hyderabad</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCMumbaiAnd" className="ng-binding ng-scope">HRC Mumbai-Andheri</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="Myurdwr" className="ng-binding ng-scope">Mayur Dharwar</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCPune" className="ng-binding ng-scope">HRC Pune</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="JastroKings" className="ng-binding ng-scope">Jack Astors Toronto-Kings</option>{/* end ngRepeat: item in IOC.subItems */}
@@ -148,8 +148,8 @@ class OfferHistory extends React.Component {
                   <input style={{ marginBottom: '15px' }} ng-model="OHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   {/* &nbsp; */}
                   <label htmlFor="endDate">End Date:</label>
-                  <input style={{ marginBottom: '15px' }} ng-model="OHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
-                  <button style={{ marginBottom: '15px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="OHC.getOffersHistory()">Submit</button>
+                  <input style={{ marginBottom: '15px', padding: '1px' }} ng-model="OHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
+                  <button style={{ marginBottom: '15px', padding: '1px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="OHC.getOffersHistory()">Submit</button>
                 </div>
 
               </div>

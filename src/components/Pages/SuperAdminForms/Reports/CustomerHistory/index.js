@@ -29,13 +29,13 @@ class CustomerHistory extends React.Component {
     }
   };
 
-  componentDidMount() {
-    // this.editModal.handleShow();
-    console.log('did', sessionStorage);
-    getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+  // componentDidMount() {
+  //   // this.editModal.handleShow();
+  //   console.log('did', sessionStorage);
+  //   getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
 
-    // login().then((res) => console.log('res', res));
-  }
+  //   // login().then((res) => console.log('res', res));
+  // }
   onModalClose = () => {
     this.selecteId = null;
     this.setState({
@@ -98,12 +98,12 @@ class CustomerHistory extends React.Component {
   }
   render() {
     const headers = [
-      'name',
-      'date',
-      'action',
-      'actionType',
-      'message',
-      'offerMeassage'
+      'NAME',
+      'DATE',
+      'ACTION',
+      'ACTION TYPE',
+      'MESSAGE',
+      'OFFER MESSAGE'
     ];
     return (
       <React.Fragment >
@@ -130,7 +130,7 @@ class CustomerHistory extends React.Component {
                   <label htmlFor="endDate">End Date:</label>
                   <input ng-model="UHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
-                  <button className="btn-primary col-md-1 butnadd submit_form submit_dis floatRight add_button_custom" ng-click="UHC.getUserHistory()">Submit</button>
+                  <button style={{padding:'1px'}}className="btn-primary col-md-1 butnadd submit_form submit_dis floatRight add_button_custom" ng-click="UHC.getUserHistory()">Submit</button>
 
                   {/* <h3 class="panel-title">Payment Form</h3> */}
                 </div>
