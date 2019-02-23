@@ -1,9 +1,27 @@
 import React from 'react';
 // import json from './data.json';
 // import Forms from './../Forms';
-import { getCustomerHistory, addBeacon } from './../../../../../api';
+// import { getCustomerHistory, addBeacon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
+
+const getCustomerHistory = {
+  "error": false,
+  "data": [
+    {
+      "customer_id": "",
+      "customer_name": "",
+      "customer_email": "",
+      "customer_type": "new/returning",
+      "customer_source": "",
+      "arrived_on": "timestamp",
+      "left_on": "timestamp",
+      "engagement_type": "can be treasurehunt/quiz/offer",
+      "engagement_id": "game or offer id",
+      "engagement_status": "win/loose in case if game, in case of offer it can be redeemed/ not redeemed"
+    }
+  ]
+}
 class CustomerHistory extends React.Component {
   constructor(props) {
     super(props);
@@ -29,81 +47,86 @@ class CustomerHistory extends React.Component {
     }
   };
 
-  // componentDidMount() {
-  //   // this.editModal.handleShow();
-  //   console.log('did', sessionStorage);
-  //   getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+  componentDidMount() {
+    //   // this.editModal.handleShow();
+    //   console.log('did', sessionStorage);
+    //   getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+    // getCustomerHistory.data => this.setState({ data: data });
+
+  }
 
   //   // login().then((res) => console.log('res', res));
   // }
-  onModalClose = () => {
-    this.selecteId = null;
-    this.setState({
-      editData: {
-        name: '',
-        address: '',
-        beacon_room: '',
-        location: '',
-        major: '',
-        minor: '',
-        offer_beacon: false
-      }
-    })
-  }
-  onSumit = () => {
-    const beacon_name = this.name.value;
-    const beacon_uuid = this.uuid.value;
-    const mac_address = this.address.value;
-    const beacon_room = this.room.value;
-    const offer_beacon = this.select.options[this.select.selectedIndex].value;
-    const major = this.major.value;
-    const minor = this.minor.value;
-    let a = { type: 'add' }
-    console.log('selected id', this.selecteId)
-    if (this.selecteId !== null) {
-      a = {
-        id: this.state.data[this.selecteId].id,
-        type: 'update'
-      }
-    }
+  // onModalClose = () => {
+  //   this.selecteId = null;
+  //   this.setState({
+  //     editData: {
+  //       name: '',
+  //       address: '',
+  //       beacon_room: '',
+  //       location: '',
+  //       major: '',
+  //       minor: '',
+  //       offer_beacon: false
+  //     }
+  //   })
+  // }
+  // onSumit = () => {
+  //   const beacon_name = this.name.value;
+  //   const beacon_uuid = this.uuid.value;
+  //   const mac_address = this.address.value;
+  //   const beacon_room = this.room.value;
+  //   const offer_beacon = this.select.options[this.select.selectedIndex].value;
+  //   const major = this.major.value;
+  //   const minor = this.minor.value;
+  //   let a = { type: 'add' }
+  //   console.log('selected id', this.selecteId)
+  //   if (this.selecteId !== null) {
+  //     a = {
+  //       id: this.state.data[this.selecteId].id,
+  //       type: 'update'
+  //     }
+  //   }
 
-    const data = {
-      ...a,
-      beacon_name,
-      beacon_uuid,
-      mac_address,
-      offer_beacon: offer_beacon === 'true' ? true : false,
-      major,
-      minor,
-      beacon_room,
-      outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
-    }
+  //   const data = {
+  //     ...a,
+  //     beacon_name,
+  //     beacon_uuid,
+  //     mac_address,
+  //     offer_beacon: offer_beacon === 'true' ? true : false,
+  //     major,
+  //     minor,
+  //     beacon_room,
+  //     outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
+  //   }
 
-    addBeacon(data).then((res) => getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+  //   addBeacon(data).then((res) => getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
 
-  }
-  openEditModal = (i) => {
-    if (i !== undefined) {
-      this.selecteId = i;
-      console.log('open edit', i, this.state.data[i])
-      const editData = this.state.data[i];
-      this.setState({ editData })
-      console.log('edit', editData, this.state)
-    }
-    console.log('bahar', this.state.editData.category)
-    this.editModal.handleShow();
-  }
-  onDelete = (i) => {
-    console.log('dekhte hai')
-  }
+  // }
+  // openEditModal = (i) => {
+  //   if (i !== undefined) {
+  //     this.selecteId = i;
+  //     console.log('open edit', i, this.state.data[i])
+  //     const editData = this.state.data[i];
+  //     this.setState({ editData })
+  //     console.log('edit', editData, this.state)
+  //   }
+  //   console.log('bahar', this.state.editData.category)
+  //   this.editModal.handleShow();
+  // }
+  // onDelete = (i) => {
+  //   console.log('dekhte hai')
+  // }
   render() {
     const headers = [
       'NAME',
-      'DATE',
-      'ACTION',
-      'ACTION TYPE',
-      'MESSAGE',
-      'OFFER MESSAGE'
+      'EMAIL',
+      'TYPE',
+      'SOURCE',
+      'ARRIVED ON',
+      'LEFT ON',
+      'ENGAGEMENT TYPE',
+      'ENGAGEMENT STATUS'
     ];
     return (
       <React.Fragment >
@@ -145,22 +168,26 @@ class CustomerHistory extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.data && this.state.data.length ?
-                    this.state.data.map((d, i) =>
-                      <tr key={i}>
-                        <td style={{ width: '200px' }}>{d.name}</td>
-                        <td>{d.date}</td>
-                        <td>{d.action}</td>
-                        <td>{d.actionType}</td>
-                        <td>{d.message}</td>
-                        <td>{d.offerMeassage.toString()}</td>
-                        {/* <td>
+                  {/* {this.state.data && this.state.data.length ?
+                    this.state.data.map((d, i) => */}
+                  {getCustomerHistory.data.map((d, i) =>
+                    <tr key="">
+                      <td>{d.customer_name}</td>
+                      <td>{d.customer_email}</td>
+                      <td>{d.customer_type}</td>
+                      <td>{d.customer_source}</td>
+                      <td>{d.arrived_on}</td>
+                      <td>{d.left_on}</td>
+                      <td>{d.engagement_type}</td>
+                      <td>{d.engagement_status}</td>
+                      {/* <td>
                           <a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
                           <a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
                         </td> */}
-                      </tr>
-                    ) : null
-                  }
+                    </tr>
+                  )}
+                  {/* ) : null
+                  } */}
                 </tbody>
               </table>
             </div>

@@ -1,12 +1,21 @@
 import React from 'react';
 import MultiSearchSelect from "react-search-multi-select";
+import { getAllCommon } from './../../../../../api';
 
 class Notifications extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      values: ["Allison", "Arthur", "Beryl", "Chantal", "Cristobal", "Danielle", "Dennis", "Ernesto", "Felix", "Fay", "Grace", "Gaston", "Gert", "Gordon"]
+      data: [],
+      users: [],
     };
+  }
+  componentDidMount() {
+    const usersData = [];
+    getAllCommon('get-admin-users', { user_type: "admin" }).then((res) => {
+      res.data.map((data) => { usersData.push(data.name) });
+      this.setState({ data: res.data, users: usersData })
+    })
   }
   submit = (e) => {
     e.preventDefault();
@@ -31,9 +40,9 @@ class Notifications extends React.Component {
                 <div className="col-md-offset-1 col-md-10 " style={{ padding: '0px' }}>
                   <div className="row" style={{ paddingTop: '50px' }}>
                     <form style={{ 'width': '100%', 'marginLeft': '100px' }}>
-                      <div style={{'marginBottom' : '5px'}}>
+                      <div style={{ 'marginBottom': '5px' }}>
                         <div> Select User: </div>
-                        <MultiSearchSelect searchable={true} showTags={true} multiSelect={true} width="100%" onSelect={this.handleChange} options={this.state.values} />
+                        <MultiSearchSelect searchable={true} showTags={true} multiSelect={true} width="100%" onSelect={this.handleChange} options={this.state.users} />
                       </div>
                       <div className="form-group">
                         <label htmlFor="usr">Title:</label>
