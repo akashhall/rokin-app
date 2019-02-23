@@ -9,6 +9,7 @@ class Products extends React.Component {
   constructor(props) {
     super(props);
 
+    this.outlet_id = sessionStorage.outlet_id ? sessionStorage.outlet_id : '';
     this.selecteId = null;
     this.state = {
       data: [],
@@ -26,7 +27,7 @@ class Products extends React.Component {
   componentDidMount() {
     // this.editModal.handleShow();
     console.log('did', sessionStorage);
-    getProducts({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+    getProducts({ outlet_id: this.outlet_id }).then((res) => this.setState({ data: res.data }))
 
     // login().then((res) => console.log('res', res));
   }
@@ -68,10 +69,10 @@ class Products extends React.Component {
       price,
       avg_rating,
       // usePhoto,
-      outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
+      outlet_id: this.outlet_id
     }
 
-    addProduct(data).then((res) => getProducts({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+    addProduct(data).then((res) => getProducts({ outlet_id: this.outlet_id }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
 
   }
   openEditModal = (i) => {

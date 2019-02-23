@@ -26,6 +26,7 @@ class LoginForm extends React.Component {
           sessionStorage.token = data.data.token;
           sessionStorage.user_id = data.data.user_id;
           sessionStorage.role = data.data.role;
+          sessionStorage.outlet_id = data.data.outlet_id ? data.data.outlet_id : ''; 
           this.props.history.push({
             pathname: data.data.role === 'superadmin' ? '/SuperAdminDashboard' : '/StoreAdminDashboard',
           })

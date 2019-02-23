@@ -22,10 +22,13 @@ import GameHistory from './../StoreAdminForms/Reports/GameHistory';
 import OfferHistory from './../StoreAdminForms/Reports/OfferHistory';
 import OfferReport from './../StoreAdminForms/Reports/OfferReport';
 import SendOffer from './../StoreAdminForms/Forms/SendOffer';
+import { getAllCommon } from './../../../api';
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      outletData: {},
       article: true,
       beacons: false,
       quiz: false,
@@ -45,6 +48,9 @@ class Dashboard extends React.Component {
       offerReport: false,
       currentUsers: false
     }
+  }
+  componentDidMount() {
+    getAllCommon('get-outlet', { id: sessionStorage.outlet_id }).then((data) => this.setState({ outletData: data.data }));
   }
 
   ShowForms = (type) => {
@@ -144,8 +150,8 @@ class Dashboard extends React.Component {
 
               <strong>StoreAdmin</strong></li>
             <div>
-              <li>Organization:</li>
-              <li>Branch: HRC Mumbai-Worli</li>
+              <img style={{ width: '150px', height: 'auto' }} src="rokinapp.png" />
+              <span>{this.state.outletData.name}</span>
             </div>
             <button onClick={this.logoutSession} className="btn btn-">Logout</button>
           </ul>
@@ -340,7 +346,11 @@ class Dashboard extends React.Component {
           </header> */}
           <article>
             {/* Welcome Store Admin */}
-            {this.state.article ? 'Welcome Store Admin' : null}
+            {this.state.article ?
+              <div style={{ background: 'white', paddingTop: '15px', textAlign: 'center', border: '1px solid lightgray', boxShadow: '0px 0px 6px 0px grey', paddingBottom: '15px' }}>
+                <h4>{this.state.outletData.description}</h4>
+                <img style={{ width: '900px', height: 'auto' }} src={this.state.outletData.image_path} />
+              </div> : null}
             {/* <OrgForm /> */}
             {this.state.beacons && <Beacon />}
             {this.state.quiz && <Quiz />}
