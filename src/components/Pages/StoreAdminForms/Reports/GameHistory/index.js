@@ -1,9 +1,32 @@
 import React from 'react';
 // import json from './data.json';
 // import Forms from './../Forms';
-import { getGameHistory, addBeacon } from './../../../../../api';
+// import { getGameHistory, addBeacon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
+
+const getGameHistory =
+{
+	"error":false,
+	"data": [
+		{
+			"game_id":"",
+			"game_name":"",
+			"outlet_id":"",
+			"game_type":"treasurehunt/quiz",
+			"created_on":"timestamp",
+			"created_by":"user_id",
+			"played_on":"timestamp",
+			"game_status":"win/loose",
+			"player":{
+				"player_id":"",
+				"player_name":"",
+				"player_email":""
+			}
+		}
+	]
+}
+
 class GameHistory extends React.Component {
 	constructor(props) {
 		super(props);
@@ -12,99 +35,28 @@ class GameHistory extends React.Component {
 		this.state = {
 			data: [],
 			editData: {
-				// name: '',
-				// address: '',
-				// beacon_room: '',
-				// location: '',
-				// major: '',
-				// minor: '',
-				// offer_beacon: false
-				name: '',
-				date: '',
-				action: '',
-				actionType: '',
-				offerMeassage: '',
-				RedeemStatus: ''
-
 			}
 		}
 	};
 
-	// componentDidMount() {
-	// 	// this.editModal.handleShow();
-	// 	console.log('did', sessionStorage);
-	// 	getGameHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
-
-	// 	// login().then((res) => console.log('res', res));
-	// }
-	onModalClose = () => {
-		this.selecteId = null;
-		this.setState({
-			editData: {
-				name: '',
-				address: '',
-				beacon_room: '',
-				location: '',
-				major: '',
-				minor: '',
-				offer_beacon: false
-			}
-		})
+	componentDidMount() {
+		// this.editModal.handleShow();
+		// console.log('did', sessionStorage);
+		// getGameHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+		// { getGameHistory }
+		console.log(getGameHistory.data);
+		// login().then((res) => console.log('res', res));
 	}
-	onSumit = () => {
-		const beacon_name = this.name.value;
-		const beacon_uuid = this.uuid.value;
-		const mac_address = this.address.value;
-		const beacon_room = this.room.value;
-		const offer_beacon = this.select.options[this.select.selectedIndex].value;
-		const major = this.major.value;
-		const minor = this.minor.value;
-		let a = { type: 'add' }
-		console.log('selected id', this.selecteId)
-		if (this.selecteId !== null) {
-			a = {
-				id: this.state.data[this.selecteId].id,
-				type: 'update'
-			}
-		}
 
-		const data = {
-			...a,
-			beacon_name,
-			beacon_uuid,
-			mac_address,
-			offer_beacon: offer_beacon === 'true' ? true : false,
-			major,
-			minor,
-			beacon_room,
-			outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
-		}
-
-		addBeacon(data).then((res) => getGameHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
-
-	}
-	openEditModal = (i) => {
-		if (i !== undefined) {
-			this.selecteId = i;
-			console.log('open edit', i, this.state.data[i])
-			const editData = this.state.data[i];
-			this.setState({ editData })
-			console.log('edit', editData, this.state)
-		}
-		console.log('bahar', this.state.editData.category)
-		this.editModal.handleShow();
-	}
-	onDelete = (i) => {
-		console.log('dekhte hai')
-	}
 	render() {
 		const headers = [
-			'NAME',
-			'DATE',
-			'ACTION',
-			'ACTION TYPE',
-			'OFFER MESSAGE',
-			'REDEEM STATUS'
+			'GAME NAME',
+			'OUTLET ID',
+			'GAME TYPE',
+			'CREATED ON',
+			'CREATED BY',
+			'PLAYED ON',
+			'GAME STATUS'
 		];
 		return (
 			<React.Fragment >
@@ -116,10 +68,6 @@ class GameHistory extends React.Component {
 									<div className="col-sm-6">
 										<h2>Game History</h2>
 									</div>
-									{/* <div className="col-sm-6">
-                    <a onClick={() => this.openEditModal()} className="btn btn-success"><span>Add New Beacon</span></a>
-                    {/* <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a> */}
-									{/* </div> */}
 								</div>
 								<div className="panel-heading" style={{ padding: '10px 10px', height: 'auto', }}>
 									<label htmlFor="game">Select Game:</label>
@@ -148,21 +96,22 @@ class GameHistory extends React.Component {
 									</tr>
 								</thead>
 								<tbody>
-									{this.state.data && this.state.data.length ?
-										this.state.data.map((d, i) =>
+									{/* {this.state.data && this.state.data.length ? */}
+										{getGameHistory.data.map((d, i) =>
 											<tr key={i}>
-												<td style={{ width: '200px' }}>{d.name}</td>
-												<td>{d.address}</td>
-												<td>{d.beacon_uuid}</td>
-												<td>{d.beacon_room}</td>
-												<td>{d.location}</td>
-												<td>{d.offer_beacon.toString()}</td>
-												<td>
+												<td style={{ width: '200px' }}>{d.game_name}</td>
+												<td>{d.outlet_id}</td>
+												<td>{d.game_type}</td>
+												<td>{d.created_on}</td>
+												<td>{d.created_by}</td>
+												<td>{d.played_on}</td>
+												<td>{d.game_status}</td>
+												{/* <td>
 													<a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
 													<a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
-												</td>
+												</td> */}
 											</tr>
-										) : null
+										) 
 									}
 								</tbody>
 							</table>
