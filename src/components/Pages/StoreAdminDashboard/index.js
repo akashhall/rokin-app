@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
     }
   }
   componentDidMount() {
-    getAllCommon('get-outlet', { id: sessionStorage.outlet_id }).then((data) => this.setState({ outletData: data.data }));
+    // getAllCommon('get-outlet', { id: sessionStorage.outlet_id }).then((data) => this.setState({ outletData: data.data }));
   }
 
   ShowForms = (type) => {
@@ -148,10 +148,10 @@ class Dashboard extends React.Component {
 
             <li className='admin'>
 
-              <strong>StoreAdmin</strong></li>
+              <strong>Store Admin</strong></li>
             <div>
-              <img style={{ width: '150px', height: 'auto' }} src="rokinapp.png" />
-              <span>{this.state.outletData.name}</span>
+              {/*<li><img style={{ width: '150px', height: 'auto' }} src="rokinapp.png" /></li>*/}
+              {/*<span>{this.state.outletData.name}</span>*/}
             </div>
             <button onClick={this.logoutSession} className="btn btn-">Logout</button>
           </ul>

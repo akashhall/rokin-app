@@ -23,6 +23,7 @@ import CustomerRequest from '../components/Pages/StoreAdminForms/Reports/Custome
 import OrgForm from '../components/Pages/OrgForm';
 import Notifications from './../components/Pages/StoreAdminForms/Forms/Notifications'
 import SendOffer from './../components/Pages/StoreAdminForms/Forms/SendOffer'
+import Privacy from './../components/Pages/Privacy';
 
 // import Forms from './Pages/Forms';
 import '../styles/App.css';

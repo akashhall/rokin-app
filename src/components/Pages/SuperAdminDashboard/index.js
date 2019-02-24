@@ -107,7 +107,7 @@ class Dashboard extends React.Component {
           <div className="nano-content">
 
             <header><ul class="header">
-              <li className='admin'>SuperAdmin</li>
+              <li className='admin'><strong>Super Admin</strong></li>
               {/* <li>Organization:</li>
             <li>Branch: HRC Mumbai-Worli</li> */}
               <button onClick={this.logoutSession} >Logout</button>
