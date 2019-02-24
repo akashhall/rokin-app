@@ -2,12 +2,13 @@
   .nano-content{
     position: relative;
   header {
+    box-shadow: 0px 1px 2px 2px #cccccc;
     list-style-type: none;
     margin: 0px;
     padding: 0px;
     overflow: hidden;
     background-color: #333;
-    margin-left: 0px;
+    margin-left: 250px;
     button{
       margin: 2px;
       padding: 0px;
@@ -29,8 +30,8 @@
     li {
       float: left;
       color: white;
-      font-size: 20px;
-      width: 30%;
+      font-size: 25px;
+      padding-left: 450px;
     }
     li a {
       display: block;
@@ -48,12 +49,15 @@
       list-style: none;
   }
   nav {
+    border-right: 2px solid #444444;
     float: left;
-    width: 25px;
+    width: 250px;
     height: 100%;
-    background: black;
+    background: #5a5a5a;
     padding: 8px;
-    img{
+    position: relative;
+    top: -57px;
+    img {
       width: 70%;
     padding: 12px;
     margin: auto;
@@ -83,7 +87,9 @@ background-color:transparent !important
   }
   .admin{
     color: white;
+    // text-align: center;
     font-size: 22px;
+    padding-left: 450px;
   }
   .MuiButtonBase-root-38{
     font-size: 19px;

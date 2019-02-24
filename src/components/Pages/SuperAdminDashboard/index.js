@@ -106,9 +106,14 @@ class Dashboard extends React.Component {
         {/* {sessionStorage.role !== undefined ? */}
         <div className="nano-content">
 
+<header><ul class="header">
+              <li className='admin'><strong>Super Admin</strong></li>
+              {/* <li>Organization:</li>
+
           <header><ul class="header">
             <li className='admin'>SuperAdmin</li>
             {/* <li>Organization:</li>
+
             <li>Branch: HRC Mumbai-Worli</li> */}
             <button onClick={this.logoutSession} >Logout</button>
           </ul></header>
