@@ -5,10 +5,11 @@ import { getOffers, addProduct } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
 
-class Products extends React.Component {
+class Offers extends React.Component {
   constructor(props) {
     super(props);
 
+    this.outlet_id = sessionStorage.outlet_id ? sessionStorage.outlet_id : '';
     this.selecteId = null;
     this.state = {
       data: [],
@@ -33,7 +34,7 @@ class Products extends React.Component {
   componentDidMount() {
     // this.editModal.handleShow();
     console.log('did', sessionStorage);
-    getOffers({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+    getOffers({ outlet_id: this.outlet_id }).then((res) => this.setState({ data: res.data }))
 
     // login().then((res) => console.log('res', res));
   }
@@ -98,7 +99,7 @@ class Products extends React.Component {
       image_url: '',
       ...a,
       // usePhoto,
-      outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
+      outlet_id: this.outlet_id
     }
     console.log('data', data);
     // addProduct(data).then((res) => getProducts({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
@@ -254,4 +255,4 @@ class Products extends React.Component {
   }
 }
 
-export default Products;
+export default Offers;

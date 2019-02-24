@@ -8,6 +8,7 @@ class Beacons extends React.Component {
   constructor(props) {
     super(props);
 
+    this.outlet_id = sessionStorage.outlet_id ? sessionStorage.outlet_id : '';
     this.selecteId = null;
     this.state = {
       data: [],
@@ -24,7 +25,7 @@ class Beacons extends React.Component {
   };
 
   componentDidMount() {
-    getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+    getBeacons({ outlet_id: this.outlet_id }).then((res) => this.setState({ data: res.data }))
   }
   onModalClose = () => {
     this.selecteId = null;
@@ -78,10 +79,10 @@ class Beacons extends React.Component {
         major,
         minor,
         beacon_room,
-        outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
+        outlet_id: this.outlet_id
       }
 
-      addBeacon(data).then((res) => getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+      addBeacon(data).then((res) => getBeacons({ outlet_id: this.outlet_id }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
 
     }
   }

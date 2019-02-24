@@ -1,6 +1,7 @@
 import React from 'react';
 import MultiSearchSelect from "react-search-multi-select";
 import { getAllCommon } from './../../../../../api';
+import './styles.scss'
 
 class Notifications extends React.Component {
   constructor(props) {
@@ -8,6 +9,8 @@ class Notifications extends React.Component {
     this.state = {
       data: [],
       users: [],
+      message: '',
+      title: '',
     };
   }
   componentDidMount() {
@@ -19,10 +22,14 @@ class Notifications extends React.Component {
   }
   submit = (e) => {
     e.preventDefault();
+    console.log(this.state)
   }
   handleChange = (arr) => {
     console.log(arr);
   }
+  onChange = (e) => {
+    this.setState({[e.target.name]: e.target.value})
+  } 
   render() {
     return (
       <div>
@@ -46,11 +53,11 @@ class Notifications extends React.Component {
                       </div>
                       <div className="form-group">
                         <label htmlFor="usr">Title:</label>
-                        <input className="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" style={{ backgroundColor: '#eee' }} type="text" placeholder="Please Enter Title" name="title" ng-model="NC.title" required />
+                        <input name="title" onChange={this.onChange} onChangeclassName="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" style={{ backgroundColor: '#eee' }} type="text" placeholder="Please Enter Title" name="title" ng-model="NC.title" required />
                       </div>
                       <div className="form-group">
                         <label htmlFor="comment">Message:</label>
-                        <textarea style={{ backgroundColor: 'white' }} className="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" rows={5} name="message" ng-model="NC.message" required defaultValue={""} />
+                        <textarea style={{ backgroundColor: 'white' }} onChange={this.onChange}  name="message" className="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" rows={5} name="message" ng-model="NC.message" required defaultValue={""} />
                       </div>
                       <div className="text-right">
                         <button className="btn btn-primary" onClick={this.submit} disabled="">Submit</button>
