@@ -231,9 +231,9 @@ class SendOffers extends React.Component {
                     <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon
 " isModal="true">
                         <>
-                            <div className="form-group">
-                               <label>User Name: </label>
-                               <MultiSearchSelect searchable={true} showTags={true} multiSelect={true} width="100%" onSelect={this.handleChange} options={this.state.values} />   
+                            <div className="form-group" style={{ marginRight: '-10px', marginLeft: '-5px'}}>
+                               <label style={{ marginLeft: '5px'}}>User Name: </label>
+                               <MultiSearchSelect searchable={true} showTags={true} multiSelect={true} width="100%" style={{marginLeft:'-10px'}}onSelect={this.handleChange} options={this.state.values} />   
                                 {/* <input ref={name => this.name = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, name: e.target.value } })} value={this.state.editData.name || ''} required placeholder="Please enter Beacon Name" /> */}
                             </div>
                             <div className="form-group">
