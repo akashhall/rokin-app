@@ -145,6 +145,7 @@ class CustomerHistory extends React.Component {
                 </div>
                 <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto' }}>
                   <label htmlFor="user">Customer Name:</label>
+                  &nbsp;
                   <input ng-model="UHC.user" type="text" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-empty" />
                   &nbsp;
                   <label htmlFor="startDate">Start Date:</label>

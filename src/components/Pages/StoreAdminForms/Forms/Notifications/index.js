@@ -12,7 +12,7 @@ class Notifications extends React.Component {
   }
   componentDidMount() {
     const usersData = [];
-    getAllCommon('get-admin-users', { user_type: "admin" }).then((res) => {
+    getAllCommon('get-admin-users', { user_type: "storeadmin" }).then((res) => {
       res.data.map((data) => { usersData.push(data.name) });
       this.setState({ data: res.data, users: usersData })
     })

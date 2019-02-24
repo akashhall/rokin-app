@@ -105,6 +105,7 @@ background-color:transparent !important
     padding: 195px;
     font-size: 40px;
   }
+
 .profile-wrap{border: inset;
   border-width: thin;
   border-bottom-color: black;
@@ -128,6 +129,9 @@ background-color:transparent !important
   }
   li{
     padding: 10px;
+  }
+  .MuiPaper-root-211 .MuiPaper-root-108{
+    background-color:none;
   }
 }
   /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
