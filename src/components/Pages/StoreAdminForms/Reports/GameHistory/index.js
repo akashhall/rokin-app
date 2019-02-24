@@ -71,6 +71,7 @@ class GameHistory extends React.Component {
 								</div>
 								<div className="panel-heading" style={{ padding: '10px 10px', height: 'auto', }}>
 									<label htmlFor="game">Select Game:</label>
+									&nbsp;
 									<select style={{ width: '20%', display: 'inline-block' }} className="form-control frmclr ng-pristine ng-valid ng-not-empty ng-touched" name="type" ng-model="GHC.game">
 										<option value="All" selected="selected">All</option>
 										<option value="treasureHunt">TresauteHunt</option>

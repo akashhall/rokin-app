@@ -12,7 +12,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import OrgForm from '../OrgForm';
 import Organisation from '../SuperAdminForms/Forms/Organisation';
 import Branch from '../SuperAdminForms/Forms/Branch';
-// import Users from '../SuperAdminForms/Forms/Users';
+import Users from '../SuperAdminForms/Forms/Users';
 import CustomerHistory from '../SuperAdminForms/Reports/CustomerHistory';
 import CustomerReport from '../SuperAdminForms/Reports/CustomerReport';
 import CustomerRequest from '../SuperAdminForms/Reports/CustomerRequest';
@@ -104,14 +104,20 @@ class Dashboard extends React.Component {
     return (
       <React.Fragment>
         {/* {sessionStorage.role !== undefined ? */}
-          <div className="nano-content">
+        <div className="nano-content">
 
-            <header><ul class="header">
+<header><ul class="header">
               <li className='admin'><strong>Super Admin</strong></li>
               {/* <li>Organization:</li>
+
+          <header><ul class="header">
+            <li className='admin'>SuperAdmin</li>
+            {/* <li>Organization:</li>
+
             <li>Branch: HRC Mumbai-Worli</li> */}
-              <button onClick={this.logoutSession} >Logout</button>
-            </ul></header>
+            <button onClick={this.logoutSession} >Logout</button>
+          </ul></header>
+          <div>
             <nav>
               <div id="mainnav-profile" className="mainnav-profile">
                 {/* <div className="profile-wrap">
@@ -234,7 +240,7 @@ class Dashboard extends React.Component {
               {this.state.article ? ' Welcome Super Admin' : null}
               {this.state.Organisation && <OrgForms />}
               {this.state.Branchs && <Branch />}
-              {/* {this.state.Users && <Users />} */}
+              {this.state.Users && <Users />}
               {this.state.customerHistory && <CustomerHistory />}
               {this.state.customerReport && <CustomerReport />}
               {this.state.customerRequest && <CustomerRequest />}
@@ -243,7 +249,8 @@ class Dashboard extends React.Component {
               {this.state.offerReport && <OfferReport />}
             </article>
           </div>
-          {/* : null} */}
+        </div>
+        {/* : null} */}
       </React.Fragment>
     )
   }
