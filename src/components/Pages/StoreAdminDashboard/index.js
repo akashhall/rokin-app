@@ -175,7 +175,7 @@ class Dashboard extends React.Component {
             <ul id="mainnav-menu" className="list-group">
               {/* <li className="list-header">Navigation</li> */}
               <ExpansionPanel >
-                <ExpansionPanelSummary className="icon" style={{ border: 'none' }} expandIcon={<ExpandMoreIcon />}>
+                <ExpansionPanelSummary className="icon" style={{ color: 'darkgray' }} expandIcon={<ExpandMoreIcon />}>
                   Forms
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
@@ -271,7 +271,7 @@ class Dashboard extends React.Component {
               <div className="dropdown" id="mainnav-profile">
 
                 <ExpansionPanel>
-                  <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>Reports</ExpansionPanelSummary>
+                  <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} style={{ color: 'darkgray' }}>Reports</ExpansionPanelSummary>
                   <ExpansionPanelDetails>
                     <Typography>
                       <ul className="" style={{ width: '100%' }}>

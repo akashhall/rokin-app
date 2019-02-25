@@ -1,6 +1,4 @@
 import React from 'react';
-// import json from './data.json';
-// import Forms from './../Forms';
 import { getAllCommon, addUsers } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
@@ -17,7 +15,7 @@ class Users extends React.Component {
         email: '',
         role: '',
         mobile: '',
-        type: ''
+        role: ''
       }
     }
   };
@@ -36,7 +34,7 @@ class Users extends React.Component {
         email: '',
         role: '',
         mobile: '',
-        type: 'add'
+        role: 'superadmin'
       }
     })
     this.error.style.display = 'none';
@@ -54,17 +52,17 @@ class Users extends React.Component {
     const email = this.email.value;
     const role = this.role.value;
     const mobile = this.select.options[this.select.selectedIndex].value;
-    let a = { type: 'add' }
+    let a = { type: 'superadmin' }
     console.log('selected id', this.selecteId)
     // if (this.validate()) {
     //   // this.error.style.display = 'block';
     // } else {
     //   this.error.style.display = 'none';
     //   let a = { type: 'add' }
-      if (this.selecteId !== null) {
-        a = {
-          id: this.state.data[this.selecteId].id,
-          type: 'update'
+    if (this.selecteId !== null) {
+      a = {
+        id: this.state.data[this.selecteId].id,
+        type: 'storeadmin'
         // }
       }
 
@@ -72,7 +70,7 @@ class Users extends React.Component {
         ...a,
         name,
         email,
-        type:'add',
+        type: 'superadmin',
         role,
         mobile,
         outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
@@ -200,10 +198,10 @@ class Users extends React.Component {
                         <td>{d.last_login_time}</td>
                         <td>{d.last_logout_time}</td>
                         <td>{d.updated_on}</td>
-                        {/* <td>
+                        <td>
                           <a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
                           <a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
-                        </td> */}
+                        </td>
                       </tr>
                     ) : null
                   }
@@ -226,19 +224,19 @@ class Users extends React.Component {
                 <input ref={name => this.email = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, role: e.target.value } })} value={this.state.editData.role || ''} required placeholder="Please Enter Your Email" />
               </div>
               <div className="form-group">
-                <label>Type</label>
+                <label>Role</label>
                 {/* <input ref={name => this.room = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, beacon_room: e.target.value } })} value={this.state.editData.beacon_room || ''} required placeholder="Please Enter Beacon Room" /> */}
                 <select ref={type => this.selecteId = type} style={{ height: '38px', width: '100%', marginTop: '10px', border: '1px solid lightgrey' }} required placeholder="Please select Type">
                   {/* <option value="0" >Select Type</option> */}
-                  <option value="add"  selected={this.state.editData.type == 'add'}>add</option>
-                  <option value="update" selected={this.state.editData.type == 'update'}>update</option>
+                  <option value="storeadmin" selected={this.state.editData.type == 'storeadmin'}>storeadmin</option>
+                  <option value="superadmin" selected={this.state.editData.type == 'superadmin'}>superadmin</option>
                 </select>
               </div>
               <div className="form-group">
                 <label>Mobile</label>
                 <input ref={name => this.mobile = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, mobile: e.target.value } })} value={this.state.editData.mobile || ''} required placeholder="Please Enter Your Mobile No. " />
               </div>
-             
+
               {/* <select ref={sel => this.select = sel} style={{ height: '38px', width: '100%', marginBottom: '20px', marginTop: '10px', border: '1px solid lightgrey' }} >
                 <option value="0" >Is offered Beacon</option>
                 <option value="true" selected={this.state.editData.offer_beacon == true}>Yes</ option>

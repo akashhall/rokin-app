@@ -5,28 +5,6 @@ import { getAllCommon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
 
-// const getGameHistory =
-// {
-// 	"error": false,
-// 	"data": [
-// 		{
-// 			"game_id": "",
-// 			"game_name": "",
-// 			"outlet_id": "",
-// 			"game_type": "treasurehunt/quiz",
-// 			"created_on": "timestamp",
-// 			"created_by": "user_id",
-// 			"played_on": "timestamp",
-// 			"game_status": "win/loose",
-// 			"player": {
-// 				"player_id": "",
-// 				"player_name": "",
-// 				"player_email": ""
-// 			}
-// 		}
-// 	]
-// }
-
 class GameHistory extends React.Component {
 	constructor(props) {
 		super(props);
@@ -34,22 +12,11 @@ class GameHistory extends React.Component {
 		this.selecteId = null;
 		this.state = {
 			data: [],
-			editData: {
-			}
 		}
 	};
-
-	// componentDidMount() {
-	// 	// this.editModal.handleShow();
-	// 	// console.log('did', sessionStorage);
-	// 	// getGameHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
-	// 	// { getGameHistory }
-	// 	console.log(getGameHistory.data);
-	// 	// login().then((res) => console.log('res', res));
-	// }
 	componentDidMount() {
 		// const usersData = [];
-		getAllCommon('sasd', { user_type: "game-history" }, { outlet_id: this.outlet_id }).then((res) => {
+		getAllCommon('game-history', { outlet_id: this.outlet_id }).then((res) => {
 			this.setState({ data: res.data })
 		})
 
@@ -85,6 +52,7 @@ class GameHistory extends React.Component {
 									</select>
 									&nbsp;
 									<label htmlFor="startDate">Start Date:</label>
+									&nbsp;
 									<input style={{ padding: '4px' }} ng-model="GHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
 									&nbsp;
 									<label htmlFor="endDate">End Date:</label>
@@ -113,10 +81,6 @@ class GameHistory extends React.Component {
 											<td>{d.created_by}</td>
 											<td>{d.played_on}</td>
 											<td>{d.game_status}</td>
-											{/* <td>
-													<a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
-													<a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
-												</td> */}
 										</tr>
 									)
 									}

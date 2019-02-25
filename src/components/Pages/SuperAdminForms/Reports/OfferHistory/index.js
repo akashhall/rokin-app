@@ -132,22 +132,26 @@ class OfferHistory extends React.Component {
                 </div>
                 <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto', display: 'flex' }}>
                   <label htmlFor="startDate">Select Store:</label>
+                  &nbsp;
                   <select style={{ width: '10%', display: 'inline-block' }} className="form-control frmclr ng-pristine ng-untouched ng-valid ng-not-empty" name="type" ng-model="IOC.prefixName">
                     <option value="All" selected="selected">All</option>
                     {/* ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCMumbai1" className="ng-binding ng-scope" style={{}}>HRC Mumbai-Worli</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="rootsmumbai" className="ng-binding ng-scope">Roots Mumbai</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCHyd" className="ng-binding ng-scope">HRC Hyderabad</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCMumbaiAnd" className="ng-binding ng-scope">HRC Mumbai-Andheri</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="Myurdwr" className="ng-binding ng-scope">Mayur Dharwar</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="HRCPune" className="ng-binding ng-scope">HRC Pune</option>{/* end ngRepeat: item in IOC.subItems */}<option ng-repeat="item in IOC.subItems" value="JastroKings" className="ng-binding ng-scope">Jack Astors Toronto-Kings</option>{/* end ngRepeat: item in IOC.subItems */}
                   </select>
 
                   <label htmlFor="game">Select Redeem Status:</label>
+                  &nbsp;
                   <select style={{ width: '10%', display: 'inline-block', marginBottom: '15px' }} className="form-control frmclr ng-pristine ng-untouched ng-valid ng-not-empty" name="status" ng-model="OHC.redeemStatus">
                     <option value="All" selected="selected">All</option>
                     <option value="Redeem">Redeem</option>
                     <option value="Redeem">Redeemed</option>
                   </select>
-                  {/* &nbsp; */}
+                  &nbsp;
                   <label style={{ marginTop: '0px' }} htmlFor="startDate" >Start Date:</label>
+                  &nbsp;
                   <input style={{ marginBottom: '15px' }} ng-model="OHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
-                  {/* &nbsp; */}
+                  &nbsp;
                   <label htmlFor="endDate">End Date:</label>
+                  &nbsp;
                   <input style={{ marginBottom: '15px', padding: '1px' }} ng-model="OHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   <button style={{ marginBottom: '15px', padding: '1px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="OHC.getOffersHistory()">Submit</button>
                 </div>

@@ -123,6 +123,7 @@ class GameHistory extends React.Component {
 								</div>
 								<div className="panel-heading" style={{ padding: '10px 10px', height: 'auto', }}>
 									<label htmlFor="game">Select Game:</label>
+									&nbsp;
 									<select style={{ width: '20%', display: 'inline-block' }} className="form-control frmclr ng-pristine ng-valid ng-not-empty ng-touched" name="type" ng-model="GHC.game">
 										<option value="All" selected="selected">All</option>
 										<option value="treasureHunt">TresauteHunt</option>
@@ -130,6 +131,7 @@ class GameHistory extends React.Component {
 									</select>
 									&nbsp;
 									<label htmlFor="startDate">Start Date:</label>
+									&nbsp;
 									<input style={{ padding: '4px' }} ng-model="GHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
 									&nbsp;
 									<label htmlFor="endDate">End Date:</label>

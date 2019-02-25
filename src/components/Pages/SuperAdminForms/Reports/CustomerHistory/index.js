@@ -122,12 +122,15 @@ class CustomerHistory extends React.Component {
                 </div>
                 <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto' }}>
                   <label htmlFor="user">Customer Name:</label>
+                  &nbsp;
                   <input ng-model="UHC.user" type="text" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-empty" />
                   &nbsp;
                   <label htmlFor="startDate">Start Date:</label>
+                  &nbsp;
                   <input ng-model="UHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
                   <label htmlFor="endDate">End Date:</label>
+                  &nbsp;
                   <input ng-model="UHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
                   <button style={{padding:'1px'}}className="btn-primary col-md-1 butnadd submit_form submit_dis floatRight add_button_custom" ng-click="UHC.getUserHistory()">Submit</button>

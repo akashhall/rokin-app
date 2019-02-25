@@ -138,11 +138,13 @@ class OfferHistory extends React.Component {
                     <option value="Redeem">Redeem</option>
                     <option value="Redeem">Redeemed</option>
                   </select>
-                  {/* &nbsp; */}
+                  &nbsp;
                   <label style={{ marginTop: '0px' }} htmlFor="startDate" >Start Date:</label>
+                  &nbsp;
                   <input style={{ marginBottom: '15px' }} ng-model="OHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
-                  {/* &nbsp; */}
+                  &nbsp;
                   <label htmlFor="endDate">End Date:</label>
+                  &nbsp;
                   <input style={{ marginBottom: '15px' }} ng-model="OHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   <button style={{ marginBottom: '15px', padding: '2px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="OHC.getOffersHistory()">Submit</button>
                 </div>

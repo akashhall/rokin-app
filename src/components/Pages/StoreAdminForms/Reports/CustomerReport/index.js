@@ -107,9 +107,11 @@ class CustomerReport extends React.Component {
                 </div>
                 <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto' }}>
                   <label htmlFor="startDate">Start Date:</label>
+                  &nbsp;
                   <input ng-model="URC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp; &nbsp;
                   <label htmlFor="endDate">End Date:</label>
+                  &nbsp;
                   <input ng-model="URC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
                   <button style={{padding:'1px'}}className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="URC.getUserReport()">Submit</button>
