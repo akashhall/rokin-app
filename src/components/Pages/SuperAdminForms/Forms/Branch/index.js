@@ -1,7 +1,7 @@
 import React from 'react';
 // import json from './data.json';
 // import Forms from './../Forms';
-import { getAllOrg, getBeacons, addBeacon } from './../../../../../api';
+import { getAllCommon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
 class Branch extends React.Component {
@@ -10,15 +10,15 @@ class Branch extends React.Component {
 
     this.selecteId = null;
     this.state = {
+      organisationData: {},
       data: [],
       editData: {
         name: '',
-        address: '',
-        beacon_room: '',
-        location: '',
-        major: '',
-        minor: '',
-        offer_beacon: false
+        description: '',
+        costperperson: '',
+        created_on: '',
+        newcustomer: '',
+        image_path: ''
       }
     }
   };
@@ -26,7 +26,9 @@ class Branch extends React.Component {
   componentDidMount() {
     // this.editModal.handleShow();
     console.log('did', sessionStorage);
-    getAllOrg().then((res) => this.setState({ data: res.data }))
+
+    getAllCommon('outlets').then((res) => this.setState({ data: res.data }))
+    getAllCommon('organisations').then((res) => this.setState({ organisationData: res.data }))
 
     // login().then((res) => console.log('res', res));
   }
@@ -35,27 +37,27 @@ class Branch extends React.Component {
     this.setState({
       editData: {
         name: '',
-        address: '',
-        beacon_room: '',
-        location: '',
-        major: '',
-        minor: '',
-        offer_beacon: false
+        description: '',
+        costperperson: '',
+        created_on: '',
+        newcustomer: '',
+        image_path:''
       }
     })
   }
   onSumit = () => {
-    const beacon_name = this.name.value;
-    const beacon_uuid = this.uuid.value;
-    const mac_address = this.address.value;
-    const beacon_room = this.room.value;
-    const offer_beacon = this.select.options[this.select.selectedIndex].value;
-    const major = this.major.value;
-    const minor = this.minor.value;
+    const name = this.name.value;
+    const description = this.description.value;
+    const costperperson = this.costperperson.value;
+    const newcustomer = this.newcustomer.value;
+    const location = this.location.value;
+    const image = this.image.value;
+
     let a = { type: 'add' }
     console.log('selected id', this.selecteId)
     if (this.selecteId !== null) {
       a = {
+        organisation_id: this.state.data[this.selecteId].organisation_id,
         id: this.state.data[this.selecteId].id,
         type: 'update'
       }
@@ -63,17 +65,15 @@ class Branch extends React.Component {
 
     const data = {
       ...a,
-      beacon_name,
-      beacon_uuid,
-      mac_address,
-      offer_beacon: offer_beacon === 'true' ? true : false,
-      major,
-      minor,
-      beacon_room,
-      outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
+      name,
+      description,
+      costperperson,
+      newcustomer,
+      location, 
+      image
     }
-
-    addBeacon(data).then((res) => getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+    console.log('data', data)
+    // addBeacon(data).then((res) => getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
 
   }
   openEditModal = (i) => {
@@ -84,7 +84,6 @@ class Branch extends React.Component {
       this.setState({ editData })
       console.log('edit', editData, this.state)
     }
-    console.log('bahar', this.state.editData.category)
     this.editModal.handleShow();
   }
   onDelete = (i) => {
@@ -96,11 +95,12 @@ class Branch extends React.Component {
   render() {
     const headers = [
       'Name',
-      'Address',
-      'UUID',
-      'Room',
+      'Description',
       'Location',
-      'Offer Beacon'
+      'Cost per Person',
+      'New Customer',
+      'Created On',
+      'Image'
     ];
     return (
       <React.Fragment >
@@ -110,10 +110,10 @@ class Branch extends React.Component {
               <div className="table-title">
                 <div className="row">
                   <div className="col-sm-6">
-                    <h2>Beacons</h2>
+                    <h2>Branches</h2>
                   </div>
                   <div className="col-sm-6">
-                    <a onClick={() => this.openEditModal()} className="btn btn-success"><span>Add New Beacon</span></a>
+                    <a onClick={() => this.openEditModal()} className="btn btn-success"><span>Add New Branch</span></a>
                     {/* <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a> */}
                   </div>
                 </div>
@@ -131,12 +131,13 @@ class Branch extends React.Component {
                   {this.state.data && this.state.data.length ?
                     this.state.data.map((d, i) =>
                       <tr key={i}>
-                        <td style={{ width: '200px' }}>{d.name}</td>
-                        <td>{d.address}</td>
-                        <td>{d.beacon_uuid}</td>
-                        <td>{d.beacon_room}</td>
+                        <td style={{ width: '100px' }}>{d.name}</td>
+                        <td style={{ width: '200px' }}>{d.description}</td>
                         <td>{d.location}</td>
-                        <td>{d.offer_beacon.toString()}</td>
+                        <td>{d.costperperson}</td>
+                        <td>{d.newcustomer}</td>
+                        <td>{d.created_on}</td>
+                        <td><img style={{ width: '150px' }} src={d.image_path} /></td>
                         <td>
                           <a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
                           <a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
@@ -151,38 +152,29 @@ class Branch extends React.Component {
           <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Beacon" isModal="true">
             <>
               <div className="form-group">
-                <label>Beacon Name</label>
-                <input ref={name => this.name = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, name: e.target.value } })} value={this.state.editData.name || ''} required placeholder="Please enter Beacon Name" />
+                <label>Name</label>
+                <input ref={name => this.name = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, name: e.target.value } })} value={this.state.editData.name || ''} required placeholder="Please enter Name" />
               </div>
               <div className="form-group">
-                <label>Address</label>
-                <input ref={name => this.address = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, address: e.target.value } })} value={this.state.editData.address || ''} required placeholder="Please enter Address" />
-              </div>
-              <div className="form-group">
-                <label>Room</label>
-                <input ref={name => this.room = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, beacon_room: e.target.value } })} value={this.state.editData.beacon_room || ''} required placeholder="Please enter Beacon Room" />
-              </div>
-              <div className="form-group">
-                <label>Beacon UUID</label>
-                <input ref={name => this.uuid = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, beacon_uuid: e.target.value } })} value={this.state.editData.beacon_uuid || ''} required placeholder="Please enter UUID" />
-              </div>
-              <div className="form-group">
-                <label>Major</label>
-                <input ref={name => this.major = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, major: e.target.value } })} value={this.state.editData.major || ''} required placeholder="Please enter Major" />
-              </div>
-              <div className="form-group">
-                <label>Minor</label>
-                <input ref={name => this.minor = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, minor: e.target.value } })} value={this.state.editData.minor || ''} required placeholder="Please enter Minor" />
-              </div>
-              {/* <div className="form-group">
                 <label>Description</label>
-                <textarea ref={des => this.desc = des} className="form-control" placeholder="Please enter description here" onChange={(e) => this.setState({editData: {...this.state.editData, description: e.target.value} })} value={this.state.editData.description || ''} />
-              </div> */}
-              <select ref={sel => this.select = sel} style={{ height: '38px', width: '100%', marginBottom: '20px', marginTop: '10px', border: '1px solid lightgrey' }} >
-                <option value="0" >Is offer Beacon</option>
-                <option value="true" selected={this.state.editData.offer_beacon == true}>Yes</ option>
-                <option value="false" selected={this.state.editData.offer_beacon == false}>No</option>
-              </select>
+                <input ref={name => this.description = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, description: e.target.value } })} value={this.state.editData.description || ''} required placeholder="Please enter Description" />
+              </div>
+              <div className="form-group">
+                <label>Location</label>
+                <input ref={name => this.location = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, location: e.target.value } })} value={this.state.editData.location || ''} required placeholder="Please enter Location" />
+              </div>
+              <div className="form-group">
+                <label>Cost per Person</label>
+                <input ref={name => this.costperperson = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, costperperson: e.target.value } })} value={this.state.editData.costperperson || ''} required placeholder="Please enter Cost per Person" />
+              </div>
+              <div className="form-group">
+                <label>New Customer</label>
+                <input ref={name => this.newcustomer = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, newcustomer: e.target.value } })} value={this.state.editData.newcustomer || ''} required placeholder="Please enter New Customer" />
+              </div>
+              <div className="form-group">
+                <label>Add Image</label>
+                <input class="btn btn secondary" ref={name => this.image = name} onChange={(e) => this.setState({ editData: { ...this.state.editData, image_path: e.target.value } })} type='file' />
+              </div>
               <div style={{ padding: '20px 55px' }} className="modal-footer">
                 <div className="row">
                   <div className="col-md-6">
