@@ -1,42 +1,35 @@
 import React from 'react';
 // import json from './data.json';
 // import Forms from './../Forms';
-// import { getCustomerHistory, addBeacon } from './../../../../../api';
+import { getAllCommon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
 
-const getCustomerHistory = {
-  "error": false,
-  "data": [
-    {
-      "customer_id": "",
-      "customer_name": "",
-      "customer_email": "",
-      "customer_type": "new/returning",
-      "customer_source": "",
-      "arrived_on": "timestamp",
-      "left_on": "timestamp",
-      "engagement_type": "can be treasurehunt/quiz/offer",
-      "engagement_id": "game or offer id",
-      "engagement_status": "win/loose in case if game, in case of offer it can be redeemed/ not redeemed"
-    }
-  ]
-}
+// const getCustomerHistory = {
+//   "error": false,
+//   "data": [
+//     {
+//       "customer_id": "",
+//       "customer_name": "",
+//       "customer_email": "",
+//       "customer_type": "new/returning",
+//       "customer_source": "",
+//       "arrived_on": "timestamp",
+//       "left_on": "timestamp",
+//       "engagement_type": "can be treasurehunt/quiz/offer",
+//       "engagement_id": "game or offer id",
+//       "engagement_status": "win/loose in case if game, in case of offer it can be redeemed/ not redeemed"
+//     }
+//   ]
+// }
 class CustomerHistory extends React.Component {
   constructor(props) {
     super(props);
-
+    this.outlet_id = "dcba56d9-3801-40c8-9c13-8a77c39de24f";
     this.selecteId = null;
     this.state = {
       data: [],
       editData: {
-        // name: '',
-        // address: '',
-        // beacon_room: '',
-        // location: '',
-        // major: '',
-        // minor: '',
-        // offer_beacon: false
         name: '',
         date: '',
         action: '',
@@ -48,10 +41,10 @@ class CustomerHistory extends React.Component {
   };
 
   componentDidMount() {
-    //   // this.editModal.handleShow();
-    //   console.log('did', sessionStorage);
-    //   getCustomerHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
-    // getCustomerHistory.data => this.setState({ data: data });
+    // const usersData = [];
+    getAllCommon('customer-history', { outlet_id: this.outlet_id }).then((res) => {
+      this.setState({ data: res.data })
+    })
 
   }
 
@@ -119,18 +112,19 @@ class CustomerHistory extends React.Component {
   // }
   render() {
     const headers = [
-      'NAME',
-      'EMAIL',
-      'TYPE',
-      'SOURCE',
-      'ARRIVED ON',
-      'LEFT ON',
-      'ENGAGEMENT TYPE',
-      'ENGAGEMENT STATUS'
+      'Name',
+      'Email',
+      'Type',
+      'Source',
+      'Arrived On',
+      'Left On',
+      'Engagement Type',
+      'Engagement Status'
     ];
     return (
       <React.Fragment >
         <div>
+          {console.log(this.state.data)}
           <div className="container">
             <div className="table-wrapper">
               <div className="table-title">
@@ -171,8 +165,8 @@ class CustomerHistory extends React.Component {
                 <tbody>
                   {/* {this.state.data && this.state.data.length ?
                     this.state.data.map((d, i) => */}
-                  {getCustomerHistory.data.map((d, i) =>
-                    <tr key="">
+                  {this.state.data.map((d, i) =>
+                    <tr key={i}>
                       <td>{d.customer_name}</td>
                       <td>{d.customer_email}</td>
                       <td>{d.customer_type}</td>

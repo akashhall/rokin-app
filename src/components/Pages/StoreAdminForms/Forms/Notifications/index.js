@@ -71,7 +71,7 @@ class Notifications extends React.Component {
             </div>
             <div className="col-md-12">
               <div className="col-md-10" style={{}}>
-                <div className="col-md-offset-1 col-md-10 " style={{ padding: '0px' }}>
+                <div className="col-md-offset-1 col-md-10 " style={{ padding: '0px',marginLeft:'80px' }}>
                   <div className="row" style={{ paddingTop: '50px' }}>
                     <form style={{ 'width': '100%', 'marginLeft': '100px' }}>
                       <div style={{ 'marginBottom': '5px', marginLeft: '-9px' }}>

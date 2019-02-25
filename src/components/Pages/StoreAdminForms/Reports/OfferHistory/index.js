@@ -103,17 +103,17 @@ class OfferHistory extends React.Component {
   }
   render() {
     const headers = [
-      'USER NAME',
-      'MOBILE',
-      'BRANCH',
-      'OFFER ID',
-      'PRODUCT ID',
-      'PRODUCT PRICE',
-      'OFFER PERCENTAGE',
-      'OFFER PRICE',
-      'REDEEM STATUS',
-      'CRETED DATE',
-      'REDEEM DATE'
+      'User Name',
+      'Mobile',
+      'Branch',
+      'Offer Id',
+      'Product Id',
+      'Product Price',
+      'Offer Percentage',
+      'Offer Price',
+      'Redeem Status',
+      'Created Date',
+      'Redeem Date'
     ];
     return (
       <React.Fragment >

@@ -1,36 +1,36 @@
 import React from 'react';
 // import json from './data.json';
 // import Forms from './../Forms';
-// import { getGameHistory, addBeacon } from './../../../../../api';
+import { getAllCommon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
 
-const getGameHistory =
-{
-	"error":false,
-	"data": [
-		{
-			"game_id":"",
-			"game_name":"",
-			"outlet_id":"",
-			"game_type":"treasurehunt/quiz",
-			"created_on":"timestamp",
-			"created_by":"user_id",
-			"played_on":"timestamp",
-			"game_status":"win/loose",
-			"player":{
-				"player_id":"",
-				"player_name":"",
-				"player_email":""
-			}
-		}
-	]
-}
+// const getGameHistory =
+// {
+// 	"error": false,
+// 	"data": [
+// 		{
+// 			"game_id": "",
+// 			"game_name": "",
+// 			"outlet_id": "",
+// 			"game_type": "treasurehunt/quiz",
+// 			"created_on": "timestamp",
+// 			"created_by": "user_id",
+// 			"played_on": "timestamp",
+// 			"game_status": "win/loose",
+// 			"player": {
+// 				"player_id": "",
+// 				"player_name": "",
+// 				"player_email": ""
+// 			}
+// 		}
+// 	]
+// }
 
 class GameHistory extends React.Component {
 	constructor(props) {
 		super(props);
-
+		this.outlet_id = "dcba56d9-3801-40c8-9c13-8a77c39de24f";
 		this.selecteId = null;
 		this.state = {
 			data: [],
@@ -39,24 +39,30 @@ class GameHistory extends React.Component {
 		}
 	};
 
+	// componentDidMount() {
+	// 	// this.editModal.handleShow();
+	// 	// console.log('did', sessionStorage);
+	// 	// getGameHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
+	// 	// { getGameHistory }
+	// 	console.log(getGameHistory.data);
+	// 	// login().then((res) => console.log('res', res));
+	// }
 	componentDidMount() {
-		// this.editModal.handleShow();
-		// console.log('did', sessionStorage);
-		// getGameHistory({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
-		// { getGameHistory }
-		console.log(getGameHistory.data);
-		// login().then((res) => console.log('res', res));
-	}
+		// const usersData = [];
+		getAllCommon('sasd', { user_type: "game-history" }, { outlet_id: this.outlet_id }).then((res) => {
+			this.setState({ data: res.data })
+		})
 
+	}
 	render() {
 		const headers = [
-			'GAME NAME',
-			'OUTLET ID',
-			'GAME TYPE',
-			'CREATED ON',
-			'CREATED BY',
-			'PLAYED ON',
-			'GAME STATUS'
+			'Game Name',
+			'Outlet Id',
+			'Game Type',
+			'Created On',
+			'Created By',
+			'Played On',
+			'Game Status'
 		];
 		return (
 			<React.Fragment >
@@ -98,21 +104,21 @@ class GameHistory extends React.Component {
 								</thead>
 								<tbody>
 									{/* {this.state.data && this.state.data.length ? */}
-										{getGameHistory.data.map((d, i) =>
-											<tr key={i}>
-												<td style={{ width: '200px' }}>{d.game_name}</td>
-												<td>{d.outlet_id}</td>
-												<td>{d.game_type}</td>
-												<td>{d.created_on}</td>
-												<td>{d.created_by}</td>
-												<td>{d.played_on}</td>
-												<td>{d.game_status}</td>
-												{/* <td>
+									{this.state.data.map((d, i) =>
+										<tr key={i}>
+											<td style={{ width: '200px' }}>{d.game_name}</td>
+											<td>{d.outlet_id}</td>
+											<td>{d.game_type}</td>
+											<td>{d.created_on}</td>
+											<td>{d.created_by}</td>
+											<td>{d.played_on}</td>
+											<td>{d.game_status}</td>
+											{/* <td>
 													<a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
 													<a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
 												</td> */}
-											</tr>
-										) 
+										</tr>
+									)
 									}
 								</tbody>
 							</table>

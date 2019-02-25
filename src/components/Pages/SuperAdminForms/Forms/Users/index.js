@@ -141,14 +141,14 @@ class Users extends React.Component {
   // }
   render() {
     const headers = [
-      ' USER NAME',
-      'EMAIL',
-      'MOBILE NO.',
-      'ROLE',
-      'CREATED TIME',
-      'LAST LOGIN TIME',
-      'LAST LOGOUT TIME',
-      'UPDATED ON'
+      ' User Name',
+      'Email',
+      'Mobile No.',
+      'Role',
+      'Created Time',
+      'Last Login Time',
+      'Last Logout Time',
+      'Updated On'
     ];
     return (
       <React.Fragment >

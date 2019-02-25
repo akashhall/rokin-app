@@ -4,7 +4,7 @@ import React from 'react';
 import { getBeacons, addBeacon } from './../../../../../api';
 import ModalPopover from './../../../../ModalPopover';
 import MultiSearchSelect from "react-search-multi-select";
-import { IoMdCloseCircleOutline, IoMdCreate } from 'react-icons/io'
+import { getAllCommon } from './../../../../../api';
 
 const data = [
     {
@@ -35,7 +35,7 @@ prefixName: "HRCMumbai1",
 productId: "2",
 productPrice: "350",
 redeemDateTime: "2018-01-26 17:25:52",
-redeemStatus: "Redeemed",
+redeemStatus: "Redeem",
 redeemedBy: "rohit",
 userName: "rahul",
   },  {
@@ -66,7 +66,7 @@ prefixName: "HRCMumbai1",
 productId: "2",
 productPrice: "350",
 redeemDateTime: "2018-01-26 17:25:52",
-redeemStatus: "Redeemed",
+redeemStatus: "Redeem",
 redeemedBy: "rohit",
 userName: "rahul",
 }
@@ -75,19 +75,11 @@ userName: "rahul",
 class SendOffers extends React.Component {
     constructor(props) {
         super(props);
-        this.selecteId = null;
+        this.userIdArray = [];
         this.state = {
             data: [],
-            values: ["Allison", "Arthur", "Beryl", "Chantal", "Cristobal", "Danielle", "Dennis", "Ernesto", "Felix", "Fay", "Grace", "Gaston", "Gert", "Gordon"],
-            editData: {
-                name: '',
-                address: '',
-                beacon_room: '',
-                location: '',
-                major: '',
-                minor: '',
-                offer_beacon: false
-            }
+            users: [],
+            userData: {},
         }
     };
 
@@ -95,6 +87,11 @@ class SendOffers extends React.Component {
         // this.editModal.handleShow();
         console.log('did', sessionStorage);
         this.setState({ data: data })
+        const usersData = [];
+    getAllCommon('get-admin-users', { user_type: "storeadmin" }).then((res) => {
+      res.data.map((data) => { usersData.push(data.name) });
+      this.setState({ userData : res.data, users: usersData })
+    })
         // getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
 
         // login().then((res) => console.log('res', res));
@@ -114,35 +111,12 @@ class SendOffers extends React.Component {
         })
     }
     onSumit = () => {
-        const beacon_name = this.name.value;
-        const beacon_uuid = this.uuid.value;
-        const mac_address = this.address.value;
-        const beacon_room = this.room.value;
-        const offer_beacon = this.select.options[this.select.selectedIndex].value;
-        const major = this.major.value;
-        const minor = this.minor.value;
-        let a = { type: 'add' }
-        console.log('selected id', this.selecteId)
-        if (this.selecteId !== null) {
-            a = {
-                id: this.state.data[this.selecteId].id,
-                type: 'update'
-            }
-        }
-
         const data = {
-            ...a,
-            beacon_name,
-            beacon_uuid,
-            mac_address,
-            offer_beacon: offer_beacon === 'true' ? true : false,
-            major,
-            minor,
-            beacon_room,
-            outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
+            "outlet_id":"6c60dc52-ee29-44cd-aa14-cd963029f618",
+            "recipient_id": this.userIdArray,
+            "offer_id":"ae1c0fbf-14ca-4c32-bgtf-cde6h1718f09"
         }
-
-        addBeacon(data).then((res) => getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+        getAllCommon('send-offer',data).then((res) =>{ this.setState({ data: res.data }); this.editModal.handleHide() });
 
     }
     openEditModal = (i) => {
@@ -153,7 +127,7 @@ class SendOffers extends React.Component {
             this.setState({ editData })
             console.log('edit', editData, this.state)
         }
-        console.log('bahar', this.state.editData.category)
+        // console.log('bahar', this.state.editData.category)
         this.editModal.handleShow();
     }
     onDelete = (i) => {
@@ -162,16 +136,40 @@ class SendOffers extends React.Component {
     closeModal = () => {
         this.editModal.handleHide()
     }
+    handleChange = (arr) => {
+        let userArray = [];
+        arr.map((data) => {
+          this.state.userData.map((obj) => {
+            if (obj.name === data) {
+              !userArray.includes(obj.uuid) && userArray.push(obj.uuid);
+            }
+          })
+        })
+        this.userIdArray = userArray;
+        console.log(this.userIdArray)
+      }
+    redemOffer = () => {
+        console.log('redemOffer');
+        let data = {
+            "offer_id":"",
+	        "user_id":"",
+	        "outlet_id":""
+        }
+        getAllCommon('redeem_offer',data).then((res) => {
+            console.log(res.data)
+          })
+    }
     render() {
         const headers = [
             'UserName',
-            'BranchCode',
+            'Branch Code',
             'OfferId',
             'ProductId',
-            'ProductPrice',
-            'OfferPercentage',
-            'OfferedPice',
-            'ReedemStatus'
+            'Product Price',
+            'Offer Percentage',
+            'Offered Pice',
+            'Reedem Status',
+            'Action',
         ];
         return (
             <React.Fragment >
@@ -186,13 +184,12 @@ class SendOffers extends React.Component {
                                 </div>
                             </div>
                             <div className="row" style={{'fontSize':'14px'}}>
-                                <div className="col-md-3">
-                                   UserName: <input style={{'marginBottom':'10px',    'float':'right'}}/> <br />
-                                   Search:   <input style={{'marginBottom':'10px','float':'right'}}/>
+                                <div className="" style={{margin:'20px'}}>
+                                   UserName: <input style={{display:'inline-block' , marginRight:'15px'}}/>
+                                   Search:   <input style={{display:'inline-block'}}/>
                                 </div>
-                                <div className="col-md-9">
-                                    <a style={{'marginLeft': '10px','float':'right'}} onClick={() => this.openEditModal()} className="btn btn-success"><span>submit</span></a>
-                                    <a style={{'float':'right'}} onClick={() => this.openEditModal()} className="btn btn-success"><span>send offer</span></a>
+                                <div style={{marginTop: '-129px',marginLeft: '89%'}}>
+                                    <a style={{'float':'right'}} onClick={() => this.openEditModal()} className="btn btn-success"><span>Send Offer</span></a>
                                 </div>
                             </div>
                             <table className="table table-striped table-hover">
@@ -208,7 +205,7 @@ class SendOffers extends React.Component {
                   {this.state.data && this.state.data.length ?
                     this.state.data.map((d, i) =>
                       <tr key={i}>
-                        <td style={{ width: '200px' }}>{d.createdBy}</td>
+                        <td >{d.createdBy}</td>
                         <td>{d.prefixName}</td>
                         <td>{d.offerId}</td>
                         <td>{d.productId}</td>
@@ -216,10 +213,8 @@ class SendOffers extends React.Component {
                         <td>{d.offerPer}</td>
                         <td>{d.offeredPrice}</td>
                         <td>{d.redeemStatus}</td>
-                        {/* <td>{d.offer_beacon.toString()}</td> */}
                         <td>
-                          <a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
-                          <a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
+                        {d.redeemStatus !== 'Redeemed' &&  <button style={{fontSize:'15px'}}className='btn-danger' onClick={()=>this.redemOffer(d.offerId,d.user_id)}>Reedem </button>}
                         </td>
                       </tr>
                     ) : null
@@ -233,16 +228,16 @@ class SendOffers extends React.Component {
                         <>
                             <div className="form-group" style={{ marginRight: '-10px', marginLeft: '-5px'}}>
                                <label style={{ marginLeft: '5px'}}>User Name: </label>
-                               <MultiSearchSelect searchable={true} showTags={true} multiSelect={true} width="100%" style={{marginLeft:'-10px'}}onSelect={this.handleChange} options={this.state.values} />   
+                               <MultiSearchSelect searchable={true} showTags={true} multiSelect={true} width="100%" style={{marginLeft:'-10px'}}onSelect={this.handleChange} options={this.state.users} />   
                                 {/* <input ref={name => this.name = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, name: e.target.value } })} value={this.state.editData.name || ''} required placeholder="Please enter Beacon Name" /> */}
                             </div>
                             <div className="form-group">
                                 <label>Speial Offer: </label>
-                                <input ref={name => this.address = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, address: e.target.value } })} value={this.state.editData.address || ''} required placeholder="Select Offers" />
+                                <input  className="form-control" required placeholder="Select Offers" />
                             </div>
                             <div className="form-group">
                                 <label>OfferDesc: </label>
-                                <input ref={name => this.room = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, beacon_room: e.target.value } })} value={this.state.editData.beacon_room || ''} required placeholder="Offer Description" />
+                                <input required className="form-control" placeholder="Offer Description" />
                             </div>
                             <div style={{ padding: '20px 55px' }} className="modal-footer">
                                 <div className="row">
@@ -256,26 +251,6 @@ class SendOffers extends React.Component {
                             </div>
                         </>
                     </ModalPopover>
-                    <div id="deleteEmployeeModal" className="modal fade">
-                        <div className="modal-dialog">
-                            <div className="modal-content">
-                                <form>
-                                    <div className="modal-header">
-                                        <h4 className="modal-title">Delete Employee</h4>
-                                        <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    </div>
-                                    <div className="modal-body">
-                                        <p>Are you sure you want to delete these Records?</p>
-                                        <p className="text-warning"><small>This action cannot be undone.</small></p>
-                                    </div>
-                                    <div className="modal-footer">
-                                        <input type="button" className="btn btn-default" data-dismiss="modal" defaultValue="Cancel" />
-                                        <input type="submit" className="btn btn-danger" defaultValue="Delete" />
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </React.Fragment >
         )

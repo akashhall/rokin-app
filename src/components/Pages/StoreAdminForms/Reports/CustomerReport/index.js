@@ -89,10 +89,10 @@ class CustomerReport extends React.Component {
   }
   render() {
     const headers = [
-      'DATE',
-      'PREFIX NAME',
-      'TOTAL COUNT',
-      'TOTAL AMOUNT'
+      'Date',
+      'Prefix Name',
+      'Total Count',
+      'Total Amount'
     ];
     return (
       <React.Fragment >

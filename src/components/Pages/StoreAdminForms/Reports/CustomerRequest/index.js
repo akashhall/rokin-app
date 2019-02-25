@@ -90,11 +90,11 @@ class CustomerRequest extends React.Component {
   }
   render() {
     const headers = [
-      'USER NAME',
-      'MOBILE',
-      'MESSAGE',
-      'BRANCH CODE',
-      'REQUESTED DATE'
+      'User Name',
+      'Mobile',
+      'Message',
+      'Branch Code',
+      'Requested Date'
     ];
     return (
       <React.Fragment >

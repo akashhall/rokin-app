@@ -93,14 +93,14 @@ class OfferReport extends React.Component {
   }
   render() {
     const headers = [
-      'DATE',
-      'BRANCH CODE',
-      'TOTAL OFFER GIVEN',
-      'TOTAL OFFER AMOUNT',
-      'PENDING REDEEMS',
-      'PENDING REDEEM AMOUNT',
-      'TOTAL REDEEMED',
-      'TOTAL REDEEMED AMOUNT'
+      'Date',
+      'Branch Code',
+      'Total Offer Given',
+      'Total Offer Amount',
+      'Pending Redeems',
+      'Pending Redeem Amount',
+      'Total Redeemed',
+      'Total Redeemed Amount'
     ];
     return (
       <React.Fragment >

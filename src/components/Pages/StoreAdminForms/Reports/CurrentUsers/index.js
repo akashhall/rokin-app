@@ -88,9 +88,9 @@ class CurrentUsers extends React.Component {
   }
   render() {
     const headers = [
-      'NAME',
-      'DATE',
-      'ROOM',
+      'Name',
+      'Date',
+      'Room',
     ];
     return (
       <React.Fragment >
