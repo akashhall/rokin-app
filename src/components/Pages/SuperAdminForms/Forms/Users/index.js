@@ -174,7 +174,7 @@ class Users extends React.Component {
                   <input ng-model="UHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
                   <button style={{ padding: '1px' }} className="btn-primary col-md-1 butnadd submit_form submit_dis floatRight add_button_custom" ng-click="UHC.getUserHistory()">Submit</button>
-                  <button onClick={() => this.openEditModal()} style={{ padding: '1px', marginLeft: '10px' }} className="btn-primary col-md-1 butnadd submit_form submit_dis floatRight add_button_custom" ng-click="UHC.getUserHistory()">Add</button>
+                  <button onClick={() => this.openEditModal()} style={{ padding: '1px', marginLeft: '10px' }} className="btn-primary" ng-click="UHC.getUserHistory()">Add New User</button>
 
                   {/* <h3 class="panel-title">Payment Form</h3> */}
                 </div>

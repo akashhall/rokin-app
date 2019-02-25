@@ -106,9 +106,9 @@ class Dashboard extends React.Component {
         {/* {sessionStorage.role !== undefined ? */}
         <div className="nano-content">
 
-<header><ul class="header">
-              <li className='admin'><strong>Super Admin</strong></li>
-              {/* <li>Organization:</li>
+          <header><ul class="header">
+            <li className='admin'><strong>Super Admin</strong></li>
+            {/* <li>Organization:</li>
 
           <header><ul class="header">
             <li className='admin'>SuperAdmin</li>
@@ -239,7 +239,7 @@ class Dashboard extends React.Component {
             <article>
               {this.state.article ? ' Welcome Super Admin' : null}
               {this.state.Organisation && <OrgForms />}
-              {this.state.Branchs && <Branch />}
+              {this.state.Branch && <Branch />}
               {this.state.Users && <Users />}
               {this.state.customerHistory && <CustomerHistory />}
               {this.state.customerReport && <CustomerReport />}

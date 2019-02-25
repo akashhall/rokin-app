@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
     }
   }
   componentDidMount() {
-    // getAllCommon('get-outlet', { id: sessionStorage.outlet_id }).then((data) => this.setState({ outletData: data.data }));
+    getAllCommon('get-outlet', { id: sessionStorage.outlet_id }).then((data) => this.setState({ outletData: data.data }));
   }
 
   ShowForms = (type) => {
@@ -156,6 +156,7 @@ class Dashboard extends React.Component {
             <button onClick={this.logoutSession} className="btn btn-">Logout</button>
           </ul>
           </header>
+
           <nav>
             <div id="mainnav-profile" className="mainnav-profile">
               {/* <div className="profile-wrap">
@@ -174,7 +175,7 @@ class Dashboard extends React.Component {
             <ul id="mainnav-menu" className="list-group">
               {/* <li className="list-header">Navigation</li> */}
               <ExpansionPanel >
-                <ExpansionPanelSummary className="icon" expandIcon={<ExpandMoreIcon />}>
+                <ExpansionPanelSummary className="icon" style={{ border: 'none' }} expandIcon={<ExpandMoreIcon />}>
                   Forms
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
@@ -338,6 +339,9 @@ class Dashboard extends React.Component {
             </ul>
             <img src="funnDynamix.png" />
           </nav>
+          <div style={{ height: '25px', background: '#004effeb', marginLeft: '250px', boxShadow: '1px 1px 2px 2px #848484' }}>
+            <span style={{ paddingLeft: '475px', color: 'white ' }}>{this.state.outletData.name}</span>
+          </div>
           {/* <header><ul class="header">
             <li>Organization:</li>
             <li>Branch: HRC Mumbai-Worli</li>
@@ -348,8 +352,8 @@ class Dashboard extends React.Component {
             {/* Welcome Store Admin */}
             {this.state.article ?
               <div style={{ background: 'white', paddingTop: '15px', textAlign: 'center', border: '1px solid lightgray', boxShadow: '0px 0px 6px 0px grey', paddingBottom: '15px' }}>
-                <h4>{this.state.outletData.description}</h4>
-                <img style={{ width: '900px', height: 'auto' }} src={this.state.outletData.image_path} />
+                <span style={{ fontSize: '15px', fontWeight: '500', borderBottom: '2px solid #ffc321', paddingBottom: '3px' }}>{this.state.outletData.description}</span>
+                <img style={{ width: '850px', height: 'auto', border: '1px solid darkgrey', marginTop: '10px' }} src={this.state.outletData.image_path} />
               </div> : null}
             {/* <OrgForm /> */}
             {this.state.beacons && <Beacon />}
