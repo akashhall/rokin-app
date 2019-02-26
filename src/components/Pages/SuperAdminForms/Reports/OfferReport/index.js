@@ -129,7 +129,7 @@ class OfferReport extends React.Component {
                   &nbsp;
                   <input style={{ padding: '4px' }} ng-model="URC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
-                  <button style={{ padding: '4px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="URC.getUserReport()">Submit</button>
+                  <button style={{ padding: '7px', marginTop: '2px', marginRight: '108px' }} className="btn btn-primary" ng-click="URC.getUserReport()">Submit</button>
                   {/* <span className="search_input margin_top10">
                   <label htmlFor="search">Search:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                   <input type="text" name="search" ng-model="URC.search" className="ng-pristine ng-untouched ng-valid ng-empty" />

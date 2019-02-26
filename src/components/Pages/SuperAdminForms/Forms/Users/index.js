@@ -7,6 +7,8 @@ class Users extends React.Component {
     super(props);
 
     this.selecteId = null;
+    this.type = 'add';
+    this.role = 'superadmin'
     this.state = {
       data: [],
       // users: [],
@@ -37,7 +39,7 @@ class Users extends React.Component {
         role: 'superadmin'
       }
     })
-    this.error.style.display = 'none';
+    // this.error.style.display = 'none';
 
   }
   // validate = (beacon_name, beacon_uuid, beacon_room, mac_address, offer_beacon, major, minor) => {
@@ -48,39 +50,37 @@ class Users extends React.Component {
   //   }
   // }
   onSubmit = () => {
-    const name = this.name.value;
+    const name = this.userName.value;
     const email = this.email.value;
+    const mobile = this.mobile.value;
     const role = this.role.value;
-    const mobile = this.select.options[this.select.selectedIndex].value;
-    let a = { type: 'superadmin' }
-    console.log('selected id', this.selecteId)
+
+
     // if (this.validate()) {
     //   // this.error.style.display = 'block';
     // } else {
     //   this.error.style.display = 'none';
     //   let a = { type: 'add' }
-    if (this.selecteId !== null) {
-      a = {
-        id: this.state.data[this.selecteId].id,
-        type: 'storeadmin'
-        // }
-      }
+    // if (this.selecteId !== null) {
+    //   a = {
+    //     id: this.state.data[this.selecteId].id,
+    //     type: 'storeadmin'
+    //     // }
+    //   }
 
-      const data = {
-        ...a,
-        name,
-        email,
-        type: 'superadmin',
-        role,
-        mobile,
-        outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
-      }
-
-      addUsers(data).then((res) => getAllCommon('get-admin-users', { user_type: "admin" }, { outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
-
+    const data = {
+      name,
+      email,
+      type: this.type !== 'update' ? 'add' : 'update',
+      role: this.selecteId.value,
+      mobile,
     }
+
+    addUsers(data).then((res) => getAllCommon('get-admin-users', { outlet_id: sessionStorage.outlet_id }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
+
   }
-  openEditModal = (i) => {
+  openEditModal = (i, type) => {
+    this.type = type;
     if (i !== undefined) {
       this.selecteId = i;
       const editData = this.state.data[i];
@@ -88,58 +88,9 @@ class Users extends React.Component {
     }
     this.editModal.handleShow();
   }
-
-  //   onModalClose = () => {
-  //     this.selecteId = null;
-  //     this.setState({
-  //       editData: {
-  //         name: '',
-  //         email: '',
-  //         role: '',
-  //         mobile: '',
-  //         type: ''
-  //       }
-  //     })
-  //   }
-  //   onSubmit = () => {
-  //     const name = this.name.value;
-  //     const email = this.email.value;
-  //     const role = this.role.value;
-  //     const mobile = this.select.options[this.select.selectedIndex].value;
-  //     let a = { type: 'add' }
-  //     console.log('selected id', this.selecteId)
-  //     if (this.selecteId !== null) {
-  //       a = {
-  //         id: this.state.data[this.selecteId].id,
-  //         type: 'update'
-  //       }
-  //     }
-
-  //     const data = {
-  //       ...a,
-  //       name,
-  //       email,
-  //       type,
-  //       mobile,
-  //       outlet_id: "dcba56d9-3801-40c8-9c13-8a77c39de24f",
-  //     }
-
-  //     addUsers(data).then((res) => getAllCommons('get-admin-users', { user_type: "admin" }, { outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => { this.setState({ data: res.data }); this.editModal.handleHide() }));
-  // }
-  // openEditModal = (i) => {
-  //   if (i !== undefined) {
-  //     this.selecteId = i;
-  //     console.log('open edit', i, this.state.data[i])
-  //     const editData = this.state.data[i];
-  //     this.setState({ editData })
-  //     console.log('edit', editData, this.state)
-  //   }
-  //   console.log('bahar', this.state.editData.category)
-  //   this.editModal.handleShow();
-  // }
   render() {
     const headers = [
-      ' User Name',
+      'User Name',
       'Email',
       'Mobile No.',
       'Role',
@@ -159,20 +110,22 @@ class Users extends React.Component {
                   <div className="col-sm-6">
                     <h2>Users</h2>
                   </div>
-                  {/* <div className="col-sm-6">
-                    <a onClick={() => this.openEditModal()} className="btn btn-success"><span>Add New Beacon</span></a>
+                  <div className="col-sm-6">
+                    <a onClick={() => this.openEditModal()} className="btn btn-success"><span>Add New User</span></a>
                     {/* <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a> */}
-                  {/* </div> */}
+                  </div>
                 </div>
                 <div className="panel-heading" style={{ padding: '10px 10px', height: 'auto' }}>
                   <label htmlFor="startDate">Start Date:</label>
+                  &nbsp;
                   <input ng-model="UHC.startDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
                   <label htmlFor="endDate">End Date:</label>
+                  &nbsp;
                   <input ng-model="UHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
-                  <button style={{ padding: '1px' }} className="btn-primary col-md-1 butnadd submit_form submit_dis floatRight add_button_custom" ng-click="UHC.getUserHistory()">Submit</button>
-                  <button onClick={() => this.openEditModal()} style={{ padding: '1px', marginLeft: '10px' }} className="btn-primary" ng-click="UHC.getUserHistory()">Add New User</button>
+                  <button style={{ padding: '5px', marginRight: '415px' }} className="btn btn-primary" ng-click="UHC.getUserHistory()">Submit</button>
+                  {/* <button onClick={() => this.openEditModal()} style={{ padding: '2px', marol-md-1 buginLeft: '10px' }} className="btn-primary" ng-click="UHC.getUserHistory()">Add New User</button> */}
 
                   {/* <h3 class="panel-title">Payment Form</h3> */}
                 </div>
@@ -199,7 +152,7 @@ class Users extends React.Component {
                         <td>{d.last_logout_time}</td>
                         <td>{d.updated_on}</td>
                         <td>
-                          <a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i)} className="edit"><IoMdCreate /></a>
+                          <a style={{ fontSize: '30px', marginRight: '20px' }} title="Edit" onClick={() => this.openEditModal(i, 'update')} className="edit"><IoMdCreate /></a>
                           <a style={{ fontSize: '30px' }} title="Delete" className="delete"><IoMdCloseCircleOutline /></a>
                         </td>
                       </tr>
@@ -221,12 +174,8 @@ class Users extends React.Component {
               </div>
               <div className="form-group">
                 <label>Role</label>
-                <input ref={name => this.email = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, role: e.target.value } })} value={this.state.editData.role || ''} required placeholder="Please Enter Your Email" />
-              </div>
-              <div className="form-group">
-                <label>Role</label>
                 {/* <input ref={name => this.room = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, beacon_room: e.target.value } })} value={this.state.editData.beacon_room || ''} required placeholder="Please Enter Beacon Room" /> */}
-                <select ref={type => this.selecteId = type} style={{ height: '38px', width: '100%', marginTop: '10px', border: '1px solid lightgrey' }} required placeholder="Please select Type">
+                <select ref={sel => this.selecteId = sel} style={{ height: '38px', width: '100%', marginTop: '10px', border: '1px solid lightgrey' }} required placeholder="Please select Type">
                   {/* <option value="0" >Select Type</option> */}
                   <option value="storeadmin" selected={this.state.editData.type == 'storeadmin'}>storeadmin</option>
                   <option value="superadmin" selected={this.state.editData.type == 'superadmin'}>superadmin</option>
@@ -255,7 +204,7 @@ class Users extends React.Component {
               </div>
             </>
           </ModalPopover>
-          {/* <div id="deleteEmployeeModal" className="modal fade">
+          <div id="deleteEmployeeModal" className="modal fade">
             <div className="modal-dialog">
               <div className="modal-content">
                 <form>
@@ -274,7 +223,7 @@ class Users extends React.Component {
                 </form>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </React.Fragment >
     )

@@ -1,170 +1,149 @@
-
-  .nano-content{
-    position: relative;
-  header {
-    box-shadow: 0px 1px 2px 2px #cccccc;
+.nano-content{
+  position: relative;
+header {
+  box-shadow: 0px 1px 2px 2px #cccccc;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: #333;
+  margin-left: 250px;
+  button{
+    margin: 5px;
+    padding: 0px;
+    float:right;
+    background: black;
+    color: white;
+    border-color: black;
+    width: 90px;
+    height: 45px;
+    border-radius: 8px;
+  }
+  ul {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
     overflow: hidden;
-    background-color: #333;
-    margin-left: 250px;
-    button{
-      margin: 2px;
-      padding: 0px;
-      float:right;
-      background: black;
-      color: white;
-      border-color: black;
-      width: 90px;
-      height: 45px;
-      border-radius: 8px;
-    }
-    ul {
-      list-style-type: none;
-      margin: 0px;
-      padding: 0px;
-      overflow: hidden;
-      background-color: #ffc321;
-    }
-    li {
-      float: left;
-      color: white;
-      font-size: 25px;
-      padding-left: 450px;
-    }
-    li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-    
-    li a:hover {
-      background-color: #111;
-    }
+    background-color: #ffc321;
   }
-  ul{
-      list-style: none;
-  }
-  nav {
-    border-right: 2px solid #444444;
+  li {
     float: left;
-    width: 250px;
-    height: 100%;
-    background: #5a5a5a;
-    padding: 8px;
-    position: relative;
-    top: -57px;
-    img {
-      width: 70%;
-    padding: 12px;
-    margin: auto;
-    margin-left: 54px;
-    margin-top: 41px;
-    }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li a{
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .admin-name{
-font-size:21px;
-color:white;
-  }
-  span{
-    color:darkgray;
-  }
-  .MuiPaper-root-5{
-background-color:transparent !important
-  }
-  .MuiPaper-elevation1-8{
-    box-shadow: none !important
-  }
-  .admin{
     color: white;
-    // text-align: center;
-    font-size: 22px;
+    font-size: 25px;
     padding-left: 450px;
   }
-  .MuiButtonBase-root-38{
-    font-size: 19px;
-    color: darkgrey;
-  }
-}
-  article {
-    float: left;
-    padding: 20px;
-    // font-size: 15px;
-    width: 74%;
-    background-color: transparent;
-    color: black;
-    font-size: 15px;
-    height: 100%; /* only for demonstration, should be removed */
-
-  }
-  .welcome-admin{
-    color: darkblue;
-    padding: 195px;
-    font-size: 40px;
-  }
-.profile-wrap{border: inset;
-  border-width: thin;
-  border-bottom-color: black;
-  border-block-start: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: ridge;
-  width: 100%;}
- .list-header {
-    padding: 29px;
-  }
-  .list-group{
-    padding: 50px;
-  }
-  footer {
-    background-color: #777;
-    padding: 10px;
-    text-align: center;
+  li a {
+    display: block;
     color: white;
-    display: none;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
   }
-  li{
-    padding: 10px;
-  }
-  .MuiPaper-root-211 .MuiPaper-root-108{
-    background:none!important;
-  box-shadow: none!important;
-  }
-  .MuiPaper-root-108{
-    background:none!important;
-  box-shadow: none!important;
-  }
-  .MuiPaper-root-211{
-    background:none!important;
-    box-shadow: none!important;
-  }
-  .MuiPaper-root-314{
-    background:none!important;
-    box-shadow: none!important;
-  }
-  .MuiPaper-root-417{
-    background:none!important;
-    box-shadow: none!important;
-  }
-  .MuiButtonBase-root-450{
-    background:none!important;
-    box-shadow: none!important;
+  
+  li a:hover {
+    background-color: #111;
   }
 }
-  /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-  @media (max-width: 600px) {
-    nav, article {
-      width: 100%;
-      height: auto;
-    }
+ul{
+    list-style: none;
+}
+nav {
+  box-shadow: 2px 0px 1px 0px #272727;
+  float: left;
+  width: 250px;
+  height: 1000px;
+  background: #292929;
+  padding: 8px;
+  position: relative;
+  top: -57px;
+  img {
+    width: 70%;
+  padding: 12px;
+  margin: auto;
+  margin-left: 54px;
+  margin-top: 41px;
   }
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li a{
+  text-decoration: none;
+  cursor: pointer;
+}
+.admin-name{
+font-size:21px;
+color:white;
+}
+span{
+  color:darkgray;
+}
+.MuiPaper-root-5{
+background-color:transparent !important
+}
+.MuiPaper-elevation1-8{
+  box-shadow: none !important
+}
+.admin{
+  color: white;
+  // text-align: center;
+  font-size: 22px;
+  padding-left: 450px;
+}
+.MuiButtonBase-root-38{
+  font-size: 19px;
+  color: darkgrey;
+}
+}
+article {
+  float: left;
+  padding: 20px;
+  padding-left: 50px;
+  // font-size: 15px;
+  width: 74%;
+  background-color: transparent;
+  color: black;
+  font-size: 15px;
+  height: 100%; /* only for demonstration, should be removed */
+
+}
+.welcome-admin{
+  color: darkblue;
+  padding: 195px;
+  font-size: 40px;
+}
+.profile-wrap{border: inset;
+border-width: thin;
+border-bottom-color: black;
+border-block-start: none;
+border-left: none;
+border-right: none;
+border-bottom: ridge;
+width: 100%;}
+.list-header {
+  padding: 29px;
+}
+.list-group{
+  padding: 50px;
+}
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  display: none;
+}
+li{
+  padding: 10px;
+}
+.MuiPaper-root-211 .MuiPaper-root-108{
+  background-color:none;
+}
+}
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}

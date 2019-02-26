@@ -132,7 +132,7 @@ class Quiz extends React.Component {
                     <h2>Offers</h2>
                   </div>
                   <div className="col-sm-6">
-                    <a onClick={() => this.openEditModal()} className="btn btn-success"><span>Add New Offers</span></a>
+                    <a onClick={() => this.openEditModal()} className="btn btn-success"><span>Add New Quiz</span></a>
                     {/* <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons"></i> <span>Delete</span></a> */}
                   </div>
                 </div>
@@ -167,7 +167,7 @@ class Quiz extends React.Component {
               </table>
             </div>
           </div>
-          <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Offers" isModal="true">
+          <ModalPopover ref={test => this.editModal = test} onClose={this.onModalClose} modalId="editOrgModal" header="Quiz" isModal="true">
             <>
               <div className="form-group">
                 <label>Name</label>

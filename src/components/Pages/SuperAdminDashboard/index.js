@@ -131,7 +131,7 @@ class Dashboard extends React.Component {
               </div>
 
               <div id="mainnav-shortcut">
-                <ul className="list-unstyled" />
+              <ul style={{ color: 'white', fontSize: '32px', borderBottom: '1px solid', textAlign: 'center' }} className="list-unstyled">Welcome</ul>
               </div>
               <ul id="mainnav-menu" className="list-group">
                 {/* <li className="list-header">Navigation</li> */}

@@ -54,8 +54,8 @@ class CustomerHistory extends React.Component {
                   &nbsp;
                   <input ng-model="UHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
-                  <button style={{ padding: '1px' }} className="btn-primary col-md-1 butnadd submit_form submit_dis floatRight add_button_custom" ng-click="UHC.getUserHistory()">Submit</button>
-
+                  {/* <button style={{ padding: '4px',marginRight:'19px',marginTop:'-32px' }} className="btn btn-primary" ng-click="UHC.getUserHistory()">Submit</button> */}
+                  <button class="btn btn-primary" style={{ marginTop: '-33px' }}>Submit</button>
                 </div>
               </div>
               <table className="table table-striped table-hover">
