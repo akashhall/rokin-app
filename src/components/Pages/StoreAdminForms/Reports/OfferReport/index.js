@@ -122,13 +122,8 @@ class OfferReport extends React.Component {
                   &nbsp;
                   <input ng-model="URC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
-                  <button style={{ padding: '1px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="URC.getUserReport()">Submit</button>
-                  {/* <span className="search_input margin_top10">
-                  <label htmlFor="search">Search:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                  <input type="text" name="search" ng-model="URC.search" className="ng-pristine ng-untouched ng-valid ng-empty" />
-                  <button className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight custom_added" ng-click="URC.exportToSpreadSheet()">Export as Excel</button>
-                </span> */}
-                  {/* <h3 class="panel-title">Payment Form</h3> */}
+                  {/* <button style={{ padding: '1px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="URC.getUserReport()">Submit</button>0 */}
+                  <button class="btn btn-primary" style={{marginTop: '0px',padding:'5px',marginRight:'298px' }}>Submit</button>
                 </div>
               </div>
 

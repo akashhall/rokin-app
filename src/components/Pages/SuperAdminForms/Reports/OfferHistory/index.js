@@ -153,7 +153,7 @@ class OfferHistory extends React.Component {
                   <label htmlFor="endDate">End Date:</label>
                   &nbsp;
                   <input style={{ marginBottom: '15px', padding: '1px' }} ng-model="OHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
-                  <button style={{ marginBottom: '15px', padding: '1px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="OHC.getOffersHistory()">Submit</button>
+                  <button class="btn btn-primary" style={{ marginTop: '1px',marginBottom:'16px',padding:'0px' }}>Submit</button>
                 </div>
 
               </div>
