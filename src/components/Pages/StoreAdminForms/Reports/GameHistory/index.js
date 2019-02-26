@@ -45,7 +45,7 @@ class GameHistory extends React.Component {
 								<div className="panel-heading" style={{ padding: '10px 10px', height: 'auto', }}>
 									<label htmlFor="game">Select Game:</label>
 									&nbsp;
-									<select style={{ width: '20%', display: 'inline-block',padding:'4px' }} className="" name="type" ng-model="GHC.game">
+									<select style={{ width: '20%', display: 'inline-block', padding: '4px' }} className="" name="type" ng-model="GHC.game">
 										<option value="All" selected="selected">All</option>
 										<option value="treasureHunt">TresauteHunt</option>
 										<option value="quizGame">Quiz</option>
@@ -59,7 +59,7 @@ class GameHistory extends React.Component {
 
 									&nbsp;<input style={{ padding: '2px' }} ng-model="GHC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
 									{/* &nbsp;<button style={{ padding: '4px', fontSize: '15px', marginTop: '2px', marginRight: '33px' }} className="btn btn-primary" ng-click="GHC.getGameHistory()">Submit</button> */}
-									<button class="btn btn-primary" style={{ marginTop: '1px',marginRight:'29px' }}>Submit</button>
+									<button class="btn btn-primary" style={{ marginTop: '1px', marginRight: '114px' }}>Submit</button>
 								</div>
 							</div>
 							<table className="table table-striped table-hover">

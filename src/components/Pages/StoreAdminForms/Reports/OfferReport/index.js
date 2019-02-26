@@ -123,7 +123,7 @@ class OfferReport extends React.Component {
                   <input ng-model="URC.endDate" type="date" close-on-select="false" className="ng-pristine ng-untouched ng-valid ng-not-empty" />
                   &nbsp;
                   {/* <button style={{ padding: '1px' }} className="add_button_custom_width btn-primary col-md-1 butnadd submit_form submit_dis floatRight" ng-click="URC.getUserReport()">Submit</button>0 */}
-                  <button class="btn btn-primary" style={{marginTop: '0px',padding:'5px',marginRight:'298px' }}>Submit</button>
+                  <button class="btn btn-primary" style={{marginTop: '0px',padding:'5px',marginRight:'407px' }}>Submit</button>
                 </div>
               </div>
 
