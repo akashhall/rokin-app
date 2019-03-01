@@ -200,7 +200,7 @@ class SendOffers extends React.Component {
                                    UserName: <input style={{display:'inline-block' , marginRight:'15px'}}/>
                                    Search:   <input style={{display:'inline-block'}}/>
                                 </div>
-                                <div style={{marginTop: '-129px',marginLeft: '89%'}}>
+                                <div style={{marginTop: '-129px',marginLeft: '86%'}}>
                                     <a style={{'float':'right'}} onClick={() => this.openEditModal()} className="btn btn-success"><span>Send Offer</span></a>
                                 </div>
                             </div>
