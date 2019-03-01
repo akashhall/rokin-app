@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
     }
   }
   componentDidMount() {
-    getAllCommon('get-outlet', { id: sessionStorage.outlet_id }).then((data) => this.setState({ outletData: data.data }));
+    getAllCommon('get-outlet', { id: sessionStorage.outlet_id !== '' ? sessionStorage.outlet_id : 'dcba56d9-3801-40c8-9c13-8a77c71de24f' }).then((data) => this.setState({ outletData: data.data }));
   }
 
   ShowForms = (type) => {

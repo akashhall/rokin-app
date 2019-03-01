@@ -80,6 +80,10 @@ class SendOffers extends React.Component {
             data: [],
             users: [],
             userData: {},
+            offerData: {},
+            offers : [],
+            offerDescription: '',
+            selectedOfferId : '',
         }
     };
 
@@ -88,13 +92,15 @@ class SendOffers extends React.Component {
         console.log('did', sessionStorage);
         this.setState({ data: data })
         const usersData = [];
+        const offerData = [];
     getAllCommon('get-admin-users', { user_type: "storeadmin" }).then((res) => {
       res.data.map((data) => { usersData.push(data.name) });
       this.setState({ userData : res.data, users: usersData })
     })
-        // getBeacons({ outlet_id: 'dcba56d9-3801-40c8-9c13-8a77c39de24f' }).then((res) => this.setState({ data: res.data }))
-
-        // login().then((res) => console.log('res', res));
+    getAllCommon('offers', { "outlet_id" : sessionStorage.outlet_id !== '' ? sessionStorage.outlet_id : "cd5b0abf-74ca-4c32-bfcf-cde6d1518f35" }).then((res) => {
+      res.data.map((data,index) => { offerData.push({ offerName : data.offer_name, offer_Id: data.offer_id ,index:index ,offer_description : data.offer_description}) });
+      this.setState({ offerData : res.data, offers: offerData })
+    })
     }
     onModalClose = () => {
         this.selecteId = null;
@@ -112,11 +118,11 @@ class SendOffers extends React.Component {
     }
     onSumit = () => {
         const data = {
-            "outlet_id":"6c60dc52-ee29-44cd-aa14-cd963029f618",
-            "recipient_id": this.userIdArray,
-            "offer_id":"ae1c0fbf-14ca-4c32-bgtf-cde6h1718f09"
+            "outlet_id":"cd5b0abf-74ca-4c32-bfcf-cde6d1518f35",
+            "recipient_ids": this.userIdArray,
+            "offer_id": this.state.selectedOfferId
         }
-        getAllCommon('send-offer',data).then((res) =>{ this.setState({ data: res.data }); this.editModal.handleHide() });
+        getAllCommon('send-offer',data).then((res) =>{ console.log(res.data); this.editModal.handleHide() });
 
     }
     openEditModal = (i) => {
@@ -147,6 +153,12 @@ class SendOffers extends React.Component {
         })
         this.userIdArray = userArray;
         console.log(this.userIdArray)
+      }
+      offerSelection = () => {
+        const data = this.state.offers.filter((data) => { if(data.index === this.select.selectedIndex - 1) {
+        this.setState({offerDescription :data.offer_description,selectedOfferId : data.offer_Id})      
+        }});
+        this.select.selectedIndex === 0 && this.setState({offerDescription : ''});
       }
     redemOffer = () => {
         console.log('redemOffer');
@@ -231,13 +243,15 @@ class SendOffers extends React.Component {
                                <MultiSearchSelect searchable={true} showTags={true} multiSelect={true} width="100%" style={{marginLeft:'-10px'}}onSelect={this.handleChange} options={this.state.users} />   
                                 {/* <input ref={name => this.name = name} type="text" className="form-control" onChange={(e) => this.setState({ editData: { ...this.state.editData, name: e.target.value } })} value={this.state.editData.name || ''} required placeholder="Please enter Beacon Name" /> */}
                             </div>
-                            <div className="form-group">
-                                <label>Speial Offer: </label>
-                                <input  className="form-control" required placeholder="Select Offers" />
-                            </div>
+                            <select ref={sel => this.select = sel} onChange={(e)=>{this.offerSelection(e)}} style={{ height: '38px', width: '100%', marginBottom: '20px', marginTop: '10px', border: '1px solid lightgrey',   fontSize: '13px' }} >
+                              <option>Select Offer</option>
+                              {this.state.offers.map((data) => {
+                                return <option value={data.id} id={data.id}>{data.offerName}</option>
+                              })}
+                             </select>
                             <div className="form-group">
                                 <label>OfferDesc: </label>
-                                <input required className="form-control" placeholder="Offer Description" />
+                                <input required className="form-control" value={this.state.offerDescription}placeholder="Offer Description" />
                             </div>
                             <div style={{ padding: '20px 55px' }} className="modal-footer">
                                 <div className="row">
